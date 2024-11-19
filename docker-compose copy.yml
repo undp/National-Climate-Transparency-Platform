@@ -10,19 +10,16 @@ services:
     image: postgres
     restart: always
     ports:
-      - ${DB_PORT}:5433
+      - "5433:5433"
     environment:
-      POSTGRES_PASSWORD: ${DB_PWD}
-      POSTGRES_USER: ${DB_USER}
-      PGPORT: ${DB_PORT}
-      PSQL_USERNAME: ${DB_USER}
+      POSTGRES_PASSWORD: "<ANY PASSWORD>"
+      POSTGRES_USER: root
+      PGPORT: 5433
+      PSQL_USERNAME: root
       PGDATA: /data/postgres
     volumes:
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
       - data:/data/postgres
-    env_file:
-      - .env
-
   migration:
     build:
       context: .
@@ -33,13 +30,10 @@ services:
     command: ['yarn', 'migration:run']
     environment:
       DB_HOST: dbmrv
-      DB_PORT: ${DB_PORT}
-      DB_USER: ${DB_USER}
-      DB_PASSWORD: ${DB_PWD}
-      DB_NAME: ${DB_NAME}
-    env_file:
-      - .env
-
+      DB_PORT: 5433
+      DB_USER: root
+      DB_PASSWORD: "<ANY PASSWORD>"
+      DB_NAME: "carbondev"
   national:
     build:
       context: .
@@ -50,12 +44,12 @@ services:
       - dbmrv
     environment:
       DB_HOST: dbmrv
-      DB_USER: ${DB_USER}
-      DB_PASSWORD: ${DB_PWD}
+      DB_USER: root
+      DB_PASSWORD: "<ANY PASSWORD>"
       RUN_MODULE: national-api
       rootEmail: <ROOT EMAIL>
-      systemCountryCode: "SC"
-      name: "Seychelles"
+      systemCountryCode: "NG"
+      name: "Antactic Region"
       logoBase64: "sss"
       IS_EMAIL_DISABLED: "true"
       LOCATION_SERVICE: OPENSTREET
@@ -63,8 +57,8 @@ services:
       HOST: "http://localhost:3030"
       DOMAIN_MAP: "true"
       EXPIRES_IN: "7200"
-      DB_PORT: ${DB_PORT}
-      DB_NAME: ${DB_NAME}
+      DB_PORT: "5433"
+      DB_NAME: "carbondev"
       NODE_ENV: 'dev'
       FILE_SERVICE: local
       DISABLE_LOW_PRIORITY_EMAIL: "true"
@@ -74,12 +68,11 @@ services:
       SYNC_ENDPOINT: 'http://192.168.1.43:3000'      
       SYNC_API_TOKEN: ''
       BACKEND_HOST: http://localhost:9000
-      SYSTEM_NAME: Seychelles NDC Transparency System
+      SYSTEM_NAME: National NDC Transparency System
     volumes:
       - filestore:/app/backend/services/public
       - ./users.csv:/app/backend/services/users.csv
       - ./organisations.csv:/app/backend/services/organisations.csv
-  
   stats:
     build:
       context: .
@@ -91,16 +84,15 @@ services:
       - national
     environment:
       DB_HOST: dbmrv
-      DB_USER: ${DB_USER}
-      DB_PASSWORD: ${DB_PWD}
+      DB_USER: root
+      DB_PASSWORD: "<ANY PASSWORD>"
       RUN_PORT: 3100
       RUN_MODULE: analytics-api
       DOMAIN_MAP: "true"
-      DB_PORT:  ${DB_PORT}
-      DB_NAME: ${DB_NAME}
+      DB_PORT: "5433"
+      DB_NAME: "carbondev"
       NODE_ENV: 'dev'
       FILE_SERVICE: local
-  
   async-operations-handler:
     build:
       context: .
@@ -110,8 +102,8 @@ services:
       - national
     environment:
       DB_HOST: dbmrv
-      DB_USER: ${DB_USER}
-      DB_PASSWORD: ${DB_PWD}
+      DB_USER: root
+      DB_PASSWORD: "<ANY PASSWORD>"
       RUN_MODULE: async-operations-handler,data-importer
       LOCATION_SERVICE: https://mrv-common-dev.s3.amazonaws.com/flag.png
       CERTIFIER_IMAGE : "https://mrv-common-dev.s3.amazonaws.com/flag.png"
@@ -123,8 +115,8 @@ services:
       ITMO_API_KEY: ""
       ITMO_EMAIL: ""                      
       ITMO_PASSWORD: ""
-      DB_PORT: ${DB_PORT}
-      DB_NAME: ${DB_NAME}
+      DB_PORT: "5433"
+      DB_NAME: "carbondev"
       REGISTRY_SYNC_ENABLE: true
       NODE_ENV: 'dev'
       SYNC_ENDPOINT: 'http://192.168.1.43:3000'      
@@ -134,7 +126,6 @@ services:
       SYSTEM_TYPE: CARBON_TRANSPARENCY_SYSTEM
       SYNC_ENABLE: true
       BACKEND_HOST: http://localhost:9000
-  
   web:
     build:
       context: .
@@ -143,7 +134,7 @@ services:
         PORT: 3030
         REACT_APP_BACKEND: http://localhost:9000
         REACT_APP_STAT_URL: http://localhost:9100
-        REACT_APP_COUNTRY_NAME: "Seychelles"
+        REACT_APP_COUNTRY_NAME: "Antarctic Region"
     ports:
       - "9030:3030"
     depends_on:
