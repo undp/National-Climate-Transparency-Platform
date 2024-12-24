@@ -1,5 +1,5 @@
 import { ApiProperty, ApiPropertyOptional, getSchemaPath } from "@nestjs/swagger";
-import { IsEnum, IsNotEmpty, IsNumber, IsOptional, IsString, IsArray, ArrayMinSize, MaxLength, Min, Max, ValidationOptions} from 'class-validator';
+import { IsEnum, IsNotEmpty, IsNumber, IsOptional, IsString, IsArray, ArrayMinSize, MaxLength, Min, Max } from 'class-validator';
 import { SubSector, NatImplementor } from "../enums/shared.enum";
 import { DocumentDto } from "./document.dto";
 import { KpiDto } from "./kpi.dto";

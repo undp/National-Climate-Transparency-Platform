@@ -4,7 +4,7 @@ import { useConnection } from '../../../Context/ConnectionContext/connectionCont
 import { useUserContext } from '../../../Context/UserInformationContext/userInformationContext';
 import { useAbilityContext } from '../../../Casl/Can';
 import { useEffect, useState } from 'react';
-import { Row, Col, Button, Form, Input, message, Skeleton, Radio, Select, Checkbox } from 'antd';
+import { Row, Col, Button, Form, Input, message, Radio, Select, Checkbox } from 'antd';
 import PhoneInput, {
   formatPhoneNumber,
   formatPhoneNumberIntl,
@@ -45,7 +45,7 @@ const AddUser = () => {
   const { t } = useTranslation(['addUser', 'changePassword', 'userProfile']);
   const themeColor = '#9155fd';
 
-  const { post, put, get } = useConnection();
+  const { post, put } = useConnection();
   const [formOne] = Form.useForm();
   const { state } = useLocation();
   const { updateToken } = useConnection();
@@ -58,8 +58,6 @@ const AddUser = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const [isUpdate, setIsUpdate] = useState(false);
   const [errorMsg, setErrorMsg] = useState<any>('');
-  const [countries, setCountries] = useState<[]>([]);
-  const [isCountryListLoading, setIsCountryListLoading] = useState(false);
   const [role, setRole] = useState(state?.record?.role);
   const [isSaveButtonDisabled, setIsSaveButtonDisabled] = useState(true);
   const [validatePermission, setValidatePermission] = useState(
@@ -93,23 +91,6 @@ const AddUser = () => {
 
   const onNavigateToLogin = () => {
     navigate('/login', { replace: true });
-  };
-
-  const getCountryList = async () => {
-    setIsCountryListLoading(true);
-    try {
-      const response = await get('national/users/countries');
-      if (response.data) {
-        const alpha2Names = response.data.map((item: any) => {
-          return item.alpha2;
-        });
-        setCountries(alpha2Names);
-      }
-    } catch (error: any) {
-      displayErrorMessage(error);
-    } finally {
-      setIsCountryListLoading(false);
-    }
   };
 
   const onAddUser = async (values: any) => {
@@ -314,8 +295,6 @@ const AddUser = () => {
   };
 
   useEffect(() => {
-    getCountryList();
-
     if (state?.record) {
       setIsUpdate(true);
       setIsSaveButtonDisabled(true);
@@ -441,50 +420,45 @@ const AddUser = () => {
                     size="large"
                   />
                 </Form.Item>
-                <Skeleton loading={isCountryListLoading} active>
-                  {countries.length > 0 && (
-                    <Form.Item
-                      name="phoneNo"
-                      label={t('addUser:phoneNo')}
-                      initialValue={state?.record?.phoneNo}
-                      rules={[
-                        {
-                          required: false,
-                        },
-                        {
-                          // eslint-disable-next-line no-unused-vars
-                          validator: async (rule: any, value: any) => {
-                            const phoneNo = formatPhoneNumber(String(value));
-                            if (String(value).trim() !== '') {
-                              if (
-                                (String(value).trim() !== '' &&
-                                  String(value).trim() !== undefined &&
-                                  value !== null &&
-                                  value !== undefined &&
-                                  phoneNo !== null &&
-                                  phoneNo !== '' &&
-                                  phoneNo !== undefined &&
-                                  !isPossiblePhoneNumber(String(value))) ||
-                                value?.length > 17
-                              ) {
-                                throw new Error(`${t('addUser:phoneNo')} ${t('isInvalid')}`);
-                              }
-                            }
-                          },
-                        },
-                      ]}
-                    >
-                      <PhoneInput
-                        placeholder={t('addUser:phoneNo')}
-                        international
-                        defaultCountry="LK"
-                        countryCallingCodeEditable={false}
-                        onChange={() => {}}
-                        countries={countries}
-                      />
-                    </Form.Item>
-                  )}
-                </Skeleton>
+                <Form.Item
+                  name="phoneNo"
+                  label={t('addUser:phoneNo')}
+                  initialValue={state?.record?.phoneNo}
+                  rules={[
+                    {
+                      required: false,
+                    },
+                    {
+                      // eslint-disable-next-line no-unused-vars
+                      validator: async (rule: any, value: any) => {
+                        const phoneNo = formatPhoneNumber(String(value));
+                        if (String(value).trim() !== '') {
+                          if (
+                            (String(value).trim() !== '' &&
+                              String(value).trim() !== undefined &&
+                              value !== null &&
+                              value !== undefined &&
+                              phoneNo !== null &&
+                              phoneNo !== '' &&
+                              phoneNo !== undefined &&
+                              !isPossiblePhoneNumber(String(value))) ||
+                            value?.length > 17
+                          ) {
+                            throw new Error(`${t('addUser:phoneNo')} ${t('isInvalid')}`);
+                          }
+                        }
+                      },
+                    },
+                  ]}
+                >
+                  <PhoneInput
+                    placeholder={t('addUser:phoneNo')}
+                    international
+                    defaultCountry="LK"
+                    countryCallingCodeEditable={false}
+                    onChange={() => {}}
+                  />
+                </Form.Item>
                 {(role === Role.Root || role === Role.Admin || role === Role.GovernmentUser) && (
                   <Form.Item
                     initialValue={state?.record?.validatePermission}

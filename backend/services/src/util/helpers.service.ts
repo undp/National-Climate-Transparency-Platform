@@ -1,11 +1,8 @@
 import { HttpException, HttpStatus, Injectable } from "@nestjs/common";
 import e from "express";
 import { QueryDto } from "../dtos/query.dto";
-import { ProgrammeStage } from "../enums/programme-status.enum";
-import { chartStatsRequestDto } from "../dtos/chartStats.request.dto";
 import { ConfigService } from "@nestjs/config";
 import { I18nService } from "nestjs-i18n";
-import { programmeStatusRequestDto } from "../dtos/programmeStatus.request.dto";
 import { EntityManager } from "typeorm";
 import { SubpathDto } from "../dtos/subpath.dto";
 import { User } from "../entities/user.entity";
@@ -19,41 +16,6 @@ export class HelperService {
     private configService: ConfigService,
     private i18n: I18nService
   ) {}
-
-  public isBase64(text: string): boolean {
-    return Buffer.from(text, 'base64').toString('base64') === text
-  }
-
-  public enumToString(enumObj, value) {
-    const keys = Object.keys(enumObj);
-    for (const key of keys) {
-      if (enumObj[key] === value) {
-        return key;
-      }
-    }
-    return null; // Or throw an error if the value is not found
-  }
-
-  public generateRandomNumber(length = 6) {
-    var text = "";
-    var possible = "123456789";
-    for (var i = 0; i < length; i++) {
-      var sup = Math.floor(Math.random() * possible.length);
-      text += i > 0 && sup == i ? "0" : possible.charAt(sup);
-    }
-    return Number(text);
-  }
-
-  public halfUpToPrecision(value:number,precision:number=2){
-    if(precision>0)
-    {
-      return parseFloat((value*(10**precision)).toFixed(0))/(10**precision)
-    }
-    else if(precision==0){
-      return parseFloat(value.toFixed(0))
-    }
-    return value
-  }
   
   private prepareValue(value: any, table?: string, toLower?: boolean) {
     if (value instanceof Array) {
@@ -108,18 +70,6 @@ export class HelperService {
       return true;
   }
 
-  public generateSortCol(col: string) {
-    if (col.includes("->>")) {
-      const parts = col.split("->>");
-      return `"${parts[0]}"->>'${parts[1]}'`;
-    } else if (col.includes("[")) {
-      const parts = col.split("[");
-      return `"${parts[0]}"[${parts[1]}`;
-    } else {
-      return `"${col}"`;
-    }
-  }
-
   public generateRandomPassword() {
     var pass = "";
     var str =
@@ -145,57 +95,6 @@ export class HelperService {
     return parts.join("");
   }
 
-  public generateWhereSQLChartStastics(
-    data: chartStatsRequestDto,
-    extraSQL: string,
-    table?: string
-  ) {
-    let sql = "";
-    let col = "";
-    let colFilter = "createdTime";
-
-    if (data?.type === "TOTAL_PROGRAMS") {
-      col = "currentStage";
-      sql = `${table ? table + "." : ""}"${colFilter}" > ${this.prepareValue(
-        data?.startDate
-      )} and ${table ? table + "." : ""}"${colFilter}" < ${this.prepareValue(
-        data?.endDate
-      )}`;
-    } else if (data?.type === "TOTAL_CREDITS_CERTIFIED") {
-      col = "certifierId";
-      sql = `${table ? table + "." : ""}"${colFilter}" > ${this.prepareValue(
-        data?.startDate
-      )} and ${table ? table + "." : ""}"${colFilter}" < ${this.prepareValue(
-        data?.endDate
-      )}`;
-    }
-
-    if (sql != "") {
-      if (data?.companyId !== "") {
-        let colCheck = "companyId";
-        let companyId = data?.companyId;
-        sql = `(${sql}) and ${
-          table ? table + "." : ""
-        }"${colCheck}" @> '{${companyId}}'`;
-      }
-    } else {
-      if (data?.companyId !== "") {
-        let colCheck = "companyId";
-        let companyId = data?.companyId;
-        sql = `${table ? table + "." : ""}"${colCheck}" @> '{${companyId}}'`;
-      }
-    }
-
-    if (sql != "") {
-      if (extraSQL) {
-        sql = `(${sql}) and (${extraSQL})`;
-      }
-    } else if (extraSQL) {
-      sql = extraSQL;
-    }
-    return sql;
-  }
-
   private isQueryDto(obj) {
     if (
       obj &&
@@ -205,120 +104,6 @@ export class HelperService {
       return true;
     }
     return false;
-  }
-
-  public generateWhereSQLChartStasticsWithoutTimeRange(
-    data: programmeStatusRequestDto,
-    extraSQL: string,
-    table?: string
-  ) {
-    let sql = "";
-    let col = "";
-
-    if (data?.type === "TRANSFER_REQUEST_SENT") {
-      col = "fromCompanyId";
-      sql = `${table ? table + "." : ""}"${col}" is not null`;
-    } else if (data?.type === "TRANSFER_REQUEST_RECEIVED") {
-      col = "toCompanyId";
-      sql = `${table ? table + "." : ""}"${col}" is not null`;
-    } else if (data?.type === "PROGRAMS_CERTIFIED") {
-      col = "certifierId";
-      sql = `${table ? table + "." : ""}"${col}" is not null`;
-    } else if (data?.type === "PROGRAMS_UNCERTIFIED") {
-      col = "certifierId";
-      sql = `${table ? table + "." : ""}"${col}" is null`;
-    }
-
-    if (sql != "") {
-      if (extraSQL) {
-        sql = `(${sql}) and (${extraSQL})`;
-      }
-    } else if (extraSQL) {
-      sql = extraSQL;
-    }
-    return sql;
-  }
-
-  public generateWhereSQLStastics(
-    data: programmeStatusRequestDto,
-    extraSQL: string,
-    table?: string
-  ) {
-    let sql = "";
-    let col = "";
-    let colFilter = "createdTime";
-
-    if (data?.type === "PROGRAMS_BY_STATUS") {
-      col = "currentStage";
-      sql = `${table ? table + "." : ""}"${col}" = ${this.prepareValue(
-        ProgrammeStage[data?.value]
-      )}`;
-    } else if (data?.type.includes("CREDIT_CERTIFIED")) {
-      col = "certifierId";
-      sql = `${
-        table ? table + "." : ""
-      }"${col}" is not null and "${col}" != '{}'`;
-    } else if (data?.type === "CREDIT_UNCERTIFIED") {
-      col = "certifierId";
-      sql = `${table ? table + "." : ""}"${col}" is null`;
-    } else if (data?.type === "CREDIT_REVOKED") {
-      col = "certifierId";
-      sql = `${table ? table + "." : ""}"${col}" = '{}'`;
-    } else if (data?.type === "CREDIT_STATS_FROZEN") {
-    }
-
-    if (
-      data?.startTime &&
-      data?.endTime &&
-      data?.type.includes("CREDIT_STATS")
-    ) {
-      sql = `${table ? table + "." : ""}"${colFilter}" > ${this.prepareValue(
-        data?.startTime
-      )} and ${table ? table + "." : ""}"${colFilter}" < ${this.prepareValue(
-        data?.endTime
-      )}`;
-    } else if (data?.startTime && data?.endTime) {
-      if (sql != "") {
-        sql = `(${sql}) and ${
-          table ? table + "." : ""
-        }"${colFilter}" > ${this.prepareValue(data?.startTime)} and ${
-          table ? table + "." : ""
-        }"${colFilter}" < ${this.prepareValue(data?.endTime)}`;
-      } else {
-        sql = `${table ? table + "." : ""}"${colFilter}" > ${this.prepareValue(
-          data?.startTime
-        )} and ${table ? table + "." : ""}"${colFilter}" < ${this.prepareValue(
-          data?.endTime
-        )}`;
-      }
-    }
-
-    if (sql != "") {
-      if (data?.companyId !== "") {
-        let colCheck = "companyId";
-        let companyId = data?.companyId;
-        sql = `(${sql}) and ${
-          table ? table + "." : ""
-        }"${colCheck}" @> '{${companyId}}'`;
-      }
-    } else {
-      if (data?.companyId !== "") {
-        let colCheck = "companyId";
-        let companyId = data?.companyId;
-        sql = `${table ? table + "." : ""}"${colCheck}" @> '{${companyId}}'`;
-      }
-    }
-
-    if (sql != "") {
-      if (extraSQL) {
-        sql = `(${sql}) and (${extraSQL})`;
-      }
-    } else if (extraSQL) {
-      sql = extraSQL;
-    }
-    // console.log(sql);
-
-    return sql;
   }
 
   public generateWhereSQL(query: QueryDto, extraSQL: string, table?: string, ignoreCol?: string[]) {
@@ -484,115 +269,66 @@ export class HelperService {
 		await entityManager.query('REFRESH MATERIALIZED VIEW CONCURRENTLY report_five_view_entity;');
 	}
 
-  public getEmailTemplateMessage(template: string, data, isSubject: boolean) :string{
-    if (template == undefined) {
+  public getEmailTemplateMessage(template: string, data, isSubject: boolean) :string {
+      if (template == undefined) {
+          return template;
+      }
+      for (const key in data) {
+          if (data.hasOwnProperty(key)) {
+              var find = `{{${key}}}`;
+              var re = new RegExp(find, 'g');
+              template = template.replace(re, data[key]);
+          }
+      }
+
+      if(isSubject) {
+        return `${this.configService.get("email.getemailprefix")} NDC Transparency System: ${template}`;
+      } else {
         return template;
+      } 
+  }
+
+  public roundToTwoDecimals(value: number): number {
+    return parseFloat(value.toFixed(2));
+  }
+
+  public generateSubPathSQL(query: SubpathDto) {
+    let whereSQL = `subpath(${query.ltree}, ${query.startLevel}, ${query.traverseDepth}) = '${query.match}'`;
+    return whereSQL;
+  }
+
+  public doesUserHaveSectorPermission(user: User, sectorScope: Sector) {
+    let can: boolean = true;
+    if (user.sector && user.sector.length > 0 && sectorScope) {
+      if (!user.sector.includes(sectorScope)) {
+        can = false
+      }
     }
-    for (const key in data) {
-        if (data.hasOwnProperty(key)) {
-            var find = `{{${key}}}`;
-            var re = new RegExp(find, 'g');
-            template = template.replace(re, data[key]);
+    return can;
+  }
+
+  public doesUserHaveValidatePermission(user: User) {
+    if (user.validatePermission===ValidateEntity.CANNOT) {
+      throw new HttpException(
+        this.formatReqMessagesString(
+          "common.permissionDeniedForValidate",
+          [],
+        ),
+        HttpStatus.FORBIDDEN
+      );
+    }
+  }
+
+  public isValidYear(yearStr: string): boolean {
+    const yearRegex = /^\d{4}$/;
+
+    if (yearRegex.test(yearStr)) {
+        const year = parseInt(yearStr, 10);
+        if (year >= 1000 && year <= 9999) {
+            return true;
         }
     }
-
-    if(isSubject) 
-      return `${this.configService.get("email.getemailprefix")} NDC Transparency System: ${template}`;
-    else 
-      return template;
-}
-
-public roundToTwoDecimals(value: number): number {
-	return parseFloat(value.toFixed(2));
-}
-
-public formatTimestamp(timestamp: any) {
-  if (timestamp) {
-    const parsedTimestamp = Number(timestamp);
-
-    if (!isNaN(parsedTimestamp)) {
-      const date = new Date(parsedTimestamp);
-
-      const year = date.getFullYear();
-      const month = (date.getMonth() + 1).toString().padStart(2, '0');
-      const day = date.getDate().toString().padStart(2, '0');
-      const hours = date.getHours().toString().padStart(2, '0');
-      const minutes = date.getMinutes().toString().padStart(2, '0');
-      const seconds = date.getSeconds().toString().padStart(2, '0');
-      return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
-    }
+    return false;
   }
-  
-}
 
-public generateSubPathSQL(query: SubpathDto) {
-  let whereSQL = `subpath(${query.ltree}, ${query.startLevel}, ${query.traverseDepth}) = '${query.match}'`;
-  return whereSQL;
-}
-
-public doesUserHaveSectorPermission(user: User, sectorScope: Sector) {
-  let can: boolean = true;
-  if (user.sector && user.sector.length > 0 && sectorScope) {
-    if (!user.sector.includes(sectorScope)) {
-      can = false
-    }
-  }
-  return can;
-}
-
-public doesUserHaveValidatePermission(user: User) {
-  if (user.validatePermission===ValidateEntity.CANNOT) {
-    throw new HttpException(
-      this.formatReqMessagesString(
-        "common.permissionDeniedForValidate",
-        [],
-      ),
-      HttpStatus.FORBIDDEN
-    );
-  }
-}
-
-public isValidYear(yearStr: string): boolean {
-  const yearRegex = /^\d{4}$/;
-
-  if (yearRegex.test(yearStr)) {
-      const year = parseInt(yearStr, 10);
-      if (year >= 1000 && year <= 9999) {
-          return true;
-      }
-  }
-  return false;
-}
-
-  // public async uploadCompanyLogoS3(companyId: number, companyLogo: string) {
-  // var AWS = require("aws-sdk");
-  // const s3 = new AWS.S3();
-  // const imgBuffer = Buffer.from(companyLogo, "base64");
-  // var uploadParams = {
-  //   Bucket: this.configService.get<string>("s3CommonBucket.name"),
-  //   Key: "",
-  //   Body: imgBuffer,
-  //   ContentEncoding: "base64",
-  //   ContentType: "image/png",
-  // };
-
-  // uploadParams.Key = `profile_images/${companyId}_${new Date().getTime()}.png`;
-
-  // return await s3
-  //   .upload(uploadParams, function (err, data) {
-  //     if (err) {
-  //       return {
-  //         status: false,
-  //         statusText: err,
-  //       };
-  //     }
-  //     if (data) {
-  //       return {
-  //         status: true,
-  //         statusText: data.Location,
-  //       };
-  //     }
-  //   })
-  //   .promise();
-  // }
 }

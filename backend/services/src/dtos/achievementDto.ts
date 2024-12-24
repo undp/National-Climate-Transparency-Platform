@@ -5,19 +5,19 @@ import { IsTwoDecimalPoints } from "../util/twoDecimalPointNumber.decorator";
 export class AchievementDto {
 	
 	@IsNotEmpty()
-  @IsNumber()
-  @ApiProperty()
+	@IsNumber()
+	@ApiProperty()
 	kpiId: number;
 
 	@IsNotEmpty()
-  @IsString()
-  @ApiProperty()
+	@IsString()
+	@ApiProperty()
 	activityId: string;
 
 	@IsTwoDecimalPoints()
 	@IsNotEmpty()
-  @IsNumber()
-  @ApiProperty()
+	@IsNumber()
+	@ApiProperty()
 	achieved: number;
 }
 

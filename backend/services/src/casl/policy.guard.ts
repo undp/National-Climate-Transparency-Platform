@@ -9,7 +9,6 @@ import { Reflector } from "@nestjs/core";
 import { plainToClass } from "class-transformer";
 import { Stat } from "../dtos/stat.dto";
 import { EntitySubject } from "../entities/entity.subject";
-import { User } from "../entities/user.entity";
 import { Action } from "./action.enum";
 import { CaslAbilityFactory, AppAbility } from "./casl-ability.factory";
 import { CHECK_POLICIES_KEY } from "./policy.decorator";

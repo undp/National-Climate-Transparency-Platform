@@ -50,9 +50,7 @@ services:
       rootEmail: <ROOT EMAIL>
       systemCountryCode: "NG"
       name: "Antactic Region"
-      logoBase64: "sss"
       IS_EMAIL_DISABLED: "true"
-      LOCATION_SERVICE: OPENSTREET
       ASYNC_OPERATIONS_TYPE: Database
       HOST: "http://localhost:3030"
       DOMAIN_MAP: "true"
@@ -61,12 +59,9 @@ services:
       DB_NAME: "carbondev"
       NODE_ENV: 'dev'
       FILE_SERVICE: local
+      S3_COMMON_BUCKET: "<Set when FILE_SERVICE is S3 instead of LOCAL>"
       DISABLE_LOW_PRIORITY_EMAIL: "true"
-      SYSTEM_TYPE: CARBON_TRANSPARENCY_SYSTEM
-      SYSTEM_SYNC: true
-      SYNC_ENABLE: true
-      SYNC_ENDPOINT: 'http://192.168.1.43:3000'      
-      SYNC_API_TOKEN: ''
+      SYSTEM_TYPE: CARBON_TRANSPARENCY_SYSTEM  
       BACKEND_HOST: http://localhost:9000
       SYSTEM_NAME: National NDC Transparency System
     volumes:
@@ -93,6 +88,7 @@ services:
       DB_NAME: "carbondev"
       NODE_ENV: 'dev'
       FILE_SERVICE: local
+      S3_COMMON_BUCKET: "<Set when FILE_SERVICE is S3 instead of LOCAL>"
   async-operations-handler:
     build:
       context: .
@@ -104,27 +100,19 @@ services:
       DB_HOST: dbmrv
       DB_USER: root
       DB_PASSWORD: "<ANY PASSWORD>"
-      RUN_MODULE: async-operations-handler,data-importer
-      LOCATION_SERVICE: https://mrv-common-dev.s3.amazonaws.com/flag.png
-      CERTIFIER_IMAGE : "https://mrv-common-dev.s3.amazonaws.com/flag.png"
+      RUN_MODULE: async-operations-handler
       SMTP_ENDPOINT: email-smtp.us-east-1.amazonaws.com
       SMTP_PASSWORD: ""
       SMTP_USERNAME: AKIAUMXKTXDJPDYDJ76J
       IS_EMAIL_DISABLED: "true"
       ASYNC_OPERATIONS_TYPE: Database
-      ITMO_API_KEY: ""
-      ITMO_EMAIL: ""                      
-      ITMO_PASSWORD: ""
       DB_PORT: "5433"
       DB_NAME: "carbondev"
-      REGISTRY_SYNC_ENABLE: true
       NODE_ENV: 'dev'
-      SYNC_ENDPOINT: 'http://192.168.1.43:3000'      
-      SYNC_API_TOKEN: ''
       FILE_SERVICE: local
+      S3_COMMON_BUCKET: "<Set when FILE_SERVICE is S3 instead of LOCAL>"
       DISABLE_LOW_PRIORITY_EMAIL: "true"
       SYSTEM_TYPE: CARBON_TRANSPARENCY_SYSTEM
-      SYNC_ENABLE: true
       BACKEND_HOST: http://localhost:9000
   web:
     build:

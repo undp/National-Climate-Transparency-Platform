@@ -9,7 +9,7 @@ import { BasicResponseDto } from "../dtos/basic.response.dto";
 import { ConfigService } from "@nestjs/config";
 import { AsyncAction, AsyncOperationsInterface } from "../async-operations/async-operations.interface";
 import { AsyncActionType } from "../enums/async.action.type.enum";
-import { EmailTemplates } from "../email-helper/email.template";
+import { EmailTemplates } from "../email/email.template";
 import { PasswordHashService } from "./passwordHash.service";
 
 @Injectable()

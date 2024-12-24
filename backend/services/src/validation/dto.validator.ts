@@ -24,9 +24,3 @@ export function PropertyCannotExist(restrainingPropertyName: string, restrainedO
         });
     };
 }
-
-// Example Usage
-
-// @PropertyCannotExist('financeNature', FinanceNature.INTERNATIONAL, {
-//     message: 'National Financial Instrument Cannot be provided when financeNature is International',
-// })

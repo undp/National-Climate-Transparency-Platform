@@ -5,7 +5,6 @@ import {
   IsEmail,
   IsEnum,
   IsNotEmpty,
-  IsNumber,
   IsOptional,
   IsString,
 	Matches,
@@ -14,7 +13,6 @@ import {
 } from "class-validator";
 import { Role, SubRole } from "../casl/role.enum";
 import { Organisation } from "../enums/organisation.enum";
-import { IsValidCountry } from "../util/validcountry.decorator";
 import { Sector } from "../enums/sector.enum";
 import { GHGInventoryManipulate, SubRoleManipulate, ValidateEntity } from "../enums/user.enum";
 
@@ -70,7 +68,6 @@ export class UserDto {
 	@ApiPropertyOptional()
 	phoneNo: string;
   
-  @IsValidCountry()
   @IsOptional()
   @ApiPropertyOptional()
   country: string;
