@@ -1,6 +1,5 @@
 import { Index, ViewColumn, ViewEntity } from "typeorm"
-
-// manny: change how we get startYear, endYear and timeframe - we now getting it from activity (t)
+// TODO: remove
 const expandedActivity = `
 Select 
 	t."activityId",
@@ -14,11 +13,15 @@ Select
 	t."recipientEntities",
 	t."status",
 	t."technologyType",
-	t."timeFrame",
-	t."endYear",
-	t."startYear",  
+	j."timeFrame",
+	j."endYear",
 	p."subSector",
 	a."type",
+	CASE
+		WHEN t."parentType" = 'action' THEN a."startYear"
+		WHEN t."parentType" = 'programme' THEN p."startYear"
+		WHEN t."parentType" = 'project' THEN j."startYear"
+	END AS "startYear"
 FROM activity t
 LEFT JOIN 
 	(
@@ -51,7 +54,7 @@ LEFT JOIN
 	) 
 a ON a."actionId" = t."parentId" OR a."actionId" = p."actionId"
 `
-// manny: we are now getting startYear, endYear and timeFrame directly from activity
+
 export const annexThreeReportSQL = `
 SELECT
     s."supportId",
@@ -163,16 +166,11 @@ export class AnnexThreeViewEntity {
 	@ViewColumn()
 	technologyType: string;
 
-	@ViewColumn()
-    timeFrame: string;
-	
-	@ViewColumn()
-    startYear: string;
-
-	@ViewColumn()
-    endYear: string;
-
 	// From Deep Ancestors
+
+    @ViewColumn()
+    timeFrame: string;
+
     @ViewColumn()
 	recipientEntities: string[];
 
@@ -181,5 +179,11 @@ export class AnnexThreeViewEntity {
 
     @ViewColumn()
     type: string;
+
+	@ViewColumn()
+    startYear: string;
+
+	@ViewColumn()
+    endYear: string;
 
 }

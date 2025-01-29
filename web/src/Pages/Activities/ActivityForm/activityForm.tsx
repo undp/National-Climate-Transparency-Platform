@@ -89,6 +89,12 @@ const ActivityForm: React.FC<FormLoadProps> = ({ method }) => {
 
   const validation = getValidationRules(method);
 
+  // manny: get the list of years for startYear and endYear options
+  const yearsList: number[] = [];
+  for (let year = 2013; year <= 2050; year++) {
+    yearsList.push(year);
+  }
+
   // Entity Validation Status
 
   const [isValidated, setIsValidated] = useState<boolean>(false);
@@ -158,6 +164,10 @@ const ActivityForm: React.FC<FormLoadProps> = ({ method }) => {
   const [isMtgButtonEnabled, setIsMtgButtonEnabled] = useState(false);
 
   const [gwpSettings, setGwpSettings] = useState<{ CH4: number; N2O: number }>();
+
+  // Manny: Expected Time Frame
+  const [startYear1, setStartYear] = useState<number>();
+  const [endYear1, setEndYear] = useState<number>();
 
   // Initialization Logic
 
@@ -627,6 +637,8 @@ const ActivityForm: React.FC<FormLoadProps> = ({ method }) => {
   // Form Submit
 
   const handleSubmit = async (payload: any) => {
+    console.log('=============handleSubmit=============');
+    console.log(payload);
     if (method === 'update' && isMtgButtonEnabled) {
       displayErrorMessage('', t('saveMtgFirst'));
       return;
@@ -662,6 +674,9 @@ const ActivityForm: React.FC<FormLoadProps> = ({ method }) => {
           );
         });
       }
+      // manny - add the user input startYear and endYear to payload
+      payload.startYear = parseInt(payload.startYear1);
+      payload.endYear = parseInt(payload.endYear1);
 
       payload.achievedGHGReduction = parseFloat(payload.achievedGHGReduction);
       payload.expectedGHGReduction = parseFloat(payload.expectedGHGReduction);
@@ -793,14 +808,17 @@ const ActivityForm: React.FC<FormLoadProps> = ({ method }) => {
   // DB Queries
 
   const fetchConnectedParent = async () => {
+    console.log('=========fetchConnectedParent===========');
+    // manny - we no more interested with startYear, endYear, expectedTimeFrame from the Parent
+    // we are getting these 3 fields directly from activity
     const tempMigratedData: ActivityMigratedData = {
       description: undefined,
       type: undefined,
       affSectors: undefined,
       affSubSectors: undefined,
-      startYear: undefined,
-      endYear: undefined,
-      expectedTimeFrame: undefined,
+      // startYear: undefined,
+      // endYear: undefined,
+      // expectedTimeFrame: undefined,
     };
 
     if (
@@ -813,25 +831,26 @@ const ActivityForm: React.FC<FormLoadProps> = ({ method }) => {
         if (parentType === 'action') {
           tempMigratedData.description = response.data.description;
           tempMigratedData.affSectors = response.data.sector ?? undefined;
-          tempMigratedData.startYear = response.data.startYear;
+          // tempMigratedData.startYear = response.data.startYear;
           tempMigratedData.type = response.data.type;
         } else if (parentType === 'programme') {
           tempMigratedData.description = response.data.description;
           tempMigratedData.affSectors = response.data.sector ?? undefined;
           tempMigratedData.affSubSectors = response.data.affectedSubSector;
-          tempMigratedData.startYear = response.data.startYear;
+          // tempMigratedData.startYear = response.data.startYear;
           tempMigratedData.type = response.data.type;
         } else {
           tempMigratedData.description = response.data.description;
           tempMigratedData.affSectors = response.data.sector ?? undefined;
           tempMigratedData.affSubSectors = response.data.programme?.affectedSubSector ?? [];
-          tempMigratedData.startYear = response.data.startYear;
-          tempMigratedData.endYear = response.data.endYear;
-          tempMigratedData.expectedTimeFrame = response.data.expectedTimeFrame;
+          // tempMigratedData.startYear = response.data.startYear;
+          // tempMigratedData.endYear = response.data.endYear;
+          // tempMigratedData.expectedTimeFrame = response.data.expectedTimeFrame;
           tempMigratedData.type = response.data.programme?.action?.type;
         }
         if (method === 'create') {
-          setMtgStartYear(response.data.startYear);
+          // Manny - we no longer want to setMtgStartYear with Parents. We will set setMtgStartYear when the user create the Activity
+          // setMtgStartYear(response.data.startYear); //TODO: remvove after testing
         }
       } catch (error: any) {
         displayErrorMessage(error);
@@ -918,6 +937,7 @@ const ActivityForm: React.FC<FormLoadProps> = ({ method }) => {
   };
 
   const fetchActivityData = async () => {
+    console.log('==========fetchActivityData=============');
     if (method !== 'create' && entId) {
       let response: any;
       try {
@@ -925,7 +945,7 @@ const ActivityForm: React.FC<FormLoadProps> = ({ method }) => {
 
         if (response.status === 200 || response.status === 201) {
           const entityData: any = response.data;
-
+          console.log(entityData);
           // Populating Action owned data fields
           form.setFieldsValue({
             title: entityData.title,
@@ -944,7 +964,14 @@ const ActivityForm: React.FC<FormLoadProps> = ({ method }) => {
             achievedGHGReduction: entityData.achievedGHGReduction,
             expectedGHGReduction: entityData.expectedGHGReduction,
             recipientEntities: entityData.recipientEntities ?? [],
+            // Manny - we now get the startYear and endYear directly from activity
+            startYear1: entityData.startYear ?? undefined,
+            endYear1: entityData.endYear ?? undefined,
           });
+
+          // Manny - Setting Year Fields
+          setStartYear(entityData.startYear1);
+          setEndYear(entityData.endYear1);
 
           // Populating Mitigation data fields
           form.setFieldsValue({
@@ -1095,6 +1122,17 @@ const ActivityForm: React.FC<FormLoadProps> = ({ method }) => {
     }
   };
 
+  // Manny we need a new function to set the startYear and mtgStartYear states when the user change the it on the form
+  const handleStartYearChanges = (value: number | undefined) => {
+    if (value) {
+      setStartYear(value);
+      // Manny, we set the  mtgStartYear only when the user first create the activity record
+      if (method === 'create') {
+        setMtgStartYear(value);
+      }
+    }
+  };
+
   // Dynamic Updates
 
   // Initializing mtg timeline data
@@ -1129,9 +1167,10 @@ const ActivityForm: React.FC<FormLoadProps> = ({ method }) => {
         supportType: activityMigratedData.type,
         sector: activityMigratedData.affSectors,
         affSubSectors: activityMigratedData.affSubSectors,
-        startYear: activityMigratedData.startYear,
-        endYear: activityMigratedData.endYear,
-        expectedTimeFrame: activityMigratedData.expectedTimeFrame,
+        // Manny - again we do not want to set the activity form with these parent data
+        //startYear: activityMigratedData.startYear,
+        //endYear: activityMigratedData.endYear,
+        //expectedTimeFrame: activityMigratedData.expectedTimeFrame,
       });
     }
   }, [activityMigratedData]);
@@ -1466,28 +1505,93 @@ const ActivityForm: React.FC<FormLoadProps> = ({ method }) => {
                     </Form.Item>
                   </Col>
                 )}
+                {/* Manny - since we now want users to select a startYear and endYear no matter of the parentType - we also add expectedTimeFrame*/}
                 <Col {...quarterColumnBps}>
                   <Form.Item
                     label={
                       <label className="form-item-header">{t('formHeader:startYearTitle')}</label>
                     }
-                    name="startYear"
+                    name="startYear1"
+                    rules={[
+                      validation.required,
+                      ({ getFieldValue }) => ({
+                        // eslint-disable-next-line no-unused-vars
+                        validator(_, value) {
+                          if (!value || getFieldValue('endYear1') >= value) {
+                            return Promise.resolve();
+                          }
+                          return Promise.reject('Cannot be greater than End Year!');
+                        },
+                      }),
+                    ]}
+                    dependencies={['endYear1']}
                   >
-                    <Input className="form-input-box" disabled />
+                    <Select
+                      size="large"
+                      style={{ fontSize: inputFontSize }}
+                      allowClear
+                      disabled={isView}
+                      showSearch
+                      onChange={(value) => {
+                        handleStartYearChanges(value);
+                      }}
+                    >
+                      {yearsList.slice(1).map((year) => (
+                        <Option key={year} value={year}>
+                          {year}
+                        </Option>
+                      ))}
+                    </Select>
                   </Form.Item>
                 </Col>
-                {parentType === 'project' && (
-                  <Col {...quarterColumnBps}>
-                    <Form.Item
-                      label={
-                        <label className="form-item-header">{t('formHeader:endYearTitle')}</label>
-                      }
-                      name="endYear"
+                <Col {...quarterColumnBps}>
+                  <Form.Item
+                    label={
+                      <label className="form-item-header">{t('formHeader:endYearTitle')}</label>
+                    }
+                    name="endYear1"
+                    rules={[
+                      validation.required,
+                      ({ getFieldValue }) => ({
+                        // eslint-disable-next-line no-unused-vars
+                        validator(_, value) {
+                          if (!value || getFieldValue('startYear1') <= value) {
+                            return Promise.resolve();
+                          }
+                          return Promise.reject('Cannot be lower than Start Year!');
+                        },
+                      }),
+                    ]}
+                    dependencies={['startYear1']}
+                  >
+                    <Select
+                      size="large"
+                      style={{ fontSize: inputFontSize }}
+                      allowClear
+                      disabled={isView}
+                      showSearch
+                      onChange={(value) => {
+                        setEndYear(value);
+                      }}
                     >
-                      <Input className="form-input-box" disabled />
-                    </Form.Item>
-                  </Col>
-                )}
+                      {yearsList.slice(1).map((year) => (
+                        <Option key={year} value={year}>
+                          {year}
+                        </Option>
+                      ))}
+                    </Select>
+                  </Form.Item>
+                </Col>
+                <Col {...quarterColumnBps}>
+                  <Form.Item
+                    label={
+                      <label className="form-item-header">{t('formHeader:timeFrameHeader')}</label>
+                    }
+                    name="expectedTimeFrame"
+                  >
+                    <Input type="number" className="form-input-box" disabled />
+                  </Form.Item>
+                </Col>
               </Row>
               <Row gutter={gutterSize}>
                 {isGasFlow && (

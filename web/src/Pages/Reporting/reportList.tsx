@@ -54,8 +54,15 @@ const reportList = () => {
   // Reports to Display
 
   const [reportsToDisplay, setReportsToDisplay] = useState<ReportType[]>([
+    ReportType.FIVE,
     ReportType.SIX,
     ReportType.SEVEN,
+    ReportType.EIGHT,
+    ReportType.NINE,
+    ReportType.TEN,
+    ReportType.ELEVEN,
+    ReportType.TWELVE,
+    ReportType.THIRTEEN,
   ]);
 
   // Bulk Report Definitions
@@ -72,6 +79,7 @@ const reportList = () => {
   // Functions to Retrieve Tale Data
 
   const getTableFiveData = async () => {
+    console.log('\n\n--------------getTableFiveData------------');
     setLoading(true);
     try {
       const payload: any = {
@@ -80,6 +88,7 @@ const reportList = () => {
       };
 
       const response: any = await post('national/reports/5/query', payload);
+      console.log(response);
       if (response) {
         const tempReportFiveData: ReportFiveRecord[] = [];
 
@@ -120,6 +129,7 @@ const reportList = () => {
   };
 
   const getTableSixData = async () => {
+    // Manny - rounded up requiredAmountDomestic and requiredAmount
     setLoading(true);
     try {
       const payload: any = {
@@ -128,6 +138,7 @@ const reportList = () => {
       };
 
       const response: any = await post('national/reports/6/query', payload);
+      console.log(response);
       if (response) {
         const tempReportSixData: ReportSixRecord[] = [];
 
@@ -139,8 +150,8 @@ const reportList = () => {
             subSectors: report.subSector ?? [],
             titleOfActivity: report.title,
             description: report.description,
-            requiredAmountDomestic: report.requiredAmountDomestic,
-            requiredAmount: report.requiredAmount,
+            requiredAmountDomestic: Math.round(report.requiredAmountDomestic),
+            requiredAmount: Math.round(report.requiredAmount),
             startYear: report.startYear,
             endYear: report.endYear,
             financialInstrument: report.internationalFinancialInstrument,
@@ -425,6 +436,7 @@ const reportList = () => {
   };
 
   const getTableTwelveData = async () => {
+    // Manny - rounded up requiredAmountDomestic and requiredAmount
     setLoading(true);
     try {
       const payload: any = {
@@ -447,8 +459,8 @@ const reportList = () => {
             endYear: report.endYear,
             recipientEntities: report.recipientEntities ?? [],
             supportChannel: report.internationalSupportChannel ?? [],
-            requiredAmountDomestic: report.requiredAmountDomestic ?? [],
-            requiredAmount: report.requiredAmount,
+            requiredAmountDomestic: Math.round(report.requiredAmountDomestic) ?? [],
+            requiredAmount: Math.round(report.requiredAmount),
             activityStatus: report.status,
             additionalInfo: report.etfDescription,
           });
