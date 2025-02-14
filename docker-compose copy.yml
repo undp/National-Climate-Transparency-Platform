@@ -68,7 +68,7 @@ services:
       SYNC_ENDPOINT: 'http://192.168.1.43:3000'      
       SYNC_API_TOKEN: ''
       BACKEND_HOST: http://localhost:9000
-      SYSTEM_NAME: National NDC Transparency System
+      SYSTEM_NAME: Seychelles NDC Transparency System
     volumes:
       - filestore:/app/backend/services/public
       - ./users.csv:/app/backend/services/users.csv
