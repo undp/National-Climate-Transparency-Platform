@@ -371,7 +371,6 @@
     padding: 20px 0;
     max-width: 100%; /* Ensure the container spans full width of parent */
     margin: 0 auto;
-    background-color: #007bff;
   }
   
   .card-grid {
@@ -400,15 +399,38 @@
   }
 
   .card {
-    background-color: white;
+    background: linear-gradient(to right, $gradient-background-start, $gradient-background-end);
     border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     overflow: hidden;
-    transition: transform 0.3s ease;
-  
-    &:hover {
-      transform: translateY(-5px);
-    }
+    padding: 16px; /* Add padding for better spacing */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    transition: transform 0.3s ease, box-shadow 0.3s ease, padding 0.3s ease; /* Add transitions for smooth effects */
+    border: 1px solid #f1f5f9; /* Add border with the specified color */
   }
 
+  .card:hover {
+    background: $gradient-background-end;
+  }
+
+  .card-title {
+    font-size: 1.5em; /* Adjust the font size as needed */
+    font-weight: bold; /* Make the title bold */
+    margin-bottom: 12px; /* Add spacing below the title */
+    color: $dark-text-color;
+    line-height: 1.5;
+  }
+  .card-content {
+    font-size: 1em; /* Adjust the font size for the content */
+  }
+  .card-content ul {
+    list-style-type: disc; /* Use bullet points */
+    padding-left: 20px; /* Add indentation for the bullet points */
+    margin: 0; /* Remove default margin */
+    color: $dark-text-color;
+    font-size: 1rem;
+    line-height: 24px;
+  }
+  .card-content li {
+    margin-bottom: 8px;
+  }
 }

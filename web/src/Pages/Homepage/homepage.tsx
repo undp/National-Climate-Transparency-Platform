@@ -141,20 +141,80 @@ const Homepage = () => {
             </p>
             <div className="card-grid-container">
               <div className="card-grid">
-                <div className="card">AA</div>
-                <div className="card">BB</div>
-                <div className="card">BB</div>
-                <div className="card">DD</div>
+                <div className="card">
+                  <div className="card-title">{t('homepage:ourVision1.title')}</div>
+                  <div className="card-content">
+                    <ul>
+                      <li>{t('homepage:ourVision1.point1')}</li>
+                      <li>{t('homepage:ourVision1.point2')}</li>
+                      <li>{t('homepage:ourVision1.point3')}</li>
+                      <li>{t('homepage:ourVision1.point4')}</li>
+                      <li>{t('homepage:ourVision1.point5')}</li>
+                    </ul>
+                  </div>
+                </div>
+                <div className="card">
+                  <div className="card-title">{t('homepage:ourVision2.title')}</div>
+                  <div className="card-content">
+                    <ul>
+                      <li>{t('homepage:ourVision2.point1')}</li>
+                      <li>{t('homepage:ourVision2.point2')}</li>
+                      <li>{t('homepage:ourVision2.point3')}</li>
+                      <li>{t('homepage:ourVision2.point4')}</li>
+                      <li>{t('homepage:ourVision2.point5')}</li>
+                    </ul>
+                  </div>
+                </div>
+                <div className="card">
+                  <div className="card-title">{t('homepage:ourVision3.title')}</div>
+                  <div className="card-content">
+                    <ul>
+                      <li>{t('homepage:ourVision3.point1')}</li>
+                      <li>{t('homepage:ourVision3.point2')}</li>
+                      <li>{t('homepage:ourVision3.point3')}</li>
+                      <li>{t('homepage:ourVision3.point4')}</li>
+                      <li>{t('homepage:ourVision3.point5')}</li>
+                    </ul>
+                  </div>
+                </div>
+                <div className="card">
+                  <div className="card-title">{t('homepage:ourVision4.title')}</div>
+                  <div className="card-content">
+                    <ul>
+                      <li>{t('homepage:ourVision4.point1')}</li>
+                      <li>{t('homepage:ourVision4.point2')}</li>
+                      <li>{t('homepage:ourVision4.point3')}</li>
+                      <li>{t('homepage:ourVision4.point4')}</li>
+                      <li>{t('homepage:ourVision4.point5')}</li>
+                    </ul>
+                  </div>
+                </div>
+                <div className="card">
+                  <div className="card-title">{t('homepage:ourVision5.title')}</div>
+                  <div className="card-content">
+                    <ul>
+                      <li>{t('homepage:ourVision5.point1')}</li>
+                      <li>{t('homepage:ourVision5.point2')}</li>
+                      <li>{t('homepage:ourVision5.point3')}</li>
+                      <li>{t('homepage:ourVision5.point4')}</li>
+                      <li>{t('homepage:ourVision5.point5')}</li>
+                    </ul>
+                  </div>
+                </div>
+                <div className="card">
+                  <div className="card-title">{t('homepage:ourVision6.title')}</div>
+                  <div className="card-content">
+                    <ul>
+                      <li>{t('homepage:ourVision6.point1')}</li>
+                      <li>{t('homepage:ourVision6.point2')}</li>
+                      <li>{t('homepage:ourVision6.point3')}</li>
+                      <li>{t('homepage:ourVision6.point4')}</li>
+                      <li>{t('homepage:ourVision6.point5')}</li>
+                    </ul>
+                  </div>
+                </div>
               </div>
             </div>
-            <PersonCircle
-              className="icon"
-              color="#3A354199"
-              style={{ cursor: 'pointer' }}
-              onClick={() => {
-                navigate('/userProfile/view');
-              }}
-            />
           </div>
         </section>
 

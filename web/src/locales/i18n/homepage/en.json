@@ -39,5 +39,53 @@
     "ourVisionSubtitle1": "that transforms how climate actions and progress are tracked and reported.",
     "ourVisionSubtitle2": "Supported by the Seychelles Government, UNDP and the Government of Belgium,",
     "ourVisionSubtitle3": "this open-source platform embodies our commitment to transparency, collaboration, and innovation. By streamlining data collection, ensuring secure and accessible information, and fostering seamless coordination among government agencies, the DTS paves the way for a sustainable, resilient, and thriving future",
-    "ourVisionSubtitle4": "in alignment with the Paris Agreement’s Enhanced Transparency Framework (ETF)."
+    "ourVisionSubtitle4": "in alignment with the Paris Agreement’s Enhanced Transparency Framework (ETF).",
+    "ourVision1": {
+        "title": "Streamlined national and ETF reporting",
+        "point1": "Automate data collection and reporting processes to reduce manual effort and errors.",
+        "point2": "Ensures compliance with the Enhanced Transparency Framework (ETF).",
+        "point3": "Generates accurate, real-time insights for tracking progress on NDCs.",
+        "point4": "Enhance transparency and accountability in national climate commitments.",
+        "point5": "Align reporting with international standards (e.g., UNFCCC, Paris Agreement)."
+    },
+    "ourVision2": {
+        "title": "Enabling Change Through Targeted Support",
+        "point1": "Identify gaps in resources, funding, and technical expertise for climate action.",
+        "point2": "Connect stakeholders with international funding mechanisms (e.g., Green Climate Fund).",
+        "point3": "Provide tools for capacity building and knowledge sharing.",
+        "point4": "Enable tracking of financial flows and resource allocation for climate projects.",
+        "point5": "Foster collaboration between government, NGOs, and private sector partners."
+    },
+    "ourVision3": {
+        "title": "Information Management, Coordination, and Efficiency",
+        "point1": "Centralises data management for seamless information flow.",
+        "point2": "Facilitates collaboration across ministries, agencies, and stakeholders.",
+        "point3": "Provides a unified platform for data storage and retrieval.",
+        "point4": "Enhances data integrity and accessibility for informed decision-making.",
+        "point5": "Promotes efficient use of resources through streamlined operations."
+    },
+    "ourVision4": {
+        "title": "Empowering Climate Action Through Digital Innovation",
+        "point1": "Leverages cutting-edge technology to enhance climate transparency.",
+        "point2": "Provides user-friendly dashboards for better data visualization.",
+        "point3": "Engages stakeholders with accessible, intuitive digital tools.",
+        "point4": "Enables monitoring of progress on mitigation and adaptation goals.",
+        "point5": "Drives innovation to meet Seychelles’ sustainability objectives."
+    },
+    "ourVision5": {
+        "title": "Enhancing Stakeholder Engagement and Awareness",
+        "point1": "Provides a transparent view of Seychelles' climate efforts to the public.",
+        "point2": "Facilitates collaboration and input from civil society and private sectors.",
+        "point3": "Promotes public awareness of Seychelles’ climate goals and achievements.",
+        "point4": "Offers accessible tools for stakeholders to participate in climate action.",
+        "point5": "Builds trust and accountability through open communication channels."
+    },
+    "ourVision6": {
+        "title": "Future-Proofing Seychelles’ Climate Strategy",
+        "point1": "Adapts to evolving international frameworks and requirements.",
+        "point2": "Scales to accommodate growing data needs and new functionalities.",
+        "point3": "Supports continuous improvement with regular system updates.",
+        "point4": "Encourages innovation in monitoring and reporting processes.",
+        "point5": "Positions Seychelles as a leader in climate transparency and sustainability."
+    }
 }
