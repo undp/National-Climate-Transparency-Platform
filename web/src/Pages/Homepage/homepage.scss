@@ -2,7 +2,7 @@
 @import '../../Styles/variables.scss';
 
 .landing-page {
-  font-family: Arial, sans-serif;
+  font-family: $primary-font-family;
   color: #333;
 
   .header {
@@ -10,6 +10,7 @@
     justify-content: space-between;
     align-items: center;
     padding: 10px 0;
+    background-color: #ffffff;
     border-bottom: 1px solid #e2e8f0;
 
     .container {
@@ -39,48 +40,82 @@
     }
 
     .logo {
-      font-size: 1.5em;
-      font-weight: bold;
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+    
+      .logo-image {
+        width: 48px;
+        height: 48px;
+      }
+    
+      .company-details {
+        display: flex;
+        flex-direction: column;
+        justify-content: center; // Ensures the text block is horizontally aligned with the logo
+    
+        .company-name {
+          font-size: 1rem;
+          font-weight: bold;
+          margin: 0; // Removes default margin
+          line-height: 1.5; // Ensures no extra spacing between the lines
+          color: $primary-color;
+        }
+    
+        .company-motto {
+          font-size: 0.8rem; // 14px
+          color: #64748b; // Gray color
+          margin: 0; // Removes default margin
+          line-height: 1; // Ensures no extra spacing between the lines
+        }
+      }
+    
+      // Hide the company name and motto on mobile
+      @media (max-width: 640px) {
+        .company-details {
+          display: none;
+        }
+      }
     }
 
     .nav-bar {
       display: flex;
       gap: 10px;
-
       button {
         background: none;
         border: none;
         font-size: 1em;
         cursor: pointer;
         text-transform: uppercase;
-        color: #333; /* Default text color */
+        color: #475569; /* Default text color */
         transition: color 0.3s ease; /* Smooth transition for color change */
         font-weight: 500;
 
         &:hover {
-          color: #007bff; /* Change text color on hover */
+          color: $primary-color;
           font-weight: 600;
         }
       }
     }
 
     .sign-in {
-      background-color: #007bff;
+      background-color: $primary-color;
       color: #fff;
       border: none;
-      padding: 5px 10px;
+      padding: 8px 20px;
       border-radius: 5px;
       cursor: pointer;
-
+      transition: all 0.3s ease;
+      text-align: center; // For any additional alignment within the container
+      justify-content: center;
       &:hover {
-        background-color: #0056b3;
+        background: linear-gradient(to right, $gradient-background-start, $primary-color);
       }
     }
     
     // Mobile menu drawer
     .menu-drawer {
       display: none; /* Hide menu drawer on desktop */
-      
       &.active {
         display: flex; /* Show menu drawer when active */
         flex-direction: column;
@@ -114,11 +149,13 @@
       }
 
       .menu-toggle {
-        background: #007bff;
-        color: #fff;
+        background: #e2e8f0;
+        color: $primary-color;
         border: none;
-        padding: 10px 10px;
+        padding: 6px 10px;
         cursor: pointer;
+        border-radius: 4px;
+        border: 1px solid #cbd5e1;
       }
     }
   }
@@ -168,21 +205,61 @@
       }
     }
 
-    .banner {
-      background-color: #007bff;
-      margin-top: 20px; 
+    .partners-banner {
+      text-align: center; /* Center-align the title and logos */
+      padding: 10px;
+      background-color: #ffffff; /* Adjust background color as needed */
+      margin-top: 3rem; /* Add top margin to the banner */
+      border-radius: 10px; 
     }
 
+    .partners-banner-title {
+      font-size: 1rem; /* Adjust font size as needed */
+      font-weight: 600;
+      margin-bottom: 20px; /* Space between title and logos */
+    }
+
+    .partners-container {
+      display: flex;
+      justify-content: space-around;
+      align-items: bottom;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .partners-item {
+      text-align: center;
+      flex: 1 1 18%; /* 5 logos per row on desktop */
+    }
+
+    .partners-item img {
+      max-width: 100px; /* Adjust logo size as needed */
+      height: 80px; /* Ensure all images have the same height */
+      object-fit: contain; /* Keep the image proportions */
+    }
+    
+    .partners-item p {
+      margin-top: 5px;
+      font-size: 0.7rem;
+      font-weight: 600;
+    }
+
+    /* Responsive Styles */
+    @media (max-width: 768px) {
+      .partners-item {
+        flex: 1 1 45%; /* 2 logos per row on mobile */
+      }
+    }
 
   }
   
   
   .our-vision {
-    background: #ffffff; /* Custom color for Our Vision */
+    background: #ffffff; /* white background */
   }
 
   .how-it-work {
-    background: #dff9fb; /* Custom color for How It Work */
+    background: #f1f5f9; /* Light background */
   }
 
   .faqs {
@@ -231,7 +308,7 @@
     position: fixed;
     bottom: 20px;
     right: 20px;
-    background-color: #007bff;
+    background-color: $primary-color;
     color: #fff;
     border: none;
     border-radius: 50%;
@@ -241,9 +318,8 @@
     cursor: pointer;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     transition: background-color 0.3s ease, transform 0.3s ease;
-  
     &:hover {
-      background-color: #0056b3;
+      background: linear-gradient(to right, $gradient-background-start, $primary-color);
       transform: translateY(-5px);
     }
   }
@@ -291,11 +367,11 @@
     }
     @media (min-width: 1280px) {
       font-size: 3rem;
-      line-height: 1.2em;
+      line-height: 1.3em;
     }
     @media (min-width: 1536px) {
       font-size: 1.2rem;
-      line-height: 1.5rem;
+      line-height: 1.3em;
     }
   }
 
@@ -432,5 +508,44 @@
   }
   .card-content li {
     margin-bottom: 8px;
+  }
+
+  .how-it-works-section {
+    .grid-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;  /* Two equal-width columns */
+      gap: 40px;
+      align-items: center;
+      flex-direction: row-reverse;  /* Change order to display image first */
+  
+      .left-column {
+        img {
+          width: 100%;
+          max-width: 600px;  /* Adjust based on the size of your image */
+          height: auto;
+          border-radius: 10px;
+        }
+      }
+  
+      .right-column {
+        h2 {
+          font-size: 2rem;
+          margin-bottom: 1rem;
+        }
+        p {
+          font-size: 1.125rem;
+          margin-bottom: 1.5rem;
+        }
+        ul {
+          list-style-type: disc;
+          padding-left: 20px;
+  
+          li {
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+          }
+        }
+      }
+    }
   }
 }

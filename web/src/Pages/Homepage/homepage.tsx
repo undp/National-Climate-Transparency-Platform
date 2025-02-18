@@ -8,7 +8,9 @@ import sliderLogo from '../../Assets/Images/mrvlogo.svg';
 import mangroveImg from '../../Assets/Images/mangrove.jpg';
 import LayoutFooter from '../../Components/Footer/layout.footer';
 import './homepage.scss';
-import { PersonCircle } from 'react-bootstrap-icons';
+import undpLogo from '../../Assets/Images/undp1.svg';
+import gosLogo from '../../Assets/Images/gos.jpg';
+import belgiumLogo from '../../Assets/Images/StateCoatArmsBelgium.png';
 
 const Homepage = () => {
   const { t } = useTranslation(['common', 'homepage']);
@@ -44,11 +46,45 @@ const Homepage = () => {
     };
   }, []);
 
+  const partners = [
+    {
+      src: gosLogo,
+      alt: 'Climate Change Department',
+      name: 'Climate Change Department',
+      url: 'https://macce.gov.sc/climate-change-department/',
+    },
+    {
+      src: gosLogo,
+      alt: 'MACCE',
+      name: 'Ministry of Agriculture, Climate Change and Environment',
+      url: 'https://macce.gov.sc/',
+    },
+    {
+      src: gosLogo,
+      alt: 'Government Of Seychelles',
+      name: 'Government Of Seychelles',
+      url: 'https://www.gov.sc/',
+    },
+    { src: undpLogo, alt: 'undp', name: 'UNDP', url: 'https://www.undp.org/' },
+    {
+      src: belgiumLogo,
+      alt: 'Federal Government Of Belgium',
+      name: 'Federal Government Of Belgium',
+      url: 'https://federal-government.be/en/',
+    },
+  ];
+
   return (
     <div className="landing-page">
       <header className="header">
         <div className="container mx-auto px-4">
-          <div className="logo">YourLogo</div>
+          <div className="logo">
+            <img src={gosLogo} alt="Seychelles NDC Transparency System" className="logo-image" />
+            <div className="company-details">
+              <div className="company-name">{t('homepage:systemName')}</div>
+              <div className="company-motto">{t('homepage:systemCountry')}</div>
+            </div>
+          </div>
 
           {/* Mobile Menu Toggle */}
           <button className="menu-toggle" onClick={toggleMenu}>
@@ -90,7 +126,7 @@ const Homepage = () => {
             </button>
           </div>
 
-          <button className="sign-in">Sign In</button>
+          <button className="button text-font-500 sign-in">{t('homepage:signIn')}</button>
         </div>
       </header>
 
@@ -121,7 +157,23 @@ const Homepage = () => {
                 <img src={mangroveImg} alt="slider-logo" />
               </div>
             </div>
-            <div className="banner">sdsds</div>
+            <div className="partners-banner">
+              <h3 className="partners-banner-title">{t('homepage:partnersTitle')}</h3>
+              <div className="partners-container">
+                {partners.map((partner, index) => (
+                  <a
+                    href={partner.url} // Link to the partner's website
+                    target="_blank" // Open link in a new tab
+                    rel="noopener noreferrer" // Security best practice for target="_blank"
+                    className="partners-item"
+                    key={index}
+                  >
+                    <img src={partner.src} alt={partner.alt} />
+                    <p>{partner.name}</p>
+                  </a>
+                ))}
+              </div>
+            </div>
           </div>
         </section>
 
@@ -220,8 +272,53 @@ const Homepage = () => {
 
         <section id="how-it-work" className="how-it-work">
           <div className="content">
-            <h2>How It Work</h2>
-            <p>We simplify complex processes to deliver exceptional value to our users.</p>
+            <div className="how-it-works-section">
+              <div className="grid-container">
+                {/* Left Column (Image Content) */}
+
+                <div className="left-column">
+                  <img
+                    src="path-to-your-image.jpg"
+                    alt="DTS Dashboard and Climate Data Integration"
+                  />
+                </div>
+                {/* Right Column (Text Content) */}
+
+                <div className="right-column">
+                  <h2>Empowering Seychelles' Climate Action with DTS</h2>
+                  <p>
+                    The <strong>Digital Transparency System (DTS)</strong> streamlines Seychelles'
+                    climate action reporting by automating data collection, improving coordination,
+                    and ensuring accurate, real-time progress tracking. The system supports
+                    government agencies, NGOs, and private sector stakeholders by centralizing
+                    climate data, fostering transparency, and aligning Seychelles' climate efforts
+                    with international frameworks like the <strong>Paris Agreement</strong>.
+                  </p>
+                  <ul>
+                    <li>
+                      <strong>Automated Reporting</strong>: Collects and compiles climate data
+                      automatically for real-time insights.
+                    </li>
+                    <li>
+                      <strong>Real-Time Data Dashboards</strong>: Provides an intuitive interface to
+                      track key climate metrics.
+                    </li>
+                    <li>
+                      <strong>Sector-Specific Data</strong>: Organizes data by sector (agriculture,
+                      coastal management, etc.).
+                    </li>
+                    <li>
+                      <strong>Data Validation & Collaboration</strong>: Ensures consistency and
+                      transparency through collaborative data validation.
+                    </li>
+                    <li>
+                      <strong>Adapts to National Priorities</strong>: Tailored to Seychelles' unique
+                      climate challenges like sea level rise and renewable energy transition.
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
           </div>
         </section>
 
@@ -233,8 +330,8 @@ const Homepage = () => {
         </section>
         {/* Back to Top Button */}
         {showButton && (
-          <button className="back-to-top" onClick={scrollToTop}>
-            ↑ Back to Top
+          <button className="button back-to-top" onClick={scrollToTop}>
+            ↑
           </button>
         )}
       </main>
