@@ -67,6 +67,7 @@
           color: #64748b; // Gray color
           margin: 0; // Removes default margin
           line-height: 1; // Ensures no extra spacing between the lines
+          font-weight: bold;
         }
       }
     
@@ -411,10 +412,33 @@
     margin-right: 0.25rem; // Equivalent to Tailwind's mr-1
   }
 
-  .section-title {
+  .section-topic {
     font-family: $secondary-font-family;
     letter-spacing: 0.09em;
     color: #2563eb; // This is Tailwind's blue-600 color hex value
+    font-size: 0.7rem;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    @media (min-width: 640px) {
+      font-size: 0.7rem;
+    }
+    @media (min-width: 768px) {
+      font-size: 0.8rem;
+    }
+    @media (min-width: 1024px) {
+      font-size: 0.9rem;
+    }
+    @media (min-width: 1280px) {
+      font-size: 1rem;
+    }
+    @media (min-width: 1536px) {
+      font-size: 1rem;
+    }
+  }
+
+  .section-title {
+    font-family: $secondary-font-family;
+    letter-spacing: 0.09em;
     @media (min-width: 640px) {
       font-size: 1rem;
       line-height: 1.2em;
@@ -510,41 +534,77 @@
     margin-bottom: 8px;
   }
 
-  .how-it-works-section {
+  .block-section {
     .grid-container {
       display: grid;
       grid-template-columns: 1fr 1fr;  /* Two equal-width columns */
-      gap: 40px;
+      gap: 20px;
       align-items: center;
       flex-direction: row-reverse;  /* Change order to display image first */
+      grid-template-columns: 1fr 1fr;  /* Adjust for equal-width columns */
   
-      .left-column {
+      .image-column {
         img {
           width: 100%;
-          max-width: 600px;  /* Adjust based on the size of your image */
+          max-width: 700px;  /* Adjust based on the size of your image */
           height: auto;
           border-radius: 10px;
         }
       }
-  
-      .right-column {
-        h2 {
-          font-size: 2rem;
-          margin-bottom: 1rem;
-        }
-        p {
-          font-size: 1.125rem;
-          margin-bottom: 1.5rem;
-        }
+
+      .content-column {
         ul {
           list-style-type: disc;
           padding-left: 20px;
   
           li {
-            font-size: 1rem;
+            font-size: 0.9rem;
             margin-bottom: 0.5rem;
+            text-wrap: pretty;
+            text-align: left;  /* Center text for mobile */
           }
         }
+      }
+    }
+
+    /* Mobile: Stack image on top */
+    @media (max-width: 768px) {
+      .grid-container {
+        grid-template-columns: 1fr;  /* Single column for mobile */
+        text-align: center;  /* Center text for mobile */
+      }
+
+      .image-column {
+        order: 1;  /* Ensures the image comes first */
+      }
+
+      .content-column {
+        order: 2;  /* Content comes second on mobile */
+        padding-top: 20px;  /* Add some padding if needed */
+      }
+    }
+  }
+
+  .accordian {
+    margin-top: 20px; /* Adjust the value as needed */
+    border-radius: 5px;
+    font-family: $primary-font-family;
+    .collapsepanel {
+      border-radius: 5px !important;
+
+      .ant-collapse-header {
+        font-size: 14px;
+        font-weight: 600;
+        color: rgba(58, 53, 65, 0.8);
+        background-color: #f1f5f9; /* Sets the background color */
+        padding: 12px 16px; /* Adds some padding */
+        border-radius: 5px !important;
+      }
+
+      .collapse-content {
+        font-size: 14px;
+        padding: 12px 20px;
+        margin-bottom: 10px;
       }
     }
   }

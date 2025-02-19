@@ -1,16 +1,17 @@
-import { Button, Col, Row } from 'antd';
-
+import { Button, Col, Collapse, Row } from 'antd';
+import CollapsePanel from 'antd/lib/collapse/CollapsePanel';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
+import { Trans, useTranslation } from 'react-i18next';
 import i18next from 'i18next';
 import sliderLogo from '../../Assets/Images/mrvlogo.svg';
-import mangroveImg from '../../Assets/Images/mangrove.jpg';
 import LayoutFooter from '../../Components/Footer/layout.footer';
 import './homepage.scss';
 import undpLogo from '../../Assets/Images/undp1.svg';
 import gosLogo from '../../Assets/Images/gos.jpg';
 import belgiumLogo from '../../Assets/Images/StateCoatArmsBelgium.png';
+import heroPhoto from '../../Assets/Images/hero.jpg';
+import howItWorksPhoto from '../../Assets/Images/how-it-works.avif';
 
 const Homepage = () => {
   const { t } = useTranslation(['common', 'homepage']);
@@ -46,7 +47,7 @@ const Homepage = () => {
     };
   }, []);
 
-  const partners = [
+  const partnersData = [
     {
       src: gosLogo,
       alt: 'Climate Change Department',
@@ -72,6 +73,19 @@ const Homepage = () => {
       name: 'Federal Government Of Belgium',
       url: 'https://federal-government.be/en/',
     },
+  ];
+
+  const faqsData = [
+    { questionKey: 'homepage:faqs.question1.q', answerKey: 'homepage:faqs.question1.a' },
+    { questionKey: 'homepage:faqs.question2.q', answerKey: 'homepage:faqs.question2.a' },
+    { questionKey: 'homepage:faqs.question3.q', answerKey: 'homepage:faqs.question3.a' },
+    { questionKey: 'homepage:faqs.question4.q', answerKey: 'homepage:faqs.question4.a' },
+    { questionKey: 'homepage:faqs.question5.q', answerKey: 'homepage:faqs.question5.a' },
+    { questionKey: 'homepage:faqs.question6.q', answerKey: 'homepage:faqs.question6.a' },
+    { questionKey: 'homepage:faqs.question7.q', answerKey: 'homepage:faqs.question7.a' },
+    { questionKey: 'homepage:faqs.question8.q', answerKey: 'homepage:faqs.question8.a' },
+    { questionKey: 'homepage:faqs.question9.q', answerKey: 'homepage:faqs.question9.a' },
+    { questionKey: 'homepage:faqs.question10.q', answerKey: 'homepage:faqs.question10.a' },
   ];
 
   return (
@@ -154,13 +168,13 @@ const Homepage = () => {
                 </div>
               </div>
               <div className="right-column">
-                <img src={mangroveImg} alt="slider-logo" />
+                <img src={heroPhoto} alt="slider-logo" />
               </div>
             </div>
             <div className="partners-banner">
               <h3 className="partners-banner-title">{t('homepage:partnersTitle')}</h3>
               <div className="partners-container">
-                {partners.map((partner, index) => (
+                {partnersData.map((partner, index) => (
                   <a
                     href={partner.url} // Link to the partner's website
                     target="_blank" // Open link in a new tab
@@ -179,89 +193,90 @@ const Homepage = () => {
 
         <section id="our-vision" className="our-vision">
           <div className="content">
-            <h2 className="section-title"> {t('homepage:ourVisionTitle')}</h2>
+            <h3 className="section-topic"> {t('homepage:vision.topic')}</h3>
+            <h2 className="section-title"> {t('homepage:vision.title')}</h2>
             <p className="section-subtitle">
               <span className="text-font-600 text-italic mr-1">
-                {t('homepage:ourVisionSubtitle0')}
+                {t('homepage:vision.subtitle.line1')}
               </span>
-              <span className="mr-1">{t('homepage:ourVisionSubtitle1')}</span>
+              <span className="mr-1">{t('homepage:vision.subtitle.line2')}</span>
               <span className="text-font-600 text-italic mr-1">
-                {t('homepage:ourVisionSubtitle2')}
+                {t('homepage:vision.subtitle.line3')}
               </span>
-              <span className="mr-1">{t('homepage:ourVisionSubtitle3')}</span>
-              <span className="mr-1">{t('homepage:ourVisionSubtitle4')}</span>
+              <span className="mr-1">{t('homepage:vision.subtitle.line4')}</span>
+              <span className="mr-1">{t('homepage:vision.subtitle.line5')}</span>
             </p>
             <div className="card-grid-container">
               <div className="card-grid">
                 <div className="card">
-                  <div className="card-title">{t('homepage:ourVision1.title')}</div>
+                  <div className="card-title">{t('homepage:vision.card1.title')}</div>
                   <div className="card-content">
                     <ul>
-                      <li>{t('homepage:ourVision1.point1')}</li>
-                      <li>{t('homepage:ourVision1.point2')}</li>
-                      <li>{t('homepage:ourVision1.point3')}</li>
-                      <li>{t('homepage:ourVision1.point4')}</li>
-                      <li>{t('homepage:ourVision1.point5')}</li>
+                      <li>{t('homepage:vision.card1.point1')}</li>
+                      <li>{t('homepage:vision.card1.point2')}</li>
+                      <li>{t('homepage:vision.card1.point3')}</li>
+                      <li>{t('homepage:vision.card1.point4')}</li>
+                      <li>{t('homepage:vision.card1.point5')}</li>
                     </ul>
                   </div>
                 </div>
                 <div className="card">
-                  <div className="card-title">{t('homepage:ourVision2.title')}</div>
+                  <div className="card-title">{t('homepage:vision.card2.title')}</div>
                   <div className="card-content">
                     <ul>
-                      <li>{t('homepage:ourVision2.point1')}</li>
-                      <li>{t('homepage:ourVision2.point2')}</li>
-                      <li>{t('homepage:ourVision2.point3')}</li>
-                      <li>{t('homepage:ourVision2.point4')}</li>
-                      <li>{t('homepage:ourVision2.point5')}</li>
+                      <li>{t('homepage:vision.card2.point1')}</li>
+                      <li>{t('homepage:vision.card2.point2')}</li>
+                      <li>{t('homepage:vision.card2.point3')}</li>
+                      <li>{t('homepage:vision.card2.point4')}</li>
+                      <li>{t('homepage:vision.card2.point5')}</li>
                     </ul>
                   </div>
                 </div>
                 <div className="card">
-                  <div className="card-title">{t('homepage:ourVision3.title')}</div>
+                  <div className="card-title">{t('homepage:vision.card3.title')}</div>
                   <div className="card-content">
                     <ul>
-                      <li>{t('homepage:ourVision3.point1')}</li>
-                      <li>{t('homepage:ourVision3.point2')}</li>
-                      <li>{t('homepage:ourVision3.point3')}</li>
-                      <li>{t('homepage:ourVision3.point4')}</li>
-                      <li>{t('homepage:ourVision3.point5')}</li>
+                      <li>{t('homepage:vision.card3.point1')}</li>
+                      <li>{t('homepage:vision.card3.point2')}</li>
+                      <li>{t('homepage:vision.card3.point3')}</li>
+                      <li>{t('homepage:vision.card3.point4')}</li>
+                      <li>{t('homepage:vision.card3.point5')}</li>
                     </ul>
                   </div>
                 </div>
                 <div className="card">
-                  <div className="card-title">{t('homepage:ourVision4.title')}</div>
+                  <div className="card-title">{t('homepage:vision.card4.title')}</div>
                   <div className="card-content">
                     <ul>
-                      <li>{t('homepage:ourVision4.point1')}</li>
-                      <li>{t('homepage:ourVision4.point2')}</li>
-                      <li>{t('homepage:ourVision4.point3')}</li>
-                      <li>{t('homepage:ourVision4.point4')}</li>
-                      <li>{t('homepage:ourVision4.point5')}</li>
+                      <li>{t('homepage:vision.card4.point1')}</li>
+                      <li>{t('homepage:vision.card4.point2')}</li>
+                      <li>{t('homepage:vision.card4.point3')}</li>
+                      <li>{t('homepage:vision.card4.point4')}</li>
+                      <li>{t('homepage:vision.card4.point5')}</li>
                     </ul>
                   </div>
                 </div>
                 <div className="card">
-                  <div className="card-title">{t('homepage:ourVision5.title')}</div>
+                  <div className="card-title">{t('homepage:vision.card5.title')}</div>
                   <div className="card-content">
                     <ul>
-                      <li>{t('homepage:ourVision5.point1')}</li>
-                      <li>{t('homepage:ourVision5.point2')}</li>
-                      <li>{t('homepage:ourVision5.point3')}</li>
-                      <li>{t('homepage:ourVision5.point4')}</li>
-                      <li>{t('homepage:ourVision5.point5')}</li>
+                      <li>{t('homepage:vision.card5.point1')}</li>
+                      <li>{t('homepage:vision.card5.point2')}</li>
+                      <li>{t('homepage:vision.card5.point3')}</li>
+                      <li>{t('homepage:vision.card5.point4')}</li>
+                      <li>{t('homepage:vision.card5.point5')}</li>
                     </ul>
                   </div>
                 </div>
                 <div className="card">
-                  <div className="card-title">{t('homepage:ourVision6.title')}</div>
+                  <div className="card-title">{t('homepage:vision.card6.title')}</div>
                   <div className="card-content">
                     <ul>
-                      <li>{t('homepage:ourVision6.point1')}</li>
-                      <li>{t('homepage:ourVision6.point2')}</li>
-                      <li>{t('homepage:ourVision6.point3')}</li>
-                      <li>{t('homepage:ourVision6.point4')}</li>
-                      <li>{t('homepage:ourVision6.point5')}</li>
+                      <li>{t('homepage:vision.card6.point1')}</li>
+                      <li>{t('homepage:vision.card6.point2')}</li>
+                      <li>{t('homepage:vision.card6.point3')}</li>
+                      <li>{t('homepage:vision.card6.point4')}</li>
+                      <li>{t('homepage:vision.card6.point5')}</li>
                     </ul>
                   </div>
                 </div>
@@ -272,48 +287,55 @@ const Homepage = () => {
 
         <section id="how-it-work" className="how-it-work">
           <div className="content">
-            <div className="how-it-works-section">
+            <div className="block-section">
               <div className="grid-container">
                 {/* Left Column (Image Content) */}
-
-                <div className="left-column">
+                <div className="image-column">
                   <img
-                    src="path-to-your-image.jpg"
-                    alt="DTS Dashboard and Climate Data Integration"
+                    src={howItWorksPhoto}
+                    alt="Seychelles NDC Transparency System"
+                    className="logo-image"
                   />
                 </div>
                 {/* Right Column (Text Content) */}
-
-                <div className="right-column">
-                  <h2>Empowering Seychelles' Climate Action with DTS</h2>
-                  <p>
-                    The <strong>Digital Transparency System (DTS)</strong> streamlines Seychelles'
-                    climate action reporting by automating data collection, improving coordination,
-                    and ensuring accurate, real-time progress tracking. The system supports
-                    government agencies, NGOs, and private sector stakeholders by centralizing
-                    climate data, fostering transparency, and aligning Seychelles' climate efforts
-                    with international frameworks like the <strong>Paris Agreement</strong>.
+                <div className="content-column">
+                  <h3 className="section-topic"> {t('homepage:works.topic')}</h3>
+                  <h2 className="section-title"> {t('homepage:works.title')}</h2>
+                  <p className="section-subtitle">
+                    <span className="text-font-600 text-italic mr-1">
+                      {t('homepage:works.subtitle.line1')}
+                    </span>
+                    <span className="mr-1">{t('homepage:works.subtitle.line2')}</span>
+                    <span className="text-font-600 mr-1">{t('homepage:works.subtitle.line3')}</span>
                   </p>
                   <ul>
                     <li>
-                      <strong>Automated Reporting</strong>: Collects and compiles climate data
-                      automatically for real-time insights.
+                      <strong>{t('homepage:works.card1.title')}</strong>:{' '}
+                      {t('homepage:works.card1.description')}
                     </li>
                     <li>
-                      <strong>Real-Time Data Dashboards</strong>: Provides an intuitive interface to
-                      track key climate metrics.
+                      <strong>{t('homepage:works.card2.title')}</strong>:{' '}
+                      {t('homepage:works.card2.description')}
                     </li>
                     <li>
-                      <strong>Sector-Specific Data</strong>: Organizes data by sector (agriculture,
-                      coastal management, etc.).
+                      <strong>{t('homepage:works.card3.title')}</strong>:{' '}
+                      {t('homepage:works.card3.description')}
                     </li>
                     <li>
-                      <strong>Data Validation & Collaboration</strong>: Ensures consistency and
-                      transparency through collaborative data validation.
+                      <strong>{t('homepage:works.card4.title')}</strong>:{' '}
+                      {t('homepage:works.card4.description')}
                     </li>
                     <li>
-                      <strong>Adapts to National Priorities</strong>: Tailored to Seychelles' unique
-                      climate challenges like sea level rise and renewable energy transition.
+                      <strong>{t('homepage:works.card5.title')}</strong>:{' '}
+                      {t('homepage:works.card5.description')}
+                    </li>
+                    <li>
+                      <strong>{t('homepage:works.card6.title')}</strong>:{' '}
+                      {t('homepage:works.card6.description')}
+                    </li>
+                    <li>
+                      <strong>{t('homepage:works.card7.title')}</strong>:{' '}
+                      {t('homepage:works.card7.description')}
                     </li>
                   </ul>
                 </div>
@@ -324,10 +346,25 @@ const Homepage = () => {
 
         <section id="faqs" className="faqs">
           <div className="content">
-            <h2>FAQs</h2>
-            <p>Find answers to the most commonly asked questions.</p>
+            {/* Topic and Title */}
+            <h3 className="section-topic"> {t('homepage:faqs.topic')}</h3>
+            <h2 className="section-title"> {t('homepage:faqs.title')}</h2>
+
+            {/* Accordion */}
+            <Collapse accordion defaultActiveKey={['1']} className="accordian">
+              {faqsData.map((faq, index) => (
+                <CollapsePanel
+                  header={t(faq.questionKey)}
+                  key={index + 1}
+                  className="collapsepanel"
+                >
+                  <div className="collapse-content">{t(faq.answerKey)}</div>
+                </CollapsePanel>
+              ))}
+            </Collapse>
           </div>
         </section>
+
         {/* Back to Top Button */}
         {showButton && (
           <button className="button back-to-top" onClick={scrollToTop}>
