@@ -1,10 +1,8 @@
-import { Button, Col, Collapse, Row } from 'antd';
+import { Button, Collapse } from 'antd';
 import CollapsePanel from 'antd/lib/collapse/CollapsePanel';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Trans, useTranslation } from 'react-i18next';
-import i18next from 'i18next';
-import sliderLogo from '../../Assets/Images/mrvlogo.svg';
+import { useTranslation } from 'react-i18next';
 import LayoutFooter from '../../Components/Footer/layout.footer';
 import './homepage.scss';
 import undpLogo from '../../Assets/Images/undp1.svg';
@@ -95,7 +93,12 @@ const Homepage = () => {
           <div className="logo">
             <img src={gosLogo} alt="Seychelles NDC Transparency System" className="logo-image" />
             <div className="company-details">
-              <div className="company-name">{t('homepage:systemName')}</div>
+              <div>
+                <span className="company-name1">{t('homepage:transparency')}</span>
+                <span> </span>
+                <span className="company-name2">{t('homepage:system')}</span>
+              </div>
+              {/* let's hide the country until told otherwise */}
               <div className="company-motto">{t('homepage:systemCountry')}</div>
             </div>
           </div>
@@ -140,7 +143,9 @@ const Homepage = () => {
             </button>
           </div>
 
-          <button className="button text-font-500 sign-in">{t('homepage:signIn')}</button>
+          <button className="button text-font-500 sign-in" onClick={() => navigate('/login')}>
+            {t('homepage:signIn')}
+          </button>
         </div>
       </header>
 
@@ -374,7 +379,7 @@ const Homepage = () => {
       </main>
 
       <footer>
-        <p>&copy; 2025 Your Company. All rights reserved.</p>
+        <LayoutFooter />
       </footer>
     </div>
   );

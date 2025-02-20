@@ -3,7 +3,7 @@
 
 .homepage-footer-container {
   background-color: $background-color-dark;
-  min-height: 100px;
+  min-height: 200px;
   height: 100%;
   align-items: center;
   padding: 1rem 2rem 0 1rem;
@@ -38,7 +38,6 @@
     font-size: 0.875rem;
     font-family: 'MuseoSans';
     font-weight: 100;
-    display: flex;
 
     @media (max-width: 837px) {
       padding: 10px 60px 28px 60px;

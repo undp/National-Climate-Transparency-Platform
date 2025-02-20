@@ -54,20 +54,26 @@
         flex-direction: column;
         justify-content: center; // Ensures the text block is horizontally aligned with the logo
     
-        .company-name {
-          font-size: 1rem;
+        .company-name1 {
+          font-size: 0.9rem;
           font-weight: bold;
           margin: 0; // Removes default margin
+          font-family: $secondary-font-family;
           line-height: 1.5; // Ensures no extra spacing between the lines
-          color: $primary-color;
+        }
+        .company-name2 {
+          font-size: 0.9rem;
+          font-weight: normal;
+          margin: 0; // Removes default margin
+          line-height: 1.5; // Ensures no extra spacing between the lines
         }
     
         .company-motto {
-          font-size: 0.8rem; // 14px
+          font-size: 0.7rem; // 14px
           color: #64748b; // Gray color
           margin: 0; // Removes default margin
           line-height: 1; // Ensures no extra spacing between the lines
-          font-weight: bold;
+          font-weight: 400;
         }
       }
     
@@ -103,7 +109,7 @@
       background-color: $primary-color;
       color: #fff;
       border: none;
-      padding: 8px 20px;
+      padding: 10px 20px;
       border-radius: 5px;
       cursor: pointer;
       transition: all 0.3s ease;
@@ -293,18 +299,6 @@
   }
 
   
-
-  footer {
-    text-align: center;
-    padding: 20px;
-    background: #343a40;
-    color: #fff;
-
-    p {
-      margin: 0;
-    }
-  }
-
   .back-to-top {
     position: fixed;
     bottom: 20px;
@@ -389,7 +383,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 1.2rem 2rem; // Adjust padding for a larger button
+    padding: 1.4rem 2rem; // Adjust padding for a larger button
     transition: all 0.3s ease;
     text-align: center; // For any additional alignment within the container
   }
