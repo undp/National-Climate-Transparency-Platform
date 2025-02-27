@@ -89,7 +89,7 @@ const ActivityForm: React.FC<FormLoadProps> = ({ method }) => {
 
   const validation = getValidationRules(method);
 
-  // manny: get the list of years for startYear and endYear options
+  // ML: get the list of years for startYear and endYear options
   const yearsList: number[] = [];
   for (let year = 2013; year <= 2050; year++) {
     yearsList.push(year);
@@ -165,7 +165,7 @@ const ActivityForm: React.FC<FormLoadProps> = ({ method }) => {
 
   const [gwpSettings, setGwpSettings] = useState<{ CH4: number; N2O: number }>();
 
-  // Manny: Expected Time Frame
+  // ML: Set the activity start and end year
   const [startYear1, setStartYear] = useState<number>();
   const [endYear1, setEndYear] = useState<number>();
 
@@ -637,8 +637,6 @@ const ActivityForm: React.FC<FormLoadProps> = ({ method }) => {
   // Form Submit
 
   const handleSubmit = async (payload: any) => {
-    console.log('=============handleSubmit=============');
-    console.log(payload);
     if (method === 'update' && isMtgButtonEnabled) {
       displayErrorMessage('', t('saveMtgFirst'));
       return;
@@ -674,9 +672,10 @@ const ActivityForm: React.FC<FormLoadProps> = ({ method }) => {
           );
         });
       }
-      // manny - add the user input startYear and endYear to payload
+      // ML - add the user input startYear and endYear and the calculated expectedTimeFrame to payload
       payload.startYear = parseInt(payload.startYear1);
       payload.endYear = parseInt(payload.endYear1);
+      payload.expectedTimeFrame = parseInt(payload.expectedTimeFrame);
 
       payload.achievedGHGReduction = parseFloat(payload.achievedGHGReduction);
       payload.expectedGHGReduction = parseFloat(payload.expectedGHGReduction);
@@ -808,8 +807,7 @@ const ActivityForm: React.FC<FormLoadProps> = ({ method }) => {
   // DB Queries
 
   const fetchConnectedParent = async () => {
-    console.log('=========fetchConnectedParent===========');
-    // manny - we no more interested with startYear, endYear, expectedTimeFrame from the Parent
+    // ML - we no more interested with startYear, endYear, expectedTimeFrame from the Parent
     // we are getting these 3 fields directly from activity
     const tempMigratedData: ActivityMigratedData = {
       description: undefined,
@@ -849,7 +847,7 @@ const ActivityForm: React.FC<FormLoadProps> = ({ method }) => {
           tempMigratedData.type = response.data.programme?.action?.type;
         }
         if (method === 'create') {
-          // Manny - we no longer want to setMtgStartYear with Parents. We will set setMtgStartYear when the user create the Activity
+          // ML - we no longer want to setMtgStartYear with Parents. We will set setMtgStartYear when the user create the Activity
           // setMtgStartYear(response.data.startYear); //TODO: remvove after testing
         }
       } catch (error: any) {
@@ -937,7 +935,6 @@ const ActivityForm: React.FC<FormLoadProps> = ({ method }) => {
   };
 
   const fetchActivityData = async () => {
-    console.log('==========fetchActivityData=============');
     if (method !== 'create' && entId) {
       let response: any;
       try {
@@ -945,7 +942,6 @@ const ActivityForm: React.FC<FormLoadProps> = ({ method }) => {
 
         if (response.status === 200 || response.status === 201) {
           const entityData: any = response.data;
-          console.log(entityData);
           // Populating Action owned data fields
           form.setFieldsValue({
             title: entityData.title,
@@ -964,14 +960,15 @@ const ActivityForm: React.FC<FormLoadProps> = ({ method }) => {
             achievedGHGReduction: entityData.achievedGHGReduction,
             expectedGHGReduction: entityData.expectedGHGReduction,
             recipientEntities: entityData.recipientEntities ?? [],
-            // Manny - we now get the startYear and endYear directly from activity
+            // ML - we now get the startYear and endYear directly from activity
             startYear1: entityData.startYear ?? undefined,
             endYear1: entityData.endYear ?? undefined,
+            expectedTimeFrame: entityData.expectedTimeFrame ?? undefined,
           });
 
-          // Manny - Setting Year Fields
-          setStartYear(entityData.startYear1);
-          setEndYear(entityData.endYear1);
+          // ML - Just to be safe - set the original startYear and endYear with the values from activity entity
+          setStartYear(entityData.startYear);
+          setEndYear(entityData.endYear);
 
           // Populating Mitigation data fields
           form.setFieldsValue({
@@ -1122,11 +1119,12 @@ const ActivityForm: React.FC<FormLoadProps> = ({ method }) => {
     }
   };
 
-  // Manny we need a new function to set the startYear and mtgStartYear states when the user change the it on the form
+  // ML we need a new function to set the startYear and mtgStartYear states when the user change the it on the form
   const handleStartYearChanges = (value: number | undefined) => {
     if (value) {
       setStartYear(value);
-      // Manny, we set the  mtgStartYear only when the user first create the activity record
+      setMtgStartYear(value);
+      // ML, we set the  mtgStartYear only when the user first create the activity record
       if (method === 'create') {
         setMtgStartYear(value);
       }
@@ -1167,7 +1165,7 @@ const ActivityForm: React.FC<FormLoadProps> = ({ method }) => {
         supportType: activityMigratedData.type,
         sector: activityMigratedData.affSectors,
         affSubSectors: activityMigratedData.affSubSectors,
-        // Manny - again we do not want to set the activity form with these parent data
+        // ML - again we do not want to set the activity form with these parent data
         //startYear: activityMigratedData.startYear,
         //endYear: activityMigratedData.endYear,
         //expectedTimeFrame: activityMigratedData.expectedTimeFrame,
@@ -1229,6 +1227,19 @@ const ActivityForm: React.FC<FormLoadProps> = ({ method }) => {
       setIsFirstRenderDone(true);
     });
   }, []);
+
+  // ML - let calculate expectedTimeFrame which is a new field in activity
+  useEffect(() => {
+    if (startYear1 && endYear1 && endYear1 >= startYear1) {
+      form.setFieldsValue({
+        expectedTimeFrame: endYear1 - startYear1,
+      });
+    } else {
+      form.setFieldsValue({
+        expectedTimeFrame: undefined,
+      });
+    }
+  }, [startYear1, endYear1]);
 
   return (
     <div className="content-container">
@@ -1505,7 +1516,7 @@ const ActivityForm: React.FC<FormLoadProps> = ({ method }) => {
                     </Form.Item>
                   </Col>
                 )}
-                {/* Manny - since we now want users to select a startYear and endYear no matter of the parentType - we also add expectedTimeFrame*/}
+                {/* ML - since we now want users to select a startYear and endYear no matter of the parentType - we also add expectedTimeFrame which is calculated*/}
                 <Col {...quarterColumnBps}>
                   <Form.Item
                     label={

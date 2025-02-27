@@ -151,7 +151,7 @@ export class ActivityDto {
 	@ApiProperty()
 	expectedGHGReduction: number;
 
-	// Manny - apply validation to startYear and endYear
+	// ML - apply validation to startYear and endYear
 
 	@IsNotEmpty()
 	@IsNumber()
@@ -167,7 +167,7 @@ export class ActivityDto {
 	@ApiProperty()
 	endYear: number;
 
-	// manny - commented this orignial one out
+	// ML - commented this orignial one out
 	//@IsNumber()
 	//@ApiProperty()
 	//startYear: number;

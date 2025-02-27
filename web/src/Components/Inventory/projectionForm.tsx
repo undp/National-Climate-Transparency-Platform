@@ -59,7 +59,6 @@ export const ProjectionForm: React.FC<Props> = ({ index, projectionType }) => {
   // Init Loading
 
   const getProjection = async () => {
-    console.log('==========getProjection=======');
     try {
       const response = await get(`national/projections/actual/${projectionType}`);
       console.log(response);
@@ -70,8 +69,6 @@ export const ProjectionForm: React.FC<Props> = ({ index, projectionType }) => {
         }
       }
     } catch (error) {
-      console.log('==========error=======');
-      console.log(error);
       setAllEditableData(getInitTimeline());
     }
   };

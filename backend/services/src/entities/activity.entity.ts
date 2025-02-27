@@ -76,13 +76,13 @@ export class ActivityEntity implements EntitySubject {
 	mitigationInfo: any;
 
 	@Column({ nullable: true })
-	startYear: number; // manny: added - user should be able to select a startYear for activity
+	startYear: number; // ML: added - user should be able to select a startYear for activity
   
 	@Column({ nullable: true })
-	endYear: number; // manny: added - user should be able to select an endYear for activity
+	endYear: number; // ML: added - user should be able to select an endYear for activity
 
 	@Column({ nullable: true })
-	expectedTimeFrame: number; // manny: added - capture the activity startYear to endYear timeframe
+	expectedTimeFrame: number; // ML: added - capture the activity startYear to endYear timeframe
 
 	@Column({ type: 'jsonb', nullable: true })
 	mitigationTimeline: {

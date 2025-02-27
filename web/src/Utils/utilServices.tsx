@@ -101,7 +101,7 @@ export const getArraySum = (values: number[]) => {
 };
 
 export const customRound = (value: number) => {
-  // Manny - we need to rounded currency value to a whole number.
+  // ML - we need to rounded currency value to a whole number.
   // Commented out the line not working and add the new return
   // return Math.round(value * 100) / 100;
   return Math.round(value);

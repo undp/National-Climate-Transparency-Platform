@@ -1,6 +1,6 @@
 import { Index, ViewColumn, ViewEntity } from "typeorm"
 
-// manny: change how we get startYear, endYear and timeframe - we now getting it from activity (t)
+// ML: change how we get startYear, endYear and timeframe - we now getting it from activity (table t) instead from parent modules
 const expandedActivity = `
 Select 
 	t."activityId",
@@ -51,7 +51,7 @@ LEFT JOIN
 	) 
 a ON a."actionId" = t."parentId" OR a."actionId" = p."actionId"
 `
-// manny: we are now getting startYear, endYear and timeFrame directly from activity
+// ML: we are now getting startYear, endYear and timeFrame directly from activity
 export const annexThreeReportSQL = `
 SELECT
     s."supportId",

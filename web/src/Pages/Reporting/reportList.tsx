@@ -79,7 +79,6 @@ const reportList = () => {
   // Functions to Retrieve Tale Data
 
   const getTableFiveData = async () => {
-    console.log('\n\n--------------getTableFiveData------------');
     setLoading(true);
     try {
       const payload: any = {
@@ -88,7 +87,6 @@ const reportList = () => {
       };
 
       const response: any = await post('national/reports/5/query', payload);
-      console.log(response);
       if (response) {
         const tempReportFiveData: ReportFiveRecord[] = [];
 
@@ -129,7 +127,7 @@ const reportList = () => {
   };
 
   const getTableSixData = async () => {
-    // Manny - rounded up requiredAmountDomestic and requiredAmount
+    // ML - rounded up requiredAmountDomestic and requiredAmount
     setLoading(true);
     try {
       const payload: any = {
@@ -138,7 +136,6 @@ const reportList = () => {
       };
 
       const response: any = await post('national/reports/6/query', payload);
-      console.log(response);
       if (response) {
         const tempReportSixData: ReportSixRecord[] = [];
 
@@ -436,7 +433,7 @@ const reportList = () => {
   };
 
   const getTableTwelveData = async () => {
-    // Manny - rounded up requiredAmountDomestic and requiredAmount
+    // ML - rounded up requiredAmountDomestic and requiredAmount
     setLoading(true);
     try {
       const payload: any = {

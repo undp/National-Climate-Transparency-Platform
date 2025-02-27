@@ -52,7 +52,7 @@ export class ReportService {
 		} else {
 			let direction: SupportDirection;
 			let mitigationType: ActionType[];
-			// Manny - removed ActionType.TRANSPARENCY in SIX and SEVEN and Add it to TWELVE and THIRTEEN
+			// ML - removed ActionType.TRANSPARENCY in SIX and SEVEN and Add it to TWELVE and THIRTEEN
 			switch(reportNumber){
 				case Reports.SIX:
 					direction = SupportDirection.NEEDED;
