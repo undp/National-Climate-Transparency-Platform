@@ -1,9 +1,26 @@
-FROM node:16-alpine as build
+FROM node:18-alpine as build
+
+# Set the working directory
 WORKDIR /app
+
+# Copy package.json and yarn.lock
+COPY ./web/package.json ./web/yarn.lock .
+
+# Copy .env-cmdrc file
+COPY ./.env-cmdrc .
+COPY ./web/.env-cmdrc .
+
+# Install dependencies
+RUN apk add python3 make g++ && rm -rf /var/cache/apk/* \
+  && npm install -g corepack \
+  && corepack enable \
+  && corepack prepare yarn@4.6.0 --activate
+
+# Copy the rest of the application code
 COPY ./web .
-RUN apk add python3 make g++ && rm -rf /var/cache/apk/*
-RUN npm install -g yarn
-RUN CI=false yarn install --frozen-lockfile
+
+# Install development dependencies
+RUN CI=false yarn install --immutable
 
 ARG PORT
 ENV PORT $PORT

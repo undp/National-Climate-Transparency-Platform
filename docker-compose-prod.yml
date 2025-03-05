@@ -4,22 +4,43 @@ volumes:
     driver: local
   filestore:
     driver: local
+  pgadmin_data:
+    driver: local
+
 services:
   dbmrv:
     container_name: dbmrv
     image: postgres
     restart: always
     ports:
-      - "5433:5433"
+      - ${DB_PORT}:5433
     environment:
-      POSTGRES_PASSWORD: "<ANY PASSWORD>"
-      POSTGRES_USER: root
-      PGPORT: 5433
-      PSQL_USERNAME: root
+      POSTGRES_PASSWORD: ${DB_PWD}
+      POSTGRES_USER: ${DB_USER}
+      PGPORT: ${DB_PORT}
+      PSQL_USERNAME: ${DB_USER}
       PGDATA: /data/postgres
     volumes:
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
       - data:/data/postgres
+    env_file:
+      - .env
+
+  pgadmin:
+    container_name: pgadmin4
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_USER}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_PWD}
+    ports:
+      - 5050:80
+    volumes:
+      - pgadmin_data:/var/lib/pgadmin
+    depends_on:
+      - dbmrv
+    env_file:
+      - .env
+
   migration:
     build:
       context: .
@@ -30,10 +51,13 @@ services:
     command: ['yarn', 'migration:run']
     environment:
       DB_HOST: dbmrv
-      DB_PORT: 5433
-      DB_USER: root
-      DB_PASSWORD: "<ANY PASSWORD>"
-      DB_NAME: "carbondev"
+      DB_PORT: ${DB_PORT}
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PWD}
+      DB_NAME: ${DB_NAME}
+    env_file:
+      - .env
+
   national:
     build:
       context: .
@@ -44,12 +68,12 @@ services:
       - dbmrv
     environment:
       DB_HOST: dbmrv
-      DB_USER: root
-      DB_PASSWORD: "<ANY PASSWORD>"
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PWD}
       RUN_MODULE: national-api
       rootEmail: <ROOT EMAIL>
-      systemCountryCode: "NG"
-      name: "Antactic Region"
+      systemCountryCode: "SC"
+      name: "Seychelles"
       logoBase64: "sss"
       IS_EMAIL_DISABLED: "true"
       LOCATION_SERVICE: OPENSTREET
@@ -57,8 +81,8 @@ services:
       HOST: "http://localhost:3030"
       DOMAIN_MAP: "true"
       EXPIRES_IN: "7200"
-      DB_PORT: "5433"
-      DB_NAME: "carbondev"
+      DB_PORT: ${DB_PORT}
+      DB_NAME: ${DB_NAME}
       NODE_ENV: 'dev'
       FILE_SERVICE: local
       DISABLE_LOW_PRIORITY_EMAIL: "true"
@@ -73,6 +97,9 @@ services:
       - filestore:/app/backend/services/public
       - ./users.csv:/app/backend/services/users.csv
       - ./organisations.csv:/app/backend/services/organisations.csv
+    env_file:
+      - .env
+
   stats:
     build:
       context: .
@@ -84,15 +111,18 @@ services:
       - national
     environment:
       DB_HOST: dbmrv
-      DB_USER: root
-      DB_PASSWORD: "<ANY PASSWORD>"
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PWD}
       RUN_PORT: 3100
       RUN_MODULE: analytics-api
       DOMAIN_MAP: "true"
-      DB_PORT: "5433"
-      DB_NAME: "carbondev"
+      DB_PORT:  ${DB_PORT}
+      DB_NAME: ${DB_NAME}
       NODE_ENV: 'dev'
       FILE_SERVICE: local
+    env_file:
+      - .env
+
   async-operations-handler:
     build:
       context: .
@@ -102,8 +132,8 @@ services:
       - national
     environment:
       DB_HOST: dbmrv
-      DB_USER: root
-      DB_PASSWORD: "<ANY PASSWORD>"
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PWD}
       RUN_MODULE: async-operations-handler,data-importer
       LOCATION_SERVICE: https://mrv-common-dev.s3.amazonaws.com/flag.png
       CERTIFIER_IMAGE : "https://mrv-common-dev.s3.amazonaws.com/flag.png"
@@ -115,8 +145,8 @@ services:
       ITMO_API_KEY: ""
       ITMO_EMAIL: ""                      
       ITMO_PASSWORD: ""
-      DB_PORT: "5433"
-      DB_NAME: "carbondev"
+      DB_PORT: ${DB_PORT}
+      DB_NAME: ${DB_NAME}
       REGISTRY_SYNC_ENABLE: true
       NODE_ENV: 'dev'
       SYNC_ENDPOINT: 'http://192.168.1.43:3000'      
@@ -126,15 +156,18 @@ services:
       SYSTEM_TYPE: CARBON_TRANSPARENCY_SYSTEM
       SYNC_ENABLE: true
       BACKEND_HOST: http://localhost:9000
+    env_file:
+      - .env
+
   web:
     build:
       context: .
-      dockerfile: ./web/Dockerfile
+      dockerfile: ./web/Dockerfile # Production Dockerfile
       args:
         PORT: 3030
         REACT_APP_BACKEND: http://localhost:9000
         REACT_APP_STAT_URL: http://localhost:9100
-        REACT_APP_COUNTRY_NAME: "Antarctic Region"
+        REACT_APP_COUNTRY_NAME: "Seychelles"
     ports:
       - "9030:3030"
     depends_on:
