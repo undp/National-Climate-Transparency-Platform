@@ -324,49 +324,65 @@
     text-transform: uppercase;
     position: relative;
     margin-bottom: 20px;
+    font-size: 0.8rem; /* Default for xs */
+    line-height: 1.2em;
+    text-align: center; /* Center text for xs and sm by default */
     @media (min-width: 640px) {
-      font-size: 1.5rem;
+      font-size: 0.9rem;
       line-height: 1.2em;
+      text-align: center; /* Centers text horizontally */
     }
     @media (min-width: 768px) {
       font-size: 2rem;
       line-height: 1.2em;
+      text-align: center; /* Centers text horizontally */
     }
     @media (min-width: 1024px) {
-      font-size: 2.5rem;
+      font-size: 2.1rem;
       line-height: 1.2em;
+      text-align: left; /* Align left for larger screens */
     }
     @media (min-width: 1280px) {
-      font-size: 3rem;
+      font-size: 2.2rem; /* 48px */
       line-height: 1.2em;
+      text-align: left; /* Align left for larger screens */
     }
     @media (min-width: 1536px) {
-      font-size: 3.2rem;
+      font-size: 2.3rem; /* 48px */
       line-height: 1.2em;
+      text-align: left; /* Align left for larger screens */
     }
   }
 
   .text-ctn1 {
     font-family: $primary-font-family;
+    font-size: 0.8rem; /* Default for xs */
+    line-height: 1.2em;
+    text-align: center; /* Center text for xs and sm by default */
     @media (min-width: 640px) {
-      font-size: 1.5rem;
+      font-size: 0.9rem;
       line-height: 1.2em;
+      text-align: center;
     }
     @media (min-width: 768px) {
-      font-size: 2rem;
+      font-size: 1rem;
       line-height: 1.2em;
+      text-align: center;
     }
     @media (min-width: 1024px) {
-      font-size: 2.5rem;
+      font-size: 1.1rem;
       line-height: 1.2em;
+      text-align: left;
     }
     @media (min-width: 1280px) {
-      font-size: 3rem;
-      line-height: 1.3em;
-    }
-    @media (min-width: 1536px) {
       font-size: 1.2rem;
       line-height: 1.3em;
+      text-align: left;
+    }
+    @media (min-width: 1536px) {
+      font-size: 1.3rem;
+      line-height: 1.3em;
+      text-align: left;
     }
   }
 

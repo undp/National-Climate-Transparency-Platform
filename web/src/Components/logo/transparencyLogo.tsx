@@ -1,7 +1,8 @@
 import './transparencyLogo.scss';
 import { Col, Row } from 'antd';
-import countryLogo from '../../Assets/Images/mrvlogo.svg';
+// import countryLogo from '../../Assets/Images/mrvlogo.svg';
 import { useNavigate } from 'react-router-dom';
+import countryLogo from '../../Assets/Images/gos.png';
 
 const TransparencyLogo: React.FC = () => {
   const navigate = useNavigate();

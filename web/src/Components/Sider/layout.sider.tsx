@@ -1,9 +1,10 @@
 import { useState } from 'react';
 import { Menu, Layout, MenuProps } from 'antd';
-import sliderLogo from '../../Assets/Images/mrvlogo.svg';
+// import sliderLogo from '../../Assets/Images/mrvlogo.svg';
 import { useNavigate } from 'react-router-dom';
 import './layout.sider.scss';
 import * as Icon from 'react-bootstrap-icons';
+import sliderLogo from '../../Assets/Images/gos.png';
 import {
   AppstoreOutlined,
   CloudDownloadOutlined,

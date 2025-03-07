@@ -6,7 +6,7 @@ import { useTranslation } from 'react-i18next';
 import LayoutFooter from '../../Components/Footer/layout.footer';
 import './homepage.scss';
 import undpLogo from '../../Assets/Images/undp1.svg';
-import gosLogo from '../../Assets/Images/gos.jpg';
+import gosLogo from '../../Assets/Images/gos.png';
 import belgiumLogo from '../../Assets/Images/StateCoatArmsBelgium.png';
 import heroPhoto from '../../Assets/Images/hero.jpg';
 import howItWorksPhoto from '../../Assets/Images/how-it-works.avif';
