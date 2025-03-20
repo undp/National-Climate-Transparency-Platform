@@ -11,7 +11,7 @@ import { AsyncActionType } from "../enums/async.action.type.enum";
 import { BasicResponseDto } from "../dtos/basic.response.dto";
 import { HelperService } from "../util/helpers.service";
 import { JWTPayload } from "../dtos/jwt.payload";
-import { EmailTemplates } from "../email-helper/email.template";
+import { EmailTemplates } from "../email/email.template";
 import { API_KEY_SEPARATOR } from "../constants";
 import { UserState } from "../enums/user.enum";
 import { User } from "../entities/user.entity";

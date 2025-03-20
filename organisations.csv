@@ -1,6 +1,0 @@
-NAME,EMAIL,PHONE,ORGANISATION ID,ORGANISATION TYPE(Department|API), SECTOR
-Org 2,palinda+org2@xeptagon.com,,33333,Department,Transport
-Org 3,palinda+org3@xeptagon.com,,55555,Department,Energy
-Cert 2,palinda+cert2@xeptagon.com,,44444,Department,Energy
-API,palinda+api@xeptagon.com,,66666,API
-Org 4,palinda+org4@xeptagon.com,,77777,Department,Energy

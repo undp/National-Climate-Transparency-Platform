@@ -4,19 +4,11 @@ import { UserModule } from "../user/user.module";
 import { UserService } from "../user/user.service";
 import { Role, SubRole } from "../casl/role.enum";
 import { UserDto } from "../dtos/user.dto";
-import { UtilModule } from "../util/util.module";
-import { CountryService } from "../util/country.service";
-import { Country } from "../entities/country.entity";
 import { getLogger } from "../server";
-import { LocationModule } from "../location/location.module";
-import { LocationInterface } from "../location/location.interface";
 import { Sector } from "../enums/sector.enum";
 import { GHGInventoryManipulate, SubRoleManipulate, ValidateEntity } from "../enums/user.enum";
 
-const fs = require("fs");
-
-export const handler: Handler = async (event) => {
-  console.log(`Setup Handler Started with: ${event}`);
+export const handler: Handler = async (event: any) => {
 
   if (!event) {
     event = process.env;
@@ -26,16 +18,6 @@ export const handler: Handler = async (event) => {
     logger: getLogger(UserModule),
   });
   const userService = userApp.get(UserService);
-
-  const locationApp = await NestFactory.createApplicationContext(
-    LocationModule,
-    {
-      logger: getLogger(UserModule),
-    }
-  );
-  const locationInterface = locationApp.get(LocationInterface);
-  const regionRawData = fs.readFileSync('regions.csv', 'utf8');
-  await locationInterface.init(regionRawData);
 
   if (event.type === "IMPORT_USERS" && event.body) {
 
@@ -101,8 +83,10 @@ export const handler: Handler = async (event) => {
   }
 
   const u = await userService.findOne(event["rootEmail"]);
+
   if (u != undefined) {
-    console.log("Root user already created and setup is completed");
+      console.log("Root user already created and setup is completed");
+      return;
   }
 
   try {
@@ -116,23 +100,7 @@ export const handler: Handler = async (event) => {
     user.country = event["systemCountryCode"];
     console.log("Adding user", user);
     await userService.create(user);
-    
   } catch (e) {
     console.log(`User ${event["rootEmail"]} failed to create`, e);
   }
-
-  const countryData = fs.readFileSync("countries.json", "utf8");
-  const jsonCountryData = JSON.parse(countryData);
-  const utils = await NestFactory.createApplicationContext(UtilModule);
-  const countryService = utils.get(CountryService);
-
-  jsonCountryData.forEach(async (countryItem) => {
-    if (countryItem["UN Member States"] === "x") {
-      const country = new Country();
-      country.alpha2 = countryItem["ISO-alpha2 Code"];
-      country.alpha3 = countryItem["ISO-alpha3 Code"];
-      country.name = countryItem["English short"];
-      await countryService.insertCountry(country);
-    }
-  });
 };

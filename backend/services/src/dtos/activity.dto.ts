@@ -3,7 +3,6 @@ import { ArrayMinSize, IsArray, IsBoolean, IsEnum, IsIn, IsNotEmpty, IsNumber, I
 import { ActivityStatus, ImpleMeans, Measure, SupportType, TechnologyType } from "../enums/activity.enum";
 import { EntityType, GHGS, IntImplementor, NatImplementor, Recipient } from "../enums/shared.enum";
 import { DocumentDto } from "./document.dto";
-import { Type } from "class-transformer";
 
 export class ActivityDto {
 

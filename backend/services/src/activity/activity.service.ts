@@ -128,12 +128,7 @@ export class ActivityService {
 		}
 
 		if (activityDto.mitigationTimeline) {
-			const gwpSettingsRecord = await this.configSettingsRepo.findOneBy({ id: ConfigurationSettingsType.GWP });
-
-			const gwpSetting = {
-				[GHGS.NO]: parseFloat(gwpSettingsRecord?.settingValue?.gwp_n2o) ?? 1,
-				[GHGS.CH]: parseFloat(gwpSettingsRecord?.settingValue?.gwp_ch4) ?? 1,
-			}
+			const gwpSetting = await this.getGwpSetting()
 
 			let validUnit: GHGS = GHGS.CO;
 			let gwpValue: number = 1;
@@ -1474,12 +1469,7 @@ export class ActivityService {
 
 		const currentMitigationTimeline = activity.mitigationTimeline;
 
-		const gwpSettingsRecord = await this.configSettingsRepo.findOneBy({ id: ConfigurationSettingsType.GWP });
-
-		const gwpSetting = {
-			[GHGS.NO]: parseFloat(gwpSettingsRecord?.settingValue?.gwp_n2o) ?? 1,
-			[GHGS.CH]: parseFloat(gwpSettingsRecord?.settingValue?.gwp_ch4) ?? 1,
-		}
+		const gwpSetting = await this.getGwpSetting()
 
 		let gwpValue: number = 1;
 
@@ -1596,5 +1586,32 @@ export class ActivityService {
 		}
 
 		return activity.mitigationTimeline;
+	}
+
+	private async getGwpSetting() {
+		const gwpSetting = {
+			[GHGS.CH]: 1,
+			[GHGS.NO]: 1,
+		}
+
+		try {
+			const gwpSettingsRecord = await this.configSettingsRepo.findOneBy({ id: ConfigurationSettingsType.GWP });
+			const gwp_ch4 = gwpSettingsRecord?.settingValue?.gwp_ch4;
+			const gwp_n2o = gwpSettingsRecord?.settingValue?.gwp_n2o;
+
+			const parseAndAssign = (value: any, key: GHGS) => {
+				const parsedValue = parseFloat(value);
+				if (!isNaN(parsedValue)) {
+					gwpSetting[key] = parsedValue;
+				}
+			};
+	
+			parseAndAssign(gwp_ch4, GHGS.CH);
+			parseAndAssign(gwp_n2o, GHGS.NO);
+		} catch (error: any) {
+			console.log("Error when building gwp setting", error);
+		}
+
+		return gwpSetting;
 	}
 }

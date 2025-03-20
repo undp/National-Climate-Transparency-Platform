@@ -2,7 +2,6 @@ import { Logger, Module } from "@nestjs/common";
 import { ConfigModule } from "@nestjs/config";
 import { TypeOrmModule } from "@nestjs/typeorm";
 import configuration from "../configuration";
-import { Organisation } from "../entities/organisation.entity";
 import { TypeOrmConfigService } from "../typeorm.config.service";
 import { AnalyticsController } from "./analytics.api.controller";
 import { AnalyticsService } from "./analytics.api.service";

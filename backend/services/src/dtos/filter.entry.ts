@@ -1,6 +1,5 @@
 import { ApiProperty, ApiPropertyOptional } from "@nestjs/swagger";
-import { Type } from "class-transformer";
-import { IsInt, IsNotEmpty, IsNumber, IsOptional, IsPositive, IsString } from "class-validator";
+import { IsNotEmpty, IsOptional, IsString } from "class-validator";
 
 export class FilterEntry {
 
@@ -25,9 +24,4 @@ export class FilterEntry {
     @IsOptional()
     keyOperation?: any;
 
-    // @IsNotEmpty()
-    // @IsString()
-    // @ApiPropertyOptional()
-    // @IsOptional()
-    // keyOperationAttr?: any;
 }

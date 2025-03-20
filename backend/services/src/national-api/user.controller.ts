@@ -6,18 +6,14 @@ import {
   Post,
   Body,
   Query,
-  Req,
   HttpException,
   HttpStatus,
-  Delete,
   Put,
 } from "@nestjs/common";
 import { ApiBearerAuth, ApiTags } from "@nestjs/swagger";
 import { ApiKeyJwtAuthGuard } from "../auth/guards/api-jwt-key.guard";
 import { JwtAuthGuard } from "../auth/guards/jwt-auth.guard";
-
 import { Action } from "../casl/action.enum";
-import { CaslAbilityFactory } from "../casl/casl-ability.factory";
 import { CheckPolicies } from "../casl/policy.decorator";
 import { PoliciesGuard, PoliciesGuardEx } from "../casl/policy.guard";
 import { Role } from "../casl/role.enum";
@@ -27,7 +23,6 @@ import { UserDto } from "../dtos/user.dto";
 import { UserUpdateDto } from "../dtos/user.update.dto";
 import { User } from "../entities/user.entity";
 import { UserService } from "../user/user.service";
-import { CountryService } from "../util/country.service";
 import { HelperService } from "../util/helpers.service";
 import { PasswordForceResetDto } from "../dtos/password.forceReset.dto";
 
@@ -37,8 +32,6 @@ import { PasswordForceResetDto } from "../dtos/password.forceReset.dto";
 export class UserController {
   constructor(
     private readonly userService: UserService,
-    private caslAbilityFactory: CaslAbilityFactory,
-    private readonly countryService: CountryService,
     private helperService: HelperService
   ) {}
 
@@ -119,10 +112,5 @@ export class UserController {
   queryUser(@Body() query: QueryDto, @Request() req) {
     console.log(req.abilityCondition);
     return this.userService.query(query, req.abilityCondition);
-  }
-
-  @Get("countries")
-  async getAvailableCountries(@Request() req) {
-    return await this.countryService.getAvailableCountries();
   }
 }

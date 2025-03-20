@@ -28,9 +28,9 @@ services:
     command: ['yarn', 'migration:run']
     environment:
       DB_HOST: dbmrv
-      DB_PORT: "5433"
+      DB_PORT: 5433
       DB_USER: root
-      DB_PASSWORD: "<ANY PASSWORD>"
+      DB_PASSWORD: root
       DB_NAME: "carbondev"
   national:
     image: 302213478610.dkr.ecr.us-east-1.amazonaws.com/transparency-services:CARBON-329
@@ -48,21 +48,16 @@ services:
       rootEmail: <ROOT EMAIL>
       systemCountryCode: "NG"
       name: "Antactic Region"
-      logoBase64: "sss"
       IS_EMAIL_DISABLED: "true"
-      LOCATION_SERVICE: OPENSTREET
       ASYNC_OPERATIONS_TYPE: Database
       HOST: "http://localhost:80"
       DOMAIN_MAP: "true"
       EXPIRES_IN: "7200"
       NODE_ENV: 'dev'
-      FILE_SERVICE: local
+      FILE_SERVICE: LOCAL
+      S3_COMMON_BUCKET: "<Set when FILE_SERVICE is S3 instead of LOCAL>"
       DISABLE_LOW_PRIORITY_EMAIL: "true"
       SYSTEM_TYPE: CARBON_TRANSPARENCY_SYSTEM
-      SYSTEM_SYNC: true
-      SYNC_ENABLE: true
-      SYNC_ENDPOINT: 'http://192.168.1.29:3000'      
-      SYNC_API_TOKEN: ''
       BACKEND_HOST: http://localhost:9000
     volumes:
       - filestore:/app/backend/services/public
@@ -85,7 +80,8 @@ services:
       DB_PORT: "5433"
       DB_NAME: "carbondev"
       NODE_ENV: 'dev'
-      FILE_SERVICE: local
+      FILE_SERVICE: LOCAL
+      S3_COMMON_BUCKET: "<Set when FILE_SERVICE is S3 instead of LOCAL>"
   async-operations-handler:
     image: 302213478610.dkr.ecr.us-east-1.amazonaws.com/transparency-services:CARBON-329
     depends_on:
@@ -95,27 +91,19 @@ services:
       DB_HOST: dbmrv
       DB_USER: root
       DB_PASSWORD: "<ANY PASSWORD>"
-      RUN_MODULE: async-operations-handler,data-importer
-      LOCATION_SERVICE: https://mrv-common-dev.s3.amazonaws.com/flag.png
-      CERTIFIER_IMAGE : "https://mrv-common-dev.s3.amazonaws.com/flag.png"
+      RUN_MODULE: async-operations-handler
       SMTP_ENDPOINT: email-smtp.us-east-1.amazonaws.com
       SMTP_PASSWORD: ""
       SMTP_USERNAME: AKIAUMXKTXDJPDYDJ76J
       IS_EMAIL_DISABLED: "true"
       ASYNC_OPERATIONS_TYPE: Database
-      ITMO_API_KEY: ""
-      ITMO_EMAIL: ""                      
-      ITMO_PASSWORD: ""
       DB_PORT: "5433"
       DB_NAME: "carbondev"
-      REGISTRY_SYNC_ENABLE: true
       NODE_ENV: 'dev'
-      SYNC_ENDPOINT: 'http://192.168.1.29:3000'      
-      SYNC_API_TOKEN: ''
-      FILE_SERVICE: local
+      FILE_SERVICE: LOCAL
+      S3_COMMON_BUCKET: "<Set when FILE_SERVICE is S3 instead of LOCAL>"
       DISABLE_LOW_PRIORITY_EMAIL: "true"
       SYSTEM_TYPE: CARBON_TRANSPARENCY_SYSTEM
-      SYNC_ENABLE: true
       BACKEND_HOST: http://localhost:9000
   web:
     image: 302213478610.dkr.ecr.us-east-1.amazonaws.com/transparency-web:CARBON-329

@@ -9,9 +9,6 @@ import { TypeOrmConfigService } from '../typeorm.config.service';
 import { UtilModule } from '../util/util.module';
 import { AsyncOperationsModule } from '../async-operations/async-operations.module';
 import { FileHandlerModule } from '../file-handler/filehandler.module';
-import { LocationModule } from '../location/location.module';
-
-
 
 @Module({
   imports: [
@@ -29,7 +26,6 @@ import { LocationModule } from '../location/location.module';
     UtilModule,
     FileHandlerModule,
     AsyncOperationsModule,
-    LocationModule,
   ],
   providers: [UserService, Logger],
   exports: [UserService]

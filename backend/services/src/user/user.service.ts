@@ -1,8 +1,6 @@
 import {
-	forwardRef,
 	HttpException,
 	HttpStatus,
-	Inject,
 	Injectable,
 	Logger,
 } from "@nestjs/common";
@@ -22,15 +20,14 @@ import { UserUpdateDto } from "../dtos/user.update.dto";
 import { Role, roleSubRoleMap, SubRole } from "../casl/role.enum";
 import { nanoid } from "nanoid";
 import { ConfigService } from "@nestjs/config";
-import { Organisation, OrganisationType } from "../enums/organisation.enum";
+import { Organisation } from "../enums/organisation.enum";
 import { plainToClass } from "class-transformer";
 import { GHGInventoryManipulate, SubRoleManipulate, UserState, ValidateEntity } from "../enums/user.enum";
 import { HelperService } from "../util/helpers.service";
 import { AsyncAction, AsyncOperationsInterface } from "../async-operations/async-operations.interface";
 import { PasswordHashService } from "../util/passwordHash.service";
-import { HttpUtilService } from "../util/http.util.service";
 import { AsyncActionType } from "../enums/async.action.type.enum";
-import { EmailTemplates } from "../email-helper/email.template";
+import { EmailTemplates } from "../email/email.template";
 import { PasswordUpdateDto } from "../dtos/password.update.dto";
 import { BasicResponseDto } from "../dtos/basic.response.dto";
 import { QueryDto } from "../dtos/query.dto";
@@ -51,7 +48,6 @@ export class UserService {
 		@InjectEntityManager() private entityManger: EntityManager,
 		private asyncOperationsInterface: AsyncOperationsInterface,
 		private passwordHashService: PasswordHashService,
-		private httpUtilService: HttpUtilService
 	) { }
 
 	private async validateUserCreatePayload(
