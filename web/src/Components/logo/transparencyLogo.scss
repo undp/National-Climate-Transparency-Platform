@@ -1,6 +1,6 @@
 .mrv-logo {
 
-    width: 350px;
+    width: 400px;
     padding-top: 50px;
     
     .logo-image {
@@ -8,6 +8,7 @@
         align-items: center;
         display: flex;
         cursor: pointer;
+        margin-top: 6px;
     
         img {
           object-fit: cover;
@@ -17,22 +18,22 @@
     }
 
     .logo-text {
-        margin-top: 6px;
+        margin-top: 0px;
         font-family: 'MuseoSans';
-
         .bold-logo-title {
-            font-size: 19px;
+            font-size: 18px;
             font-weight: 600;
         }
 
         .logo-title {
-            font-size: 19px;
+            font-size: 18px;
             font-weight: 100;
         }
 
         .country-logo-title {
-            font-size: 18px;
+            font-size: 14px;
             font-weight: 100;
+            margin-top: -4px;
         }
     }
 }

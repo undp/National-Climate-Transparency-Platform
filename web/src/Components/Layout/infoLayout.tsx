@@ -3,7 +3,8 @@ import { Suspense } from 'react';
 import { Outlet, useNavigate } from 'react-router-dom';
 import { Loading } from '../Loading/loading';
 // import sliderLogo from '../../Assets/Images/mrvlogo.svg';
-import sliderLogo from '../../Assets/Images/gos.png';
+// import sliderLogo from '../../Assets/Images/gos.png';
+import sliderLogo from '../../Assets/Images/ClimateLogo.png';
 import './infoLayout.scss';
 
 const { Content } = Layout;

@@ -7,9 +7,10 @@ import LayoutFooter from '../../Components/Footer/layout.footer';
 import './homepage.scss';
 import undpLogo from '../../Assets/Images/undp1.svg';
 import gosLogo from '../../Assets/Images/gos.png';
-import belgiumLogo from '../../Assets/Images/StateCoatArmsBelgium.png';
+import belgiumLogo from '../../Assets/Images/Belgium.png';
 import heroPhoto from '../../Assets/Images/hero.jpg';
 import howItWorksPhoto from '../../Assets/Images/how-it-works.avif';
+import appLogo from '../../Assets/Images/ClimateLogo.png';
 
 const Homepage = () => {
   const { t } = useTranslation(['common', 'homepage']);
@@ -48,18 +49,6 @@ const Homepage = () => {
   const partnersData = [
     {
       src: gosLogo,
-      alt: 'Climate Change Department',
-      name: 'Climate Change Department',
-      url: 'https://macce.gov.sc/climate-change-department/',
-    },
-    {
-      src: gosLogo,
-      alt: 'MACCE',
-      name: 'Ministry of Agriculture, Climate Change and Environment',
-      url: 'https://macce.gov.sc/',
-    },
-    {
-      src: gosLogo,
       alt: 'Government Of Seychelles',
       name: 'Government Of Seychelles',
       url: 'https://www.gov.sc/',
@@ -91,12 +80,16 @@ const Homepage = () => {
       <header className="header">
         <div className="container mx-auto px-4">
           <div className="logo">
-            <img src={gosLogo} alt="Seychelles NDC Transparency System" className="logo-image" />
+            <img
+              src={appLogo}
+              alt="Seychelles Climate Transparency System"
+              className="logo-image"
+            />
             <div className="company-details">
               <div>
-                <span className="company-name1">{t('homepage:transparency')}</span>
+                <span className="company-name1">{t('homepage:logoBrand')}</span>
                 <span> </span>
-                <span className="company-name2">{t('homepage:system')}</span>
+                {/*<span className="company-name2">{t('homepage:system')}</span> */}
               </div>
               {/* let's hide the country until told otherwise */}
               <div className="company-motto">{t('homepage:systemCountry')}</div>

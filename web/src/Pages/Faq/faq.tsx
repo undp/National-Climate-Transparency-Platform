@@ -181,6 +181,12 @@ const faq = () => {
             <Panel header={t('question10')} key="10">
               <div className="answers">{t('answer10')}</div>
             </Panel>
+            <Panel header={t('question11')} key="11">
+              <div className="answers">{t('answer11')}</div>
+            </Panel>
+            <Panel header={t('question12')} key="12">
+              <div className="answers">{t('answer12')}</div>
+            </Panel>
           </Collapse>
         </div>
       </div>

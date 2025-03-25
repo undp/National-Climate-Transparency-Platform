@@ -179,10 +179,8 @@ const Login: FC<LoginPageProps> = (props: LoginPageProps) => {
                 <Row className="centred-row">
                   <Col>
                     <div className="login-text-contents">
-                      <span className="login-text-sign">
-                        {t('common:login')} <br />
-                        <span className="login-text-welcome">{t('login:welcome-back')}</span>
-                      </span>
+                      <span className="login-text-sign">{t('common:login')}</span>
+                      <span className="login-text-welcome">{t('login:welcome-back')}</span>
                     </div>
                   </Col>
                 </Row>

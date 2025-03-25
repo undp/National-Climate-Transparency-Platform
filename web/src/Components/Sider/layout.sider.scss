@@ -36,41 +36,42 @@
   .layout-sider-div-container {
     padding-top: 10px;
     overflow-y: auto;
+    overflow-x: hidden;
 
     .layout-sider-heading-container {
       display: flex;
       flex-direction: row;
-      align-items: center;
+      align-items: top;
       padding-top: 15px;
-      padding-right: 10px;
+      padding-right: 2px;
       padding-left: 20px;
       cursor: pointer;
 
       .title {
         font-family: 'MuseoSans';
-        font-size: 14px;
+        font-size: 12px;
         color: $logo-text-color;
         font-weight: 700;
-        margin-right: 5px;
+        margin-right: 1px;
+        align-items: top;
       }
 
       .title-sub {
         font-weight: 100 !important;
         font-family: 'MuseoSans';
-        font-size: 14px;
+        font-size: 10px;
         color: $logo-text-color;
       }
 
       .logo {
         height: 52px;
-        width: 80px;
-
+        width: auto;
         img {
           object-fit: cover;
           height: auto;
-          height: 78%;
+          height: 48%;
           margin-top: 6px;
-          margin-right: 7px;
+          margin-right: 5px;
         }
       }
     }

@@ -45,14 +45,16 @@
       gap: 0.3rem;
     
       .logo-image {
-        width: 48px;
-        height: 48px;
+        width: 65px;
+        height: auto;
+        margin-top: 6px;
       }
     
       .company-details {
-        display: flex;
+        display: inline-flex;
         flex-direction: column;
         justify-content: center; // Ensures the text block is horizontally aligned with the logo
+        gap: 0px;
     
         .company-name1 {
           font-size: 0.9rem;
@@ -74,6 +76,7 @@
           margin: 0; // Removes default margin
           line-height: 1; // Ensures no extra spacing between the lines
           font-weight: 400;
+          margin-top: 0px;
         }
       }
     
@@ -228,20 +231,21 @@
 
     .partners-container {
       display: flex;
-      justify-content: space-around;
-      align-items: bottom;
+      justify-content: center;
       flex-wrap: wrap;
-      gap: 20px;
+      gap: 50px;
+      padding-left: 100px;
+      padding-right: 100px;
     }
 
     .partners-item {
       text-align: center;
-      flex: 1 1 18%; /* 5 logos per row on desktop */
+      flex: 1 1 28%; /* 5 logos per row on desktop */
     }
 
     .partners-item img {
-      max-width: 100px; /* Adjust logo size as needed */
-      height: 80px; /* Ensure all images have the same height */
+      max-width: 150px; /* Adjust logo size as needed */
+      height: 100px; /* Ensure all images have the same height */
       object-fit: contain; /* Keep the image proportions */
     }
     

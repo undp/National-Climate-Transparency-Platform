@@ -2,7 +2,8 @@ import './transparencyLogo.scss';
 import { Col, Row } from 'antd';
 // import countryLogo from '../../Assets/Images/mrvlogo.svg';
 import { useNavigate } from 'react-router-dom';
-import countryLogo from '../../Assets/Images/gos.png';
+//import countryLogo from '../../Assets/Images/gos.png';
+import countryLogo from '../../Assets/Images/ClimateLogo.png';
 
 const TransparencyLogo: React.FC = () => {
   const navigate = useNavigate();
@@ -20,17 +21,17 @@ const TransparencyLogo: React.FC = () => {
             />
           </div>
         </Col>
-        <Col span={18} style={{ marginLeft: '20px' }}>
+        <Col span={18} style={{ marginLeft: '18px' }}>
           <Row className="logo-text">
-            <Col span={14}>
-              <div className="bold-logo-title">{'TRANSPARENCY'}</div>
+            <Col span={18}>
+              <div className="bold-logo-title">{'CLIMATE TRANSPARENCY'}</div>
             </Col>
-            <Col span={10}>
+            <Col span={6}>
               <div className="logo-title">{'SYSTEM'}</div>
             </Col>
             <Col span={24}>
               <div className="country-logo-title">
-                {process.env.REACT_APP_COUNTRY_NAME || 'CountryX'}
+                {process.env.REACT_APP_COUNTRY_NAME || 'Seychelles'}
               </div>
             </Col>
           </Row>

@@ -21,7 +21,7 @@
     "reslist1":"Sample Letter of Intent",
     "reslist2":"Article 6.2 Initial report template.",
     "reslist3":"Regular Information Template.",
-    "footertext1":"Seychelles NDC Transparency System",
+    "footertext1":"Seychelles Climate Transparency System",
     "systemCountry":"Seychelles",
     "antarctic":"Seychelles",
     "Cookie":"Cookie Policy",
@@ -29,10 +29,11 @@
     "terms":"Terms of Use",
     "privacy":"Privacy Policy",
     "Help": "Help",
-    "nationalNdc": "SEYCHELLES NDC",
+    "nationalNdc": "SEYCHELLES CLIMATE",
     "heroMessage1": "Empowering transparency, accountability, and progress, this platform is your gateway to tracking and achieving a sustainable, resilient, and thriving Seychelles.",
     "heroMessage2": "Join us in driving meaningful climate action and building a brighter future for all.",
     "transparency": "TRANSPARENCY",
+    "logoBrand": "CLIMATE TRANSPARENCY",
     "system": "SYSTEM",
     "signIn": "SIGN IN",
     "signInToStart": "SIGN IN TO START",
@@ -41,17 +42,17 @@
         "topic": "OUR VISION",
         "title": "Pioneering Climate Transparency through Digital Innovation",
         "subtitle": {
-            "line1": "Empowering Seychelles with a state-of-the-art Digital Transparency System (DTS)",
-            "line2": "that transforms how climate actions and progress are tracked and reported.",
-            "line3": "Supported by the Seychelles Government, UNDP and the Government of Belgium,",
-            "line4": "this open-source platform embodies our commitment to transparency, collaboration, and innovation. By streamlining data collection, ensuring secure and accessible information, and fostering seamless coordination among government agencies, the DTS paves the way for a sustainable, resilient, and thriving future",
-            "line5": "in alignment with the Paris Agreement’s Enhanced Transparency Framework (ETF)."
+            "line1": "Empowering Seychelles with a cutting-edge Digital Climate Transparency System,",
+            "line2": "revolutionizing how climate actions and progress are tracked and reported.",
+            "line3": "Supported by the Seychelles Government, UNDP, and the Government of Belgium,",
+            "line4": "this platform reflects our commitment to transparency, collaboration, and innovation. It streamlines data collection, ensures secure and accessible information, and fosters seamless coordination among government agencies,",
+            "line5": "paving the way for a sustainable, resilient, and thriving future in alignment with the Paris Agreement’s Enhanced Transparency Framework (ETF)."
         },
         "card1": {
             "title": "Streamlined national and ETF reporting",
             "point1": "Automate data collection and reporting processes to reduce manual effort and errors.",
             "point2": "Ensures compliance with the Enhanced Transparency Framework (ETF).",
-            "point3": "Generates accurate, real-time insights for tracking progress on NDCs.",
+            "point3": "Generates accurate, real-time insights for tracking progress on national NDCs.",
             "point4": "Enhance transparency and accountability in national climate commitments.",
             "point5": "Align reporting with international standards (e.g., UNFCCC, Paris Agreement)."
         },
@@ -98,10 +99,10 @@
     },
     "works":{
         "topic": "How It Works",
-        "title": "Streamlining Climate Reporting with the NDC Transparency System",
+        "title": "Streamlining Climate Reporting with the Climate Transparency System",
         "subtitle": {
-            "line1": "The Seychelles Digital Transparency System (DTS)",
-            "line2": "simplifies the process of tracking and reporting climate actions, ensuring accuracy, consistency, and transparency. By automating data collection, fostering collaboration across government agencies, and aligning with international standards, the DTS makes it easier for Seychelles to meet its climate goals in line with the",
+            "line1": "The Seychelles Climate Transparency System (SCTS)",
+            "line2": "simplifies the process of tracking and reporting climate actions, ensuring accuracy, consistency, and transparency. By automating data collection, fostering collaboration across government agencies, and aligning with international standards, the SCTS makes it easier for Seychelles to meet its climate goals in line with the",
             "line3": "Paris Agreement."
         },
         "card1": {
@@ -135,47 +136,46 @@
     },
     "faqs": {
         "topic": "Frequently Asked Question",
-        "title": "Key Questions About Seychelles' NDC Transparency System",
+        "title": "Key Questions About The Seychelles Climate Transparency System (SCTS)",
         "question1": {
-            "q": "What is the Seychelles NDC Transparency System?",
-            "a": "The Seychelles NDC Transparency System is a cutting-edge platform developed to support the tracking, management, and reporting of climate actions. It enhances transparency and facilitates collaboration among stakeholders while ensuring Seychelles' alignment with global climate frameworks such as the Paris Agreement's Enhanced Transparency Framework (ETF)."
+            "q": "What is the Seychelles Climate Transparency System (SCTS)?",
+            "a": "The Seychelles Climate Transparency System (SCTS) is a digital platform designed to track, manage, and report Seychelles' climate actions. It enhances transparency, promotes collaboration among stakeholders, and aligns with global climate frameworks, including the Paris Agreement’s Enhanced Transparency Framework (ETF)."
         },
         "question2": {
-            "q": "How does the system support the Seychelles Government's climate commitments?",
-            "a": "The system enables the government to track and report on climate actions accurately, ensuring timely and transparent reporting in line with international standards. It also improves coordination among ministries and stakeholders to achieve the country’s climate goals."
+            "q": "How does the SCTS help Seychelles achieve its climate commitments?",
+            "a": "The SCTS supports the Seychelles Government by accurately tracking and reporting climate actions. It ensures compliance with international standards, improves coordination among stakeholders, and facilitates progress toward achieving the country's climate goals."
         },
         "question3": {
-            "q": "What types of data does the NDC Transparency System handle?",
-            "a": "The system collects and processes a variety of data including emissions reductions, climate adaptation and mitigation activities, financial flows for climate projects, and progress toward the Seychelles' Nationally Determined Contributions (NDCs)."
+            "q": "What types of data does the SCTS handle?",
+            "a": "The system processes data on emissions reductions, climate adaptation and mitigation activities, financial flows for climate projects, and progress toward Seychelles' Nationally Determined Contributions (NDCs)."
         },
         "question4": {
-            "q": "How does the system ensure compliance with the Enhanced Transparency Framework (ETF)?",
-            "a": "The NDC Transparency system automates data collection and reporting, ensuring that all data and climate actions are accurately tracked and aligned with the ETF guidelines. It produces real-time reports that help track progress on climate goals and provide insights for decision-making."
+            "q": "How does the SCTS ensure compliance with international climate frameworks?",
+            "a": "The system automates data collection and reporting processes, ensuring all data and climate actions are accurately tracked and aligned with Enhanced Transparency Framework (ETF) guidelines. It generates real-time reports to monitor progress and guide decision-making."
         },
         "question5": {
-            "q": "Who can access and use the NDC Transparency System?",
-            "a": "The system is used by government agencies, NGOs, private sector partners, and international bodies such as the UNDP. It is an open-source platform designed to encourage transparency and collaboration across various stakeholders."
+            "q": "Who can access and use the Seychelles Climate Transparency System?",
+            "a": "The SCTS is primarily used by project implementers and climate-related data compilers, who are responsible for feeding the system with accurate and up-to-date data. Additionally, government ministers and agencies that are tasked with implementing and tracking climate commitments and progress can access the system to monitor and ensure the country’s climate goals are being met."
         },
         "question6": {
-            "q": "How does the NDC Transparency System support financial tracking for climate projects?",
-            "a": "The system tracks financial flows and resource allocations for climate-related projects, helping to identify funding gaps, monitor expenditures, and ensure accountability in the use of climate funds."
+            "q": "How does the system track financial resources for climate projects?",
+            "a": "The SCTS monitors financial flows and resource allocations for climate-related projects. It identifies funding gaps, tracks expenditures, and ensures accountability in the use of climate funds."
         },
         "question7": {
             "q": "Can the system integrate with other international climate tracking systems?",
-            "a": "Yes, the DTS is designed to integrate with global climate tracking platforms such as the UNDP ITMOs platform and the UNFCCC’s systems. This ensures seamless data exchange and alignment with international climate reporting frameworks. Integration with UNFCCC’s is planned for a future phase."
+            "a": "Yes, the data standards in the SCTS are designed to be compatible with the reporting requirements of the UNFCCC’s systems. This ensures seamless data exchange and alignment with international climate reporting frameworks, facilitating effective collaboration and reporting on global climate efforts."
         },
         "question8": {
             "q": "How does the system enhance stakeholder engagement?",
-            "a": "The system provides a transparent view of Seychelles' climate actions, encouraging engagement from civil society, the private sector, and the general public. It fosters collaboration by offering accessible tools for stakeholders to contribute to climate action and decision-making."
+            "a": "The SCTS provides a transparent view of Seychelles' climate actions, encouraging active participation from civil society, the private sector, and the public. Its accessible tools promote collaboration and support decision-making processes for climate action."
         },
         "question9": {
-            "q": "How will the NDC Transparency System evolve to meet future climate reporting needs?",
-            "a": "The system is built with scalability in mind. It will be updated regularly to incorporate new functionalities, accommodate increasing data demands, and stay aligned with evolving global climate agreements."
+            "q": "How will the SCTS evolve to meet future climate reporting needs?",
+            "a": "The system is built to be scalable and adaptable. Regular updates will introduce new functionalities, accommodate growing data demands, and align with evolving global climate agreements."
         },
         "question10": {
-            "q": "How does the DTS ensure data security and integrity?",
-            "a": "The system employs robust security protocols, including data encryption and secure access controls, to protect sensitive climate data. It ensures data integrity through automated processes that minimize errors and provide a reliable foundation for informed decision-making."
+            "q": "How does the system ensure data security and accuracy?",
+            "a": "The SCTS employs advanced security measures, including data encryption and secure access controls, to protect sensitive information. Automated processes minimize errors and maintain data integrity, ensuring reliable and accurate reporting."
         }
-
     }
 }

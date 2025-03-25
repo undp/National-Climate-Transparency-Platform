@@ -18,7 +18,7 @@ const EntityIdCard: React.FC<Props> = ({ calledIn, entId, isValidated }) => {
           placement="right"
         >
           <Tag
-            icon={isValidated ? <CheckCircleOutlined style={{ color: '#9155FD' }} /> : undefined}
+            icon={isValidated ? <CheckCircleOutlined style={{ color: '#0468B1' }} /> : undefined}
             className="entity-id-card"
           >{`${calledIn} ID: ${entId}`}</Tag>
         </Tooltip>
