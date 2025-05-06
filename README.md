@@ -1,17 +1,17 @@
-# Digital Transparency System (DTS)
+# National Climate Transparency Platform (NCTP)
  
 <a name="about"></a>
 
 ![GitHub last commit](https://img.shields.io/github/last-commit/undp/carbon-registry)
 [![SparkBlue Chat](https://img.shields.io/badge/chat-SparkBlue-blue)](https://www.sparkblue.org/group/keeping-track-digital-public-goods-paris-agreement)
 
-The Digital Transparency System (DTS) is your country’s gateway to ensure robust  information gathering and reporting following the Enhanced Transparency Framework (ETF) of the Paris Agreement and to assist in the management of progress and implementation of your country’s Nationally Determined Contribution (NDC).
+The National Climate Transparency Platform (NCTP) is your country’s gateway to ensure robust  information gathering and reporting following the Enhanced Transparency Framework (ETF) of the Paris Agreement and to assist in the management of progress and implementation of your country’s Nationally Determined Contribution (NDC).
 
-The DTS does this by helping governments optimise the management of information related to climate change actions and support across ministries, agencies, and departments. It also allows for the option to easily share this information with parties outside government, such as UNFCCC, development partners, education institutions, etc. By centralizing essential data in a single digital location, the DTS significantly reduces workload, saving thousands of person-hours. Its user-friendly access and standardized reporting tools for ETF information further streamline operations and enhance efficiency.
+The NCTP does this by helping governments optimise the management of information related to climate change actions and support across ministries, agencies, and departments. It also allows for the option to easily share this information with parties outside government, such as UNFCCC, development partners, education institutions, etc. By centralizing essential data in a single digital location, the DTS significantly reduces workload, saving thousands of person-hours. Its user-friendly access and standardized reporting tools for ETF information further streamline operations and enhance efficiency.
 
-The DTS is an integral part of UNDP’s open-source Digital for Climate software ecosystem. This Digital Public Good has an open-source codebase and is designed to encapsulate the essence of effective climate action management, enabling countries to configure, adapt and build on it to meet national requirements.
+The NCTP is an integral part of UNDP’s open-source Digital for Climate software ecosystem. This Digital Public Good has an open-source codebase and is designed to encapsulate the essence of effective climate action management, enabling countries to configure, adapt and build on it to meet national requirements.
 
-The DTS has 7 key features.
+The NCTP has 7 key features.
 
 * **Systemic Information Structure**: The different modules in the DTS follow the information structure often used when countries and development partners plan and implement climate actions. This includes general information on broad climate actions and the more detailed information on sectoral programmes, projects, and activities that fall under each climate action.
   
