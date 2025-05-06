@@ -1,23 +1,23 @@
-# Digital Transparency System (DTS)
+# National Climate Transparency Platform 
  
 <a name="about"></a>
 
 ![GitHub last commit](https://img.shields.io/github/last-commit/undp/carbon-registry)
 [![SparkBlue Chat](https://img.shields.io/badge/chat-SparkBlue-blue)](https://www.sparkblue.org/group/keeping-track-digital-public-goods-paris-agreement)
 
-The Digital Transparency System (DTS) is your country’s gateway to ensure robust  information gathering and reporting following the Enhanced Transparency Framework (ETF) of the Paris Agreement and to assist in the management of progress and implementation of your country’s Nationally Determined Contribution (NDC).
+The National Climate Transparency Platform (NCTP) is your country’s gateway to ensure robust  information gathering and reporting following the Enhanced Transparency Framework (ETF) of the Paris Agreement and to assist in the management of progress and implementation of your country’s Nationally Determined Contribution (NDC).
 
-The DTS does this by helping governments optimise the management of information related to climate change actions and support across ministries, agencies, and departments. It also allows for the option to easily share this information with parties outside government, such as UNFCCC, development partners, education institutions, etc. By centralizing essential data in a single digital location, the DTS significantly reduces workload, saving thousands of person-hours. Its user-friendly access and standardized reporting tools for ETF information further streamline operations and enhance efficiency.
+The NCTP does this by helping governments optimise the management of information related to climate change actions and support across ministries, agencies, and departments. It also allows for the option to easily share this information with parties outside government, such as UNFCCC, development partners, education institutions, etc. By centralizing essential data in a single digital location, the NCTP significantly reduces workload, saving thousands of person-hours. It is user-friendly access and standardized reporting tools for ETF information further streamline operations and enhance efficiency.
 
-The DTS is an integral part of UNDP’s open-source Digital for Climate software ecosystem. This Digital Public Good has an open-source codebase and is designed to encapsulate the essence of effective climate action management, enabling countries to configure, adapt and build on it to meet national requirements.
+The NCTP is an integral part of UNDP’s open-source Digital for Climate software ecosystem. This Digital Public Good has an open-source codebase and is designed to encapsulate the essence of effective climate action management, enabling countries to configure, adapt and build on it to meet national requirements.
 
-The DTS has 7 key features.
+The NCTP has 7 key features.
 
-* **Systemic Information Structure**: The different modules in the DTS follow the information structure often used when countries and development partners plan and implement climate actions. This includes general information on broad climate actions and the more detailed information on sectoral programmes, projects, and activities that fall under each climate action.
+* **Systemic Information Structure**: The different modules in the NCTP follow the information structure often used when countries and development partners plan and implement climate actions. This includes general information on broad climate actions and the more detailed information on sectoral programmes, projects, and activities that fall under each climate action.
   
-* **NDC Progress Tracking**: Following the Paris Agreement’s Modalities Procedures and Guidelines of the ETF, the DTS allows users to effortlessly tracks and reports progress of NDC mitigation and adaptation actions, plus support that is needed and received.  Including enables standard reporting using the critical Common Tabular Formats of the ETF.
+* **NDC Progress Tracking**: Following the Paris Agreement’s Modalities Procedures and Guidelines of the ETF, the NCTP allows users to effortlessly tracks and reports progress of NDC mitigation and adaptation actions, plus support that is needed and received.  Including enables standard reporting using the critical Common Tabular Formats of the ETF.
 
-* **Tracking National Sustainable Development**: Every country and ministry has specific development planning that commonly overlaps with climate actions.  The DTS allows for the inclusion of customised Key Performance Indicators for actions, programmes, projects, and activities that align with national goals and planning.
+* **Tracking National Sustainable Development**: Every country and ministry has specific development planning that commonly overlaps with climate actions.  The NCTP allows for the inclusion of customised Key Performance Indicators for actions, programmes, projects, and activities that align with national goals and planning.
  
 * **GHG Emissions Projections**: The DTS has a module to help governments project GHG emissions based on different scenarios for sectors and subsectors using standard exponential modelling and/or by inputting modelling data from other software and models.  Additionally, the module enables the input of GHG inventory results, organized by categories and subcategories, ensuring comprehensive and flexible emissions analysis.
 
@@ -25,9 +25,9 @@ The DTS has 7 key features.
 
 * **Standard Reporting**: The information for climate action, programme, project, activity, and support is automatically consolidated and reported in the dashboard, along with reporting information using important Common Tabular Formats of the ETF.
 
-* **Assigning Users**: the DTS allows governments to assign users based on the entities they work for (e.g. government departments, education institutions, consultants…) and what information they should have access to both read and input (e.g. for specific sectors…).
+* **Assigning Users**: the NCTP allows governments to assign users based on the entities they work for (e.g. government departments, education institutions, consultants…) and what information they should have access to both read and input (e.g. for specific sectors…).
 
-More information about the project’s background, vision, policy context, support provided can be found in the demo site https://transparency-demo.carbreg.org/. Please contact the UNDP DPG team digital4planet@undp.org to request a walkthrough demonstration and to discuss further support and collaboration.
+More information about the project’s background, vision, policy context, support provided can be found in the demo site https://transparency-demo.carbreg.org/. Governments and project partners, please contact the UNDP DPG team digital4planet@undp.org through your UNDP country office to request a walkthrough demonstration and to discuss further support and collaboration.
 
 ## Index
 Below contents are planned to be updated by the third quarter of 2024 based on user feedback and recent change in international requirements. 
