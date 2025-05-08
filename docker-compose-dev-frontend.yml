@@ -1,0 +1,28 @@
+version: "3.8"
+services:
+  web-dev:
+    build:
+      context: .
+      dockerfile: ./web/Dockerfile.dev  # Development Dockerfile
+      target: build
+      args:
+        PORT: 3030
+        REACT_APP_BACKEND: http://localhost:9000
+        REACT_APP_STAT_URL: http://localhost:9100
+        REACT_APP_COUNTRY_NAME: "Seychelles"
+    ports:
+      - "9030:3030"
+    volumes:
+      - ./web:/app
+    environment:
+      - NODE_ENV=development
+      - PORT=3030
+      - REACT_APP_BACKEND=http://localhost:9000
+      - REACT_APP_STAT_URL=http://localhost:9100
+      - REACT_APP_COUNTRY_NAME="Seychelles"
+      - REACT_APP_COUNTRY_FLAG_URL=<your-flag-url>  # Replace with actual value
+      - COUNTRY_CODE=<your-country-code>  # Replace with actual value
+      - REACT_APP_MAPBOXGL_ACCESS_TOKEN=<your-mapbox-token>  # Replace with actual value
+      - REACT_APP_MAP_TYPE=<your-map-type>  # Replace with actual value
+      - REACT_APP_ENABLE_REGISTRATION=<enable-registration>  # Replace with actual value
+      - REACT_APP_GOVERNMENT_MINISTRY=<government-ministry>  # Replace with actual value

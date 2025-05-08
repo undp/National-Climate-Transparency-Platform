@@ -33,6 +33,8 @@ export enum IntImplementor {
   EBRD = 'EBRD',
   EIB = 'EIB',
   FAO = 'FAO',
+  GCF = 'GCF',
+  GEF = 'GEF',
   GIZ = 'GIZ',
   IMF = 'IMF',
   IMO = 'IMO',
@@ -115,6 +117,7 @@ export enum SubSector {
   TOURISM = 'Tourism',
   COMMERCIAL = 'Commercial',
   HOUSE_HOLDS = 'Households',
+  FOOD_SYSTEMS = 'Food systems',
   MULTI_SUB_SEC = 'Multi-Subsector',
   NA = 'Not Applicable',
 }

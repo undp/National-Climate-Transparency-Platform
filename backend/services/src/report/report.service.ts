@@ -52,15 +52,15 @@ export class ReportService {
 		} else {
 			let direction: SupportDirection;
 			let mitigationType: ActionType[];
-
+			// ML - removed ActionType.TRANSPARENCY in SIX and SEVEN and Add it to TWELVE and THIRTEEN
 			switch(reportNumber){
 				case Reports.SIX:
 					direction = SupportDirection.NEEDED;
-					mitigationType = [ActionType.MITIGATION, ActionType.ADAPTION, ActionType.CROSSCUT, ActionType.TRANSPARENCY, ActionType.OTHER];
+					mitigationType = [ActionType.MITIGATION, ActionType.ADAPTION, ActionType.CROSSCUT, ActionType.OTHER];
 					break;
 				case Reports.SEVEN:
 					direction = SupportDirection.RECEIVED;
-					mitigationType = [ActionType.MITIGATION, ActionType.ADAPTION, ActionType.CROSSCUT, ActionType.TRANSPARENCY, ActionType.OTHER];
+					mitigationType = [ActionType.MITIGATION, ActionType.ADAPTION, ActionType.CROSSCUT, ActionType.OTHER];
 					break;
 				case Reports.EIGHT:
 					direction = SupportDirection.NEEDED;
