@@ -179,10 +179,8 @@ const Login: FC<LoginPageProps> = (props: LoginPageProps) => {
                 <Row className="centred-row">
                   <Col>
                     <div className="login-text-contents">
-                      <span className="login-text-sign">
-                        {t('common:login')} <br />
-                        <span className="login-text-welcome">{t('login:welcome-back')}</span>
-                      </span>
+                      <span className="login-text-sign">{t('common:login')}</span>
+                      <span className="login-text-welcome">{t('login:welcome-back')}</span>
                     </div>
                   </Col>
                 </Row>
@@ -288,8 +286,10 @@ const Login: FC<LoginPageProps> = (props: LoginPageProps) => {
                 </Form>
                 <Row className="language-row">
                   <Col span={24} className="language-section">
+                    {/* We only support English for now in Seychelles, Since English is the default disable the option to select other locales */}
                     <Select
                       placeholder="Search to Select"
+                      disabled
                       defaultValue={
                         localStorage.getItem('i18nextLng') !== null
                           ? localStorage.getItem('i18nextLng')

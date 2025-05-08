@@ -1,5 +1,5 @@
 import { ApiProperty, ApiPropertyOptional, getSchemaPath } from "@nestjs/swagger";
-import { ArrayMinSize, IsArray, IsBoolean, IsEnum, IsIn, IsNotEmpty, IsNumber, IsOptional, IsString, MaxLength, ValidateIf } from "class-validator";
+import { ArrayMinSize, IsArray, IsBoolean, IsEnum, IsIn, IsNotEmpty, IsNumber, IsOptional, IsString, MaxLength, ValidateIf, Min, Max, } from "class-validator";
 import { ActivityStatus, ImpleMeans, Measure, SupportType, TechnologyType } from "../enums/activity.enum";
 import { EntityType, GHGS, IntImplementor, NatImplementor, Recipient } from "../enums/shared.enum";
 import { DocumentDto } from "./document.dto";
@@ -150,9 +150,26 @@ export class ActivityDto {
 	@ApiProperty()
 	expectedGHGReduction: number;
 
+	// ML - apply validation to startYear and endYear
+
+	@IsNotEmpty()
 	@IsNumber()
+	@Min(2013)
+	@Max(2049)
 	@ApiProperty()
 	startYear: number;
+
+	@IsNotEmpty()
+	@IsNumber()
+	@Min(2014)
+	@Max(2050)
+	@ApiProperty()
+	endYear: number;
+
+	// ML - commented this orignial one out
+	//@IsNumber()
+	//@ApiProperty()
+	//startYear: number;
 
 	@IsOptional()
 	@ApiPropertyOptional()

@@ -6,6 +6,11 @@ export enum Sector {
   Forestry = "Forestry",
   WaterAndSanitation = "Water and Sanitation",
   LandUse = "Land Use",
+  CoastalResilience = 'Coastal Resilience',
+  Health = 'Health',
+  HazardsManagement = 'Hazards Management',
+  NatureBasedSolutions = 'Nature Based Solutions',
+  BlueEconomy = 'Blue Economy',
   CrossCutting = "Cross-cutting",
   Other = "Other",
 }

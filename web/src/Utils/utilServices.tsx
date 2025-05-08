@@ -101,7 +101,10 @@ export const getArraySum = (values: number[]) => {
 };
 
 export const customRound = (value: number) => {
-  return Math.round(value * 100) / 100;
+  // ML - we need to rounded currency value to a whole number.
+  // Commented out the line not working and add the new return
+  // return Math.round(value * 100) / 100;
+  return Math.round(value);
 };
 
 export const getRounded = (num: number | string): number => {
@@ -130,16 +133,41 @@ export const convertToBillions = (value: number) => {
   return { processedNumber, isConverted };
 };
 
+// ML added to format large number in billions and millions - this replaces convertToBillions
+export const formatLargeNumber = (value: number) => {
+  let processedNumber: string;
+  let isConverted = false;
+
+  if (value >= 1000000000) {
+    // If the number is in billions
+    processedNumber = `${(value / 1000000000).toFixed(1)} B`;
+    isConverted = true;
+  } else if (value >= 1000000) {
+    // If the number is in millions
+    processedNumber = `${(value / 1000000).toFixed(1)} M`;
+    isConverted = true;
+  } else if (value >= 10000) {
+    // If the number is in hundreds of thousands
+    processedNumber = `${(value / 1000).toFixed(1)} K`;
+    isConverted = true;
+  } else {
+    // For other cases, round to 4 decimal places
+    processedNumber = value.toFixed(4);
+  }
+
+  return { processedNumber, isConverted };
+};
+
 export const getCollapseIcon = (isActive: boolean, clicked?: any) => {
   return isActive ? (
     <MinusCircleOutlined
       onClick={clicked ? clicked : undefined}
-      style={{ color: '#9155fd', fontSize: '14px' }}
+      style={{ color: '#0468B1', fontSize: '14px' }}
     />
   ) : (
     <PlusCircleOutlined
       onClick={clicked ? clicked : undefined}
-      style={{ color: '#9155fd', fontSize: '14px' }}
+      style={{ color: '#0468B1', fontSize: '14px' }}
     />
   );
 };

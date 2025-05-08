@@ -20,6 +20,7 @@
     "buffer": "^6.0.3",
     "class-transformer": "^0.5.1",
     "craco-less": "^2.0.0",
+    "cross-env": "^7.0.3",
     "env-cmd": "^10.1.0",
     "fs-extra": "^11.1.1",
     "i18next": "^22.0.6",
@@ -27,7 +28,6 @@
     "i18next-http-backend": "^2.0.1",
     "jwt-decode": "^3.1.2",
     "luxon": "^3.2.1",
-    "node-sass": "^7.0.3",
     "react": "^18.2.0",
     "react-apexcharts": "^1.4.0",
     "react-bootstrap-icons": "^1.10.2",
@@ -36,6 +36,7 @@
     "react-i18next": "^12.0.0",
     "react-phone-number-input": "^3.2.12",
     "react-router-dom": "^6.4.3",
+    "sass": "^1.83.4",
     "sha1": "^1.1.1",
     "styled-components": "^5.3.6",
     "typescript": "^4.8.4",
@@ -44,7 +45,7 @@
     "xlsx": "^0.18.5"
   },
   "scripts": {
-    "start:dev": "set PORT=9030 env-cmd -e development && craco start",
+    "start:dev": "env-cmd -f .env-cmdrc -e development craco start",
     "start:prod": "set PORT=9030 env-cmd -e production && craco start",
     "clean": "npx rimraf build",
     "build": "yarn run clean && craco build",
@@ -103,5 +104,6 @@
     "hooks": {
       "pre-commit": "lint-staged"
     }
-  }
+  },
+  "packageManager": "yarn@4.6.0+sha512.5383cc12567a95f1d668fbe762dfe0075c595b4bfff433be478dbbe24e05251a8e8c3eb992a986667c1d53b6c3a9c85b8398c35a960587fbd9fa3a0915406728"
 }

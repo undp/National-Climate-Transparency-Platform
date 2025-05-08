@@ -54,8 +54,15 @@ const reportList = () => {
   // Reports to Display
 
   const [reportsToDisplay, setReportsToDisplay] = useState<ReportType[]>([
+    ReportType.FIVE,
     ReportType.SIX,
     ReportType.SEVEN,
+    ReportType.EIGHT,
+    ReportType.NINE,
+    ReportType.TEN,
+    ReportType.ELEVEN,
+    ReportType.TWELVE,
+    ReportType.THIRTEEN,
   ]);
 
   // Bulk Report Definitions
@@ -120,6 +127,7 @@ const reportList = () => {
   };
 
   const getTableSixData = async () => {
+    // ML - rounded up requiredAmountDomestic and requiredAmount
     setLoading(true);
     try {
       const payload: any = {
@@ -139,8 +147,8 @@ const reportList = () => {
             subSectors: report.subSector ?? [],
             titleOfActivity: report.title,
             description: report.description,
-            requiredAmountDomestic: report.requiredAmountDomestic,
-            requiredAmount: report.requiredAmount,
+            requiredAmountDomestic: Math.round(report.requiredAmountDomestic),
+            requiredAmount: Math.round(report.requiredAmount),
             startYear: report.startYear,
             endYear: report.endYear,
             financialInstrument: report.internationalFinancialInstrument,
@@ -425,6 +433,7 @@ const reportList = () => {
   };
 
   const getTableTwelveData = async () => {
+    // ML - rounded up requiredAmountDomestic and requiredAmount
     setLoading(true);
     try {
       const payload: any = {
@@ -447,8 +456,8 @@ const reportList = () => {
             endYear: report.endYear,
             recipientEntities: report.recipientEntities ?? [],
             supportChannel: report.internationalSupportChannel ?? [],
-            requiredAmountDomestic: report.requiredAmountDomestic ?? [],
-            requiredAmount: report.requiredAmount,
+            requiredAmountDomestic: Math.round(report.requiredAmountDomestic) ?? [],
+            requiredAmount: Math.round(report.requiredAmount),
             activityStatus: report.status,
             additionalInfo: report.etfDescription,
           });

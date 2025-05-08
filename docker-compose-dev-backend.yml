@@ -1,0 +1,152 @@
+version: "3.3"
+volumes:
+  data:
+    driver: local
+  filestore:
+    driver: local
+  pgadmin_data:
+    driver: local
+
+services:
+  dbmrv:
+    container_name: dbmrv
+    image: postgres
+    restart: always
+    ports:
+      - ${DB_PORT}:5433
+    environment:
+      POSTGRES_PASSWORD: ${DB_PWD}
+      POSTGRES_USER: ${DB_USER}
+      PGPORT: ${DB_PORT}
+      PSQL_USERNAME: ${DB_USER}
+      PGDATA: /data/postgres
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+      - data:/data/postgres
+    env_file:
+      - .env
+
+  pgadmin:
+    container_name: pgadmin4
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_USER}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_PWD}
+    ports:
+      - 5050:80
+    volumes:
+      - pgadmin_data:/var/lib/pgadmin  
+    env_file:
+      - .env
+
+  migration:
+    build:
+      context: .
+      dockerfile: ./backend/services/Dockerfile
+    depends_on:
+      - dbmrv
+      - national
+    command: ['yarn', 'migration:run']
+    environment:
+      DB_HOST: dbmrv
+      DB_PORT: ${DB_PORT}
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PWD}
+      DB_NAME: ${DB_NAME}
+    env_file:
+      - .env
+
+  national:
+    build:
+      context: .
+      dockerfile: ./backend/services/Dockerfile
+    ports:
+      - "9000:3000"
+    depends_on:
+      - dbmrv
+    environment:
+      DB_HOST: dbmrv
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PWD}
+      RUN_MODULE: national-api
+      rootEmail: <ROOT EMAIL>
+      systemCountryCode: "NG"
+      name: "Antactic Region"
+      IS_EMAIL_DISABLED: "true"
+      ASYNC_OPERATIONS_TYPE: Database
+      HOST: "http://localhost:3030"
+      DOMAIN_MAP: "true"
+      EXPIRES_IN: "7200"
+      DB_PORT: ${DB_PORT}
+      DB_NAME: ${DB_NAME}
+      NODE_ENV: 'dev'
+      FILE_SERVICE: local
+      S3_COMMON_BUCKET: "<Set when FILE_SERVICE is S3 instead of LOCAL>"
+      DISABLE_LOW_PRIORITY_EMAIL: "true"
+      SYSTEM_TYPE: CARBON_TRANSPARENCY_SYSTEM  
+      BACKEND_HOST: http://localhost:9000
+      SYSTEM_NAME: Seychelles Climate Transparency System
+    volumes:
+      - filestore:/app/backend/services/public
+      - ./users.csv:/app/backend/services/users.csv
+      - ./organisations.csv:/app/backend/services/organisations.csv
+    env_file:
+      - .env
+
+  stats:
+    build:
+      context: .
+      dockerfile: ./backend/services/Dockerfile
+    ports:
+      - "9100:3100"
+    depends_on:
+      - dbmrv
+      - national
+    environment:
+      DB_HOST: dbmrv
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PWD}
+      RUN_PORT: 3100
+      RUN_MODULE: analytics-api
+      DOMAIN_MAP: "true"
+      DB_PORT:  ${DB_PORT}
+      DB_NAME: ${DB_NAME}
+      NODE_ENV: 'dev'
+      FILE_SERVICE: local
+      S3_COMMON_BUCKET: "<Set when FILE_SERVICE is S3 instead of LOCAL>"
+    env_file:
+      - .env
+
+  async-operations-handler:
+    build:
+      context: .
+      dockerfile: ./backend/services/Dockerfile
+    depends_on:
+      - dbmrv
+      - national
+    environment:
+      DB_HOST: dbmrv
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PWD}
+      RUN_MODULE: async-operations-handler,data-importer
+      LOCATION_SERVICE: https://mrv-common-dev.s3.amazonaws.com/flag.png
+      CERTIFIER_IMAGE : "https://mrv-common-dev.s3.amazonaws.com/flag.png"
+      SMTP_ENDPOINT: email-smtp.us-east-1.amazonaws.com
+      SMTP_PASSWORD: ""
+      SMTP_USERNAME: AKIAUMXKTXDJPDYDJ76J
+      IS_EMAIL_DISABLED: "true"
+      ASYNC_OPERATIONS_TYPE: Database
+      ITMO_API_KEY: ""
+      ITMO_EMAIL: ""                      
+      ITMO_PASSWORD: ""
+      DB_PORT: ${DB_PORT}
+      DB_NAME: ${DB_NAME}
+      REGISTRY_SYNC_ENABLE: true
+      NODE_ENV: 'dev'
+      FILE_SERVICE: local
+      S3_COMMON_BUCKET: "<Set when FILE_SERVICE is S3 instead of LOCAL>"
+      DISABLE_LOW_PRIORITY_EMAIL: "true"
+      SYSTEM_TYPE: CARBON_TRANSPARENCY_SYSTEM
+      BACKEND_HOST: http://localhost:9000
+    env_file:
+      - .env
