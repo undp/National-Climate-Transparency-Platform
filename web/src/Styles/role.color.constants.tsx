@@ -20,7 +20,7 @@ export const DevBGColor = 'rgba(254, 241, 173, 0.55)';
 export const DevColor = '#FFA070';
 
 export const MinBGColor = 'rgba(198, 144, 251, 0.12)';
-export const MinColor = '#9155fd';
+export const MinColor = '#0468B1';
 
 export const CertBGColor = 'rgba(128, 255, 0, 0.12)';
 export const CertColor = '#519E4F';
@@ -28,13 +28,13 @@ export const CertColor = '#519E4F';
 export const TooltipColor = '#6ACDFF';
 
 export const InvestmentBGColor = 'rgba(151, 110, 215, 0.3)';
-export const InvestmentColor = '#9155FD';
+export const InvestmentColor = '#0468B1';
 
 export const validatePermitBGColor = 'rgba(128, 255, 0, 0.12)';
 export const validatePermitColor = '#519E4F';
 
 export const subRolePermitBGColor = 'rgba(198, 144, 251, 0.12)';
-export const subRolePermitColor = '#9155fd';
+export const subRolePermitColor = '#0468B1';
 
 export const ghgInventoryPermitBGColor = 'rgba(176, 190, 197, 0.23)';
 export const ghgInventoryPermitColor = '#707070';

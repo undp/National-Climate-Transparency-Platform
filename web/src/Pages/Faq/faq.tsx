@@ -163,6 +163,30 @@ const faq = () => {
             <Panel header={t('question4')} key="4">
               <div className="answers">{t('answer4')}</div>
             </Panel>
+            <Panel header={t('question5')} key="5">
+              <div className="answers">{t('answer5')}</div>
+            </Panel>
+            <Panel header={t('question6')} key="6">
+              <div className="answers">{t('answer6')}</div>
+            </Panel>
+            <Panel header={t('question7')} key="7">
+              <div className="answers">{t('answer7')}</div>
+            </Panel>
+            <Panel header={t('question8')} key="8">
+              <div className="answers">{t('answer8')}</div>
+            </Panel>
+            <Panel header={t('question9')} key="9">
+              <div className="answers">{t('answer9')}</div>
+            </Panel>
+            <Panel header={t('question10')} key="10">
+              <div className="answers">{t('answer10')}</div>
+            </Panel>
+            <Panel header={t('question11')} key="11">
+              <div className="answers">{t('answer11')}</div>
+            </Panel>
+            <Panel header={t('question12')} key="12">
+              <div className="answers">{t('answer12')}</div>
+            </Panel>
           </Collapse>
         </div>
       </div>

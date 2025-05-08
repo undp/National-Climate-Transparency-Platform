@@ -4,6 +4,8 @@ import sliderLogo from '../../Assets/Images/mrvlogo.svg';
 import { useNavigate } from 'react-router-dom';
 import './layout.sider.scss';
 import * as Icon from 'react-bootstrap-icons';
+// import sliderLogo from '../../Assets/Images/gos.png';
+import sliderLogo from '../../Assets/Images/ClimateLogo.png';
 import {
   AppstoreOutlined,
   CloudDownloadOutlined,
@@ -67,7 +69,7 @@ const LayoutSider = (props: LayoutSiderProps) => {
 
   return (
     <Sider
-      width={240}
+      width={230}
       className="layout-sider-container"
       breakpoint={collapsed ? undefined : 'lg'}
       collapsedWidth={80}

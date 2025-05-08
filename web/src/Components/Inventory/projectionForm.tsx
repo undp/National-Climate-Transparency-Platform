@@ -61,7 +61,7 @@ export const ProjectionForm: React.FC<Props> = ({ index, projectionType }) => {
   const getProjection = async () => {
     try {
       const response = await get(`national/projections/actual/${projectionType}`);
-
+      console.log(response);
       if (response.status === 200 || response.status === 201) {
         setAllEditableData(getInitTimeline(response.data.projectionData));
         if (response.data.state === GHGRecordState.FINALIZED) {

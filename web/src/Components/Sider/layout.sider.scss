@@ -36,47 +36,42 @@
   .layout-sider-div-container {
     padding-top: 10px;
     overflow-y: auto;
+    overflow-x: hidden;
 
     .layout-sider-heading-container {
       display: flex;
       flex-direction: row;
-      align-items: center;
+      align-items: top;
       padding-top: 15px;
-      padding-right: 10px;
+      padding-right: 2px;
       padding-left: 20px;
       cursor: pointer;
 
-      .sider-logo-system-name {
-        // display: flex;
-        // flex-direction: column;
+      .title {
+        font-family: 'MuseoSans';
+        font-size: 12px;
+        color: $logo-text-color;
+        font-weight: 700;
+        margin-right: 1px;
+        align-items: top;
+      }
 
-        .title {
-          font-family: 'MuseoSans';
-          font-size: 13px;
-          color: $logo-text-color;
-          font-weight: 700;
-          margin-right: 5px;
-        }
-
-        .title-sub {
-          font-weight: 100 !important;
-          font-family: 'MuseoSans';
-          font-size: 12px;
-          color: $logo-text-color;
-          margin-top: -5px;
-        }
+      .title-sub {
+        font-weight: 100 !important;
+        font-family: 'MuseoSans';
+        font-size: 10px;
+        color: $logo-text-color;
       }
 
       .logo {
-        height: 60px;
-        width: 51px;
-
+        height: 52px;
+        width: auto;
         img {
           object-fit: cover;
           height: auto;
-          height: 78%;
+          height: 48%;
           margin-top: 6px;
-          margin-right: 7px;
+          margin-right: 5px;
         }
       }
     }

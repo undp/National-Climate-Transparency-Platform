@@ -43,7 +43,7 @@ import {
 const AddUser = () => {
   const navigate = useNavigate();
   const { t } = useTranslation(['addUser', 'changePassword', 'userProfile']);
-  const themeColor = '#9155fd';
+  const themeColor = '#0468B1';
 
   const { post, put } = useConnection();
   const [formOne] = Form.useForm();

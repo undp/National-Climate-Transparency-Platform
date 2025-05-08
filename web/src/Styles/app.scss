@@ -11,7 +11,7 @@ body {
   }
 
   .ant-tooltip-arrow-content {
-    --antd-arrow-background-color: linear-gradient(to right bottom, #9155fd, #9155fd) !important;
+    --antd-arrow-background-color: linear-gradient(to right bottom, #0468B1, #0468B1) !important;
   }
 
   .login-language-selection-container .ant-select-selector {
@@ -145,7 +145,7 @@ body {
 }
 
 .custom-tooltip .ant-tooltip-arrow-content {
-  --antd-arrow-background-color: linear-gradient(to right bottom, #9155fd, #9155fd) !important;
+  --antd-arrow-background-color: linear-gradient(to right bottom, #0468B1, #0468B1) !important;
 }
 
 .ant-menu {
@@ -909,6 +909,8 @@ body {
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
+  line-clamp: 1;
+  box-orient: vertical;
   -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
 }
