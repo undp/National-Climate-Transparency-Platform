@@ -1,0 +1,625 @@
+@use '../../Assets/Fonts/fonts.scss';
+@use '../../Styles/variables.scss';
+
+.landing-page {
+  font-family: variables.$primary-font-family;
+  color: #333;
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    background-color: #ffffff;
+    border-bottom: 1px solid #e2e8f0;
+
+    .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 100%;
+      width: 100%;
+      margin: 0 auto;
+      padding: 0 10px;
+      
+      @media (min-width: 640px) {
+        max-width: 640px;
+      }
+      @media (min-width: 768px) {
+        max-width: 768px;
+      }
+      @media (min-width: 1024px) {
+        max-width: 1024px;
+      }
+      @media (min-width: 1280px) {
+        max-width: 1280px;
+      }
+      @media (min-width: 1536px) {
+        max-width: 1536px;
+      }
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+    
+      .logo-image {
+        width: 65px;
+        height: auto;
+        margin-top: 6px;
+      }
+    
+      .company-details {
+        display: inline-flex;
+        flex-direction: column;
+        justify-content: center; // Ensures the text block is horizontally aligned with the logo
+        gap: 0px;
+    
+        .company-name1 {
+          font-size: 0.9rem;
+          font-weight: bold;
+          margin: 0; // Removes default margin
+          font-family: variables.$secondary-font-family;
+          line-height: 1.5; // Ensures no extra spacing between the lines
+        }
+        .company-name2 {
+          font-size: 0.9rem;
+          font-weight: normal;
+          margin: 0; // Removes default margin
+          line-height: 1.5; // Ensures no extra spacing between the lines
+        }
+    
+        .company-motto {
+          font-size: 0.7rem; // 14px
+          color: #64748b; // Gray color
+          margin: 0; // Removes default margin
+          line-height: 1; // Ensures no extra spacing between the lines
+          font-weight: 400;
+          margin-top: 0px;
+        }
+      }
+    
+      // Hide the company name and motto on mobile
+      @media (max-width: 640px) {
+        .company-details {
+          display: none;
+        }
+      }
+    }
+
+    .nav-bar {
+      display: flex;
+      gap: 10px;
+      button {
+        background: none;
+        border: none;
+        font-size: 1em;
+        cursor: pointer;
+        text-transform: uppercase;
+        color: #475569; /* Default text color */
+        transition: color 0.3s ease; /* Smooth transition for color change */
+        font-weight: 500;
+
+        &:hover {
+          color: variables.$primary-color;
+          font-weight: 600;
+        }
+      }
+    }
+
+    .sign-in {
+      background-color: variables.$primary-color;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-align: center; // For any additional alignment within the container
+      justify-content: center;
+      &:hover {
+        background: linear-gradient(to right, variables.$gradient-background-start, variables.$primary-color);
+      }
+    }
+    
+    // Mobile menu drawer
+    .menu-drawer {
+      display: none; /* Hide menu drawer on desktop */
+      &.active {
+        display: flex; /* Show menu drawer when active */
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      // Style for the drawer menu
+      position: absolute;
+      top: 50px;
+      right: 20px;
+      background: #fff;
+      padding: 20px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      z-index: 10;
+    }
+
+    .menu-toggle {
+      display: none; /* Hide the menu toggle on desktop */
+
+      @media (max-width: 768px) {
+        display: block; /* Show menu toggle on mobile */
+      }
+    }
+  }
+
+  // Media query for mobile view
+  @media (max-width: 768px) {
+    .header {
+      .nav-bar {
+        display: none; /* Hide the regular menu on mobile */
+      }
+
+      .menu-toggle {
+        background: #e2e8f0;
+        color: variables.$primary-color;
+        border: none;
+        padding: 6px 10px;
+        cursor: pointer;
+        border-radius: 4px;
+        border: 1px solid #cbd5e1;
+      }
+    }
+  }
+  .hero,
+  .our-vision,
+  .how-it-work,
+  .faqs {
+    width: 100vw; /* Ensure full width for the background */
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+  }
+
+  .hero{
+    width: 100%;
+    background: #f1f5f9; /* Light background */
+    .columns {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+
+      .left-column,
+      .right-column {
+        flex: 1; // Make columns flexible
+      }
+
+      .right-column img {
+        max-width: 100%; // Ensure the image is responsive
+        height: auto;
+        border-radius: 8px; // Optional for a polished look
+      }
+    }
+
+    // Responsive behavior
+    @media (max-width: 768px) { // Adjust breakpoint as needed
+      .columns {
+        flex-direction: column; // Stack columns vertically
+        gap: 10px; // Adjust spacing for mobile
+      }
+
+      .left-column,
+      .right-column {
+        flex: none; // Reset flex behavior for stacked layout
+      }
+    }
+
+    .partners-banner {
+      text-align: center; /* Center-align the title and logos */
+      padding: 10px;
+      background-color: #ffffff; /* Adjust background color as needed */
+      margin-top: 3rem; /* Add top margin to the banner */
+      border-radius: 10px; 
+    }
+
+    .partners-banner-title {
+      font-size: 1rem; /* Adjust font size as needed */
+      font-weight: 600;
+      margin-bottom: 20px; /* Space between title and logos */
+    }
+
+    .partners-container {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 50px;
+      padding-left: 100px;
+      padding-right: 100px;
+    }
+
+    .partners-item {
+      text-align: center;
+      flex: 1 1 28%; /* 5 logos per row on desktop */
+    }
+
+    .partners-item img {
+      max-width: 150px; /* Adjust logo size as needed */
+      height: 100px; /* Ensure all images have the same height */
+      object-fit: contain; /* Keep the image proportions */
+    }
+    
+    .partners-item p {
+      margin-top: 5px;
+      font-size: 0.7rem;
+      font-weight: 600;
+    }
+
+    /* Responsive Styles */
+    @media (max-width: 768px) {
+      .partners-item {
+        flex: 1 1 45%; /* 2 logos per row on mobile */
+      }
+    }
+
+  }
+  
+  
+  .our-vision {
+    background: #ffffff; /* white background */
+  }
+
+  .how-it-work {
+    background: #f1f5f9; /* Light background */
+  }
+
+  .faqs {
+    background: #f8f9fa; /* Custom color for FAQs */
+  }
+
+  /* Restrict content to TailwindCSS's screen widths */
+  section > .content {
+    margin: 0 auto;
+    max-width: 100%;
+    padding: 10px 10px; /* Add padding for spacing */
+    @media (min-width: 640px) {
+      max-width: 640px;
+    }
+    @media (min-width: 768px) {
+      max-width: 768px;
+    }
+    @media (min-width: 1024px) {
+      max-width: 1024px;
+      padding: 40px 20px; /* Add padding for spacing */
+    }
+    @media (min-width: 1280px) {
+      max-width: 1280px;
+      padding: 40px 20px; /* Add padding for spacing */
+    }
+    @media (min-width: 1536px) {
+      max-width: 1536px;
+      padding: 40px 20px; /* Add padding for spacing */
+    }
+  }
+
+  
+  .back-to-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: variables.$primary-color;
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    font-size: 18px;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    &:hover {
+      background: linear-gradient(to right, variables.$gradient-background-start, variables.$primary-color);
+      transform: translateY(-5px);
+    }
+  }
+
+  .text-ctn {
+    font-family: variables.$secondary-font-family;
+    text-transform: uppercase;
+    position: relative;
+    margin-bottom: 20px;
+    font-size: 0.8rem; /* Default for xs */
+    line-height: 1.2em;
+    text-align: center; /* Center text for xs and sm by default */
+    @media (min-width: 640px) {
+      font-size: 0.9rem;
+      line-height: 1.2em;
+      text-align: center; /* Centers text horizontally */
+    }
+    @media (min-width: 768px) {
+      font-size: 2rem;
+      line-height: 1.2em;
+      text-align: center; /* Centers text horizontally */
+    }
+    @media (min-width: 1024px) {
+      font-size: 2.1rem;
+      line-height: 1.2em;
+      text-align: left; /* Align left for larger screens */
+    }
+    @media (min-width: 1280px) {
+      font-size: 2.2rem; /* 48px */
+      line-height: 1.2em;
+      text-align: left; /* Align left for larger screens */
+    }
+    @media (min-width: 1536px) {
+      font-size: 2.3rem; /* 48px */
+      line-height: 1.2em;
+      text-align: left; /* Align left for larger screens */
+    }
+  }
+
+  .text-ctn1 {
+    font-family: variables.$primary-font-family;
+    font-size: 0.8rem; /* Default for xs */
+    line-height: 1.2em;
+    text-align: center; /* Center text for xs and sm by default */
+    @media (min-width: 640px) {
+      font-size: 0.9rem;
+      line-height: 1.2em;
+      text-align: center;
+    }
+    @media (min-width: 768px) {
+      font-size: 1rem;
+      line-height: 1.2em;
+      text-align: center;
+    }
+    @media (min-width: 1024px) {
+      font-size: 1.1rem;
+      line-height: 1.2em;
+      text-align: left;
+    }
+    @media (min-width: 1280px) {
+      font-size: 1.2rem;
+      line-height: 1.3em;
+      text-align: left;
+    }
+    @media (min-width: 1536px) {
+      font-size: 1.3rem;
+      line-height: 1.3em;
+      text-align: left;
+    }
+  }
+
+  .ctn-actions-bar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem 2rem; // Adjust padding for a larger button
+
+  }
+
+
+  .ctn-actions-bar-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1.4rem 2rem; // Adjust padding for a larger button
+    transition: all 0.3s ease;
+    text-align: center; // For any additional alignment within the container
+  }
+
+  .text-font-500 {
+    font-weight: 500;
+  }
+  .text-font-600 {
+    font-weight: 600;
+  }
+  .text-font-700 {
+    font-weight: 700;
+  }
+
+  .text-italic {
+    font-style: italic;
+  }
+
+  .mr-1 {
+    margin-right: 0.25rem; // Equivalent to Tailwind's mr-1
+  }
+
+  .section-topic {
+    font-family: variables.$secondary-font-family;
+    letter-spacing: 0.09em;
+    color: #2563eb; // This is Tailwind's blue-600 color hex value
+    font-size: 0.7rem;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    @media (min-width: 640px) {
+      font-size: 0.7rem;
+    }
+    @media (min-width: 768px) {
+      font-size: 0.8rem;
+    }
+    @media (min-width: 1024px) {
+      font-size: 0.9rem;
+    }
+    @media (min-width: 1280px) {
+      font-size: 1rem;
+    }
+    @media (min-width: 1536px) {
+      font-size: 1rem;
+    }
+  }
+
+  .section-title {
+    font-family: variables.$secondary-font-family;
+    letter-spacing: 0.09em;
+    @media (min-width: 640px) {
+      font-size: 1rem;
+      line-height: 1.2em;
+    }
+    @media (min-width: 768px) {
+      font-size: 1.2rem;
+      line-height: 1.2em;
+    }
+    @media (min-width: 1024px) {
+      font-size: 1.3rem;
+      line-height: 1.2em;
+    }
+    @media (min-width: 1280px) {
+      font-size: 1.4rem;
+      line-height: 1.2em;
+    }
+    @media (min-width: 1536px) {
+      font-size: 1.5rem;
+      line-height: 1.2em;
+    }
+  }
+
+  .section-subtitle {
+    font-family: variables.$primary-font-family;
+    font-size: 1.1rem;
+    text-wrap: pretty;
+  }
+
+  .card-grid-container {
+    padding: 20px 0;
+    max-width: 100%; /* Ensure the container spans full width of parent */
+    margin: 0 auto;
+  }
+  
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr); // Default to one column
+    gap: 20px;
+  
+    // 4 cards per row for screens 1536px and up
+    @media (min-width: 1536px) {
+      grid-template-columns: repeat(4, 1fr);
+    }
+    // 4 cards per row for screens 1280px and up
+    @media (min-width: 1280px) {
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    // 3 cards per row for screens 1024px and up
+    @media (min-width: 1024px) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+        // 1 card per row for smaller screens
+    @media (max-width: 1023px) {
+      grid-template-columns: repeat(1, 1fr);
+    }
+  }
+
+  .card {
+    background: linear-gradient(to right, variables.$gradient-background-start, variables.$gradient-background-end);
+    border-radius: 8px;
+    overflow: hidden;
+    padding: 16px; /* Add padding for better spacing */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    transition: transform 0.3s ease, box-shadow 0.3s ease, padding 0.3s ease; /* Add transitions for smooth effects */
+    border: 1px solid #f1f5f9; /* Add border with the specified color */
+  }
+
+  .card:hover {
+    background: variables.$gradient-background-end;
+  }
+
+  .card-title {
+    font-size: 1.5em; /* Adjust the font size as needed */
+    font-weight: bold; /* Make the title bold */
+    margin-bottom: 12px; /* Add spacing below the title */
+    color: variables.$dark-text-color;
+    line-height: 1.5;
+  }
+  .card-content {
+    font-size: 1em; /* Adjust the font size for the content */
+  }
+  .card-content ul {
+    list-style-type: disc; /* Use bullet points */
+    padding-left: 20px; /* Add indentation for the bullet points */
+    margin: 0; /* Remove default margin */
+    color: variables.$dark-text-color;
+    font-size: 1rem;
+    line-height: 24px;
+  }
+  .card-content li {
+    margin-bottom: 8px;
+  }
+
+  .block-section {
+    .grid-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;  /* Two equal-width columns */
+      gap: 20px;
+      align-items: center;
+      flex-direction: row-reverse;  /* Change order to display image first */
+      grid-template-columns: 1fr 1fr;  /* Adjust for equal-width columns */
+  
+      .image-column {
+        img {
+          width: 100%;
+          max-width: 700px;  /* Adjust based on the size of your image */
+          height: auto;
+          border-radius: 10px;
+        }
+      }
+
+      .content-column {
+        ul {
+          list-style-type: disc;
+          padding-left: 20px;
+  
+          li {
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+            text-wrap: pretty;
+            text-align: left;  /* Center text for mobile */
+          }
+        }
+      }
+    }
+
+    /* Mobile: Stack image on top */
+    @media (max-width: 768px) {
+      .grid-container {
+        grid-template-columns: 1fr;  /* Single column for mobile */
+        text-align: center;  /* Center text for mobile */
+      }
+
+      .image-column {
+        order: 1;  /* Ensures the image comes first */
+      }
+
+      .content-column {
+        order: 2;  /* Content comes second on mobile */
+        padding-top: 20px;  /* Add some padding if needed */
+      }
+    }
+  }
+
+  .accordian {
+    margin-top: 20px; /* Adjust the value as needed */
+    border-radius: 5px;
+    font-family: variables.$primary-font-family;
+    .collapsepanel {
+      border-radius: 5px !important;
+
+      .ant-collapse-header {
+        font-size: 14px;
+        font-weight: 600;
+        color: rgba(58, 53, 65, 0.8);
+        background-color: #f1f5f9; /* Sets the background color */
+        padding: 12px 16px; /* Adds some padding */
+        border-radius: 5px !important;
+      }
+
+      .collapse-content {
+        font-size: 14px;
+        padding: 12px 20px;
+        margin-bottom: 10px;
+      }
+    }
+  }
+}

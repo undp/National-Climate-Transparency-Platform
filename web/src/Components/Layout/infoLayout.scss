@@ -1,11 +1,11 @@
-@import '../../Assets/Fonts/fonts.scss';
-@import '../../Styles/variables.scss';
+@use '../../Assets/Fonts/fonts.scss';
+@use '../../Styles/variables.scss';
 
 .info-layout-container {
   height: 100%;
   overflow-y: auto;
   overflow-x: hidden;
-  background-color: $background-color;
+  background-color: variables.$background-color;
 
   .header-container {
     background-color: rgba(255, 255, 255, 0.8);
@@ -21,7 +21,7 @@
     .title {
       font-family: 'MuseoSans';
       font-size: 1.2rem;
-      color: $logo-text-color;
+      color: variables.$logo-text-color;
       font-weight: 700;
       margin-right: 0.5rem;
     }
@@ -30,7 +30,7 @@
       font-weight: 100 !important;
       font-family: 'MuseoSans';
       font-size: 1.2rem;
-      color: $logo-text-color;
+      color: variables.$logo-text-color;
     }
 
     .logo {
@@ -47,7 +47,7 @@
 
     .country-name {
       font-size: 0.65rem;
-      color: $logo-text-color;
+      color: variables.$logo-text-color;
       margin-top: -5px;
       font-family: 'MuseoSans';
     }
