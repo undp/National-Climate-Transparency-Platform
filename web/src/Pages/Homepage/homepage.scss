@@ -1,8 +1,8 @@
-@import '../../Assets/Fonts/fonts.scss';
-@import '../../Styles/variables.scss';
+@use '../../Assets/Fonts/fonts.scss';
+@use '../../Styles/variables.scss';
 
 .landing-page {
-  font-family: $primary-font-family;
+  font-family: variables.$primary-font-family;
   color: #333;
 
   .header {
@@ -60,7 +60,7 @@
           font-size: 0.9rem;
           font-weight: bold;
           margin: 0; // Removes default margin
-          font-family: $secondary-font-family;
+          font-family: variables.$secondary-font-family;
           line-height: 1.5; // Ensures no extra spacing between the lines
         }
         .company-name2 {
@@ -102,14 +102,14 @@
         font-weight: 500;
 
         &:hover {
-          color: $primary-color;
+          color: variables.$primary-color;
           font-weight: 600;
         }
       }
     }
 
     .sign-in {
-      background-color: $primary-color;
+      background-color: variables.$primary-color;
       color: #fff;
       border: none;
       padding: 10px 20px;
@@ -119,7 +119,7 @@
       text-align: center; // For any additional alignment within the container
       justify-content: center;
       &:hover {
-        background: linear-gradient(to right, $gradient-background-start, $primary-color);
+        background: linear-gradient(to right, variables.$gradient-background-start, variables.$primary-color);
       }
     }
     
@@ -160,7 +160,7 @@
 
       .menu-toggle {
         background: #e2e8f0;
-        color: $primary-color;
+        color: variables.$primary-color;
         border: none;
         padding: 6px 10px;
         cursor: pointer;
@@ -307,7 +307,7 @@
     position: fixed;
     bottom: 20px;
     right: 20px;
-    background-color: $primary-color;
+    background-color: variables.$primary-color;
     color: #fff;
     border: none;
     border-radius: 50%;
@@ -318,13 +318,13 @@
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     transition: background-color 0.3s ease, transform 0.3s ease;
     &:hover {
-      background: linear-gradient(to right, $gradient-background-start, $primary-color);
+      background: linear-gradient(to right, variables.$gradient-background-start, variables.$primary-color);
       transform: translateY(-5px);
     }
   }
 
   .text-ctn {
-    font-family: $secondary-font-family;
+    font-family: variables.$secondary-font-family;
     text-transform: uppercase;
     position: relative;
     margin-bottom: 20px;
@@ -359,7 +359,7 @@
   }
 
   .text-ctn1 {
-    font-family: $primary-font-family;
+    font-family: variables.$primary-font-family;
     font-size: 0.8rem; /* Default for xs */
     line-height: 1.2em;
     text-align: center; /* Center text for xs and sm by default */
@@ -427,7 +427,7 @@
   }
 
   .section-topic {
-    font-family: $secondary-font-family;
+    font-family: variables.$secondary-font-family;
     letter-spacing: 0.09em;
     color: #2563eb; // This is Tailwind's blue-600 color hex value
     font-size: 0.7rem;
@@ -451,7 +451,7 @@
   }
 
   .section-title {
-    font-family: $secondary-font-family;
+    font-family: variables.$secondary-font-family;
     letter-spacing: 0.09em;
     @media (min-width: 640px) {
       font-size: 1rem;
@@ -476,7 +476,7 @@
   }
 
   .section-subtitle {
-    font-family: $primary-font-family;
+    font-family: variables.$primary-font-family;
     font-size: 1.1rem;
     text-wrap: pretty;
   }
@@ -513,7 +513,7 @@
   }
 
   .card {
-    background: linear-gradient(to right, $gradient-background-start, $gradient-background-end);
+    background: linear-gradient(to right, variables.$gradient-background-start, variables.$gradient-background-end);
     border-radius: 8px;
     overflow: hidden;
     padding: 16px; /* Add padding for better spacing */
@@ -523,14 +523,14 @@
   }
 
   .card:hover {
-    background: $gradient-background-end;
+    background: variables.$gradient-background-end;
   }
 
   .card-title {
     font-size: 1.5em; /* Adjust the font size as needed */
     font-weight: bold; /* Make the title bold */
     margin-bottom: 12px; /* Add spacing below the title */
-    color: $dark-text-color;
+    color: variables.$dark-text-color;
     line-height: 1.5;
   }
   .card-content {
@@ -540,7 +540,7 @@
     list-style-type: disc; /* Use bullet points */
     padding-left: 20px; /* Add indentation for the bullet points */
     margin: 0; /* Remove default margin */
-    color: $dark-text-color;
+    color: variables.$dark-text-color;
     font-size: 1rem;
     line-height: 24px;
   }
@@ -602,7 +602,7 @@
   .accordian {
     margin-top: 20px; /* Adjust the value as needed */
     border-radius: 5px;
-    font-family: $primary-font-family;
+    font-family: variables.$primary-font-family;
     .collapsepanel {
       border-radius: 5px !important;
 

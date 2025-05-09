@@ -1,5 +1,5 @@
-@import '../../../Assets/Fonts/fonts.scss';
-@import '../../../Styles/variables.scss';
+@use '../../../Assets/Fonts/fonts.scss';
+@use '../../../Styles/variables.scss';
 
 .privacy-container {
   text-align: left;
@@ -10,7 +10,7 @@
   padding-bottom: 60px;
 
   .privacy-body {
-    color: $title-text-color;
+    color: variables.$title-text-color;
     padding: 20px 0px 20px 0px;
   }
   p {
@@ -29,7 +29,7 @@
   }
   .privacy-body-contact {
     font-weight: 700;
-    color: $title-text-color;
+    color: variables.$title-text-color;
     text-align: left;
     padding: 20px 0px 20px 0px;
   }
@@ -38,22 +38,22 @@
     justify-content: center;
     padding-bottom: 30px;
     font-weight: 700;
-    color: $title-text-color;
+    color: variables.$title-text-color;
   }
   .privacytitle {
     font-size: 2rem;
     font-weight: 700;
-    font-family: $primary-font-family;
-    color: $title-text-color;
+    font-family: variables.$primary-font-family;
+    color: variables.$title-text-color;
     text-align: center;
     justify-content: center;
     text-transform: uppercase;
     padding: 50px 50px 10px 50px;
 
-    @media (max-width: $lg-size) {
+    @media (max-width: variables.$lg-size) {
       font-size: 2rem;
       margin-top: 1rem;
-      color: $title-text-color;
+      color: variables.$title-text-color;
       line-height: 1.5em;
     }
   }
@@ -62,7 +62,7 @@
     text-align: left;
     justify-content: left;
     background-color: rgba(255, 255, 255, 0.8);
-    color: $title-text-color;
+    color: variables.$title-text-color;
     padding-top: 30px;
     font-size: 20px;
     font-weight: 700;
@@ -73,7 +73,7 @@
     text-align: left;
     justify-content: left;
     background-color: rgba(255, 255, 255, 0.8);
-    color: $title-text-color;
+    color: variables.$title-text-color;
     padding-top: 30px;
     font-size: 20px;
     font-weight: 700;
@@ -83,13 +83,13 @@
     padding-top: 20px;
     padding-left: 0px;
     font-weight: 700;
-    color: $title-text-color;
+    color: variables.$title-text-color;
     font-size: 16px;
   }
 
   .privacy-card-subtitle {
     text-decoration: underline;
-    color: $title-text-color;
+    color: variables.$title-text-color;
     font-size: 20px;
     font-weight: 700;
     padding-bottom: 20px;
@@ -102,10 +102,10 @@
     margin: 30px 60px 30px 60px;
     padding: 30px;
     border-style: solid;
-    border-color: $common-form-input-border;
+    border-color: variables.$common-form-input-border;
     border-width: 1px;
     table {
-      color: $title-text-color;
+      color: variables.$title-text-color;
       align-items: center;
 
       td {

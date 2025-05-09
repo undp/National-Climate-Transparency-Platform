@@ -1,4 +1,4 @@
-@import "../../../Styles/app.scss";
+@use "../../../Styles/app.scss";
 
 body .ant-input-status-error:not(.ant-input-disabled):not(.ant-input-borderless).ant-input,
 body .ant-input-status-error:not(.ant-input-disabled):not(.ant-input-borderless).ant-input:hover {
