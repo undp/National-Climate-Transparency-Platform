@@ -32,7 +32,7 @@
     "@aws-sdk/smithy-client": "^3.374.0",
     "@casl/ability": "^6.3.2",
     "@drdgvhbh/postgres-error-codes": "^0.0.6",
-    "@nestjs/common": "^9.0.0",
+    "@nestjs/common": "^10.4.16",
     "@nestjs/config": "^2.2.0",
     "@nestjs/core": "^9.0.0",
     "@nestjs/jwt": "^10.0.0",
@@ -44,7 +44,7 @@
     "@undp/serial-number-gen": "^1.0.0",
     "aws-lambda": "^1.0.7",
     "aws-serverless-express": "^3.4.0",
-    "axios": "^1.2.4",
+    "axios": "^1.6.0",
     "carbon-services-lib": "0.0.231-CARBON-323.2",
     "cheerio": "^1.0.0-rc.12",
     "class-transformer": "^0.5.1",
@@ -52,7 +52,7 @@
     "fs": "^0.0.1-security",
     "htmlparser2": "^9.0.0",
     "jsbi": "^4.3.0",
-    "nanoid": "3.3.4",
+    "nanoid": "3.3.8",
     "nest-winston": "^1.8.0",
     "nestjs-i18n": "^10.2.6",
     "nodemailer": "^6.8.0",
@@ -116,5 +116,6 @@
     ],
     "coverageDirectory": "../coverage",
     "testEnvironment": "node"
-  }
+  },
+  "packageManager": "yarn@4.6.0+sha512.5383cc12567a95f1d668fbe762dfe0075c595b4bfff433be478dbbe24e05251a8e8c3eb992a986667c1d53b6c3a9c85b8398c35a960587fbd9fa3a0915406728"
 }

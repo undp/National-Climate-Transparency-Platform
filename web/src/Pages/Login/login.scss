@@ -78,18 +78,19 @@
     display: flex;
     flex-direction: column;
     margin-top: 5vh;
+    margin-bottom: 5vh;
 
     .login-text-sign {
       font-size: 2.25rem;
-      line-height: 2.5rem;
       color: $title-text-color;
       font-weight: 600;
-      margin-bottom: 30px;
+      margin-bottom: 10px;
+    }
 
-      .login-text-welcome {
-        font-size: 0.8rem;
-        font-weight: 400;
-      }
+    .login-text-welcome {
+      font-size: 1rem;
+      font-weight: 500;
+      line-height: 1.5rem;
     }
   }
 
@@ -176,7 +177,7 @@
   }
 
   .back-to-sign {
-    color: #9155fd;
+    color: #0468B1;
     cursor: pointer;
   }
 }

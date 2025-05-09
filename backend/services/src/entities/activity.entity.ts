@@ -75,6 +75,15 @@ export class ActivityEntity implements EntitySubject {
 	@Column("jsonb", { nullable: true })
 	mitigationInfo: any;
 
+	@Column({ nullable: true })
+	startYear: number; // ML: added - user should be able to select a startYear for activity
+  
+	@Column({ nullable: true })
+	endYear: number; // ML: added - user should be able to select an endYear for activity
+
+	@Column({ nullable: true })
+	expectedTimeFrame: number; // ML: added - capture the activity startYear to endYear timeframe
+
 	@Column({ type: 'jsonb', nullable: true })
 	mitigationTimeline: {
 		expected: {

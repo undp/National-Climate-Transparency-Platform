@@ -25,7 +25,8 @@ export type ActivityMigratedData = {
   type: ActionType | undefined;
   affSectors: string[] | undefined;
   affSubSectors: string[] | undefined;
-  startYear: number | undefined;
-  endYear: number | undefined;
-  expectedTimeFrame: number | undefined;
+  // ML - we no longer need these as we are getting it directly in the activity table
+  // startYear: number | undefined;
+  // endYear: number | undefined;
+  // expectedTimeFrame: number | undefined;
 };
