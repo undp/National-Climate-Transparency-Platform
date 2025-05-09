@@ -20,7 +20,7 @@ RUN apk add python3 make g++ && rm -rf /var/cache/apk/* \
 COPY ./web .
 
 # Install development dependencies
-RUN CI=false yarn install --immutable
+RUN CI=false yarn install
 
 ARG PORT
 ENV PORT $PORT
