@@ -11,3 +11,7 @@ backend/services/.env.local
 .yalc
 yalc.lock
 web/public/locales/*
+.env
+.env.*
+.env
+.gitignore

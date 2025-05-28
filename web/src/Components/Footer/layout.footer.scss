@@ -1,9 +1,9 @@
-@import '../../Assets/Fonts/fonts.scss';
-@import '../../Styles/variables.scss';
+@use '../../Styles/variables.scss';
+@use '../../Assets/Fonts/fonts.scss';
 
 .homepage-footer-container {
-  background-color: $background-color-dark;
-  min-height: 200px;
+  background-color: variables.$background-color-dark;
+  min-height: 100px;
   height: 100%;
   align-items: center;
   padding: 1rem 2rem 0 1rem;
@@ -19,7 +19,7 @@
   }
 
   .footertext {
-    color: $dark-text-color;
+    color: variables.$dark-text-color;
     padding: 5px 60px 20px 60px;
     font-size: 0.875rem;
 
@@ -33,11 +33,12 @@
   }
 
   .footertext-bottom {
-    color: $dark-text-color;
+    color: variables.$dark-text-color;
     padding: 100px 60px 28px 60px;
     font-size: 0.875rem;
     font-family: 'MuseoSans';
     font-weight: 100;
+    display: flex;
 
     @media (max-width: 837px) {
       padding: 10px 60px 28px 60px;
@@ -54,7 +55,7 @@
 
   .footertext-link-container {
     display: flex;
-    color: $dark-text-color;
+    color: variables.$dark-text-color;
     padding: 100px 60px 20px 60px;
     font-size: 0.75rem;
     text-decoration: underline;
@@ -79,7 +80,7 @@
 
   .footertext-links {
     padding-right: 15px;
-    color: $dark-text-color;
+    color: variables.$dark-text-color;
 
     @media (max-width: 646px) {
       padding-left: 0;
@@ -109,7 +110,7 @@
     .title {
       font-family: 'MuseoSans';
       font-size: 2rem;
-      color: $dark-text-color;
+      color: variables.$dark-text-color;
       font-weight: 700;
       // line-height: 2.5rem;
       margin-right: 0.5rem;
@@ -128,7 +129,7 @@
       font-weight: 100 !important;
       font-family: 'MuseoSans';
       font-size: 2rem;
-      color: $dark-text-color;
+      color: variables.$dark-text-color;
 
       @media (max-width: 645px) {
         font-size: 1.45rem;
@@ -153,7 +154,7 @@
 
     .footer-country-name {
       font-size: 0.875rem;
-      color: $dark-text-color;
+      color: variables.$dark-text-color;
       font-family: 'MuseoSans';
       margin-left: 0.6rem;
     }

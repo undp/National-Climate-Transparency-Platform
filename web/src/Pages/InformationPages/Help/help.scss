@@ -1,5 +1,5 @@
-@import '../../../Assets/Fonts/fonts.scss';
-@import '../../../Styles/variables.scss';
+@use '../../../Assets/Fonts/fonts.scss';
+@use '../../../Styles/variables.scss';
 
 .help-container {
   text-align: left;
@@ -12,8 +12,8 @@
   .title {
     font-size: 2rem;
     font-weight: 700;
-    font-family: $primary-font-family;
-    color: $title-text-color;
+    font-family: variables.$primary-font-family;
+    color: variables.$title-text-color;
     text-align: center;
     justify-content: center;
     text-transform: uppercase;
@@ -23,16 +23,16 @@
       display: block !important;
     }
 
-    @media (max-width: $lg-size) {
+    @media (max-width: variables.$lg-size) {
       font-size: 2rem;
       margin-top: 1rem;
-      color: $title-text-color;
+      color: variables.$title-text-color;
       line-height: 1.5em;
     }
   }
 
   .text {
-    color: $title-text-color;
+    color: variables.$title-text-color;
     padding: 20px 0px 20px 0px;
   }
 }

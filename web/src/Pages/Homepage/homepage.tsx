@@ -5,8 +5,8 @@ import { Trans, useTranslation } from 'react-i18next';
 import i18next from 'i18next';
 import sliderLogo from '../../Assets/Images/mrvlogo.svg';
 import LayoutFooter from '../../Components/Footer/layout.footer';
-import './homepage.scss';
 import CollapsePanel from 'antd/lib/collapse/CollapsePanel';
+import './homepage.scss';
 
 const Homepage = () => {
   const { t } = useTranslation(['common', 'homepage']);
@@ -43,7 +43,7 @@ const Homepage = () => {
       <Row>
         <Col md={24} lg={24} flex="auto">
           <div className="homepage-img-container image-container">
-            <Row className="header-row">
+            <Row className="header">
               <Col md={18} lg={21} xs={17} flex="auto">
                 <div className="homepage-header-container">
                   <div className="logo">

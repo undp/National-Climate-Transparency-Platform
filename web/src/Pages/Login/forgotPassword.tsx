@@ -68,15 +68,7 @@ const ForgotPassword = () => {
         <Col>
           <div className="login-text-contents">
             <span className="login-text-sign">{t('forgotPassword:forgot-pwd-title')}</span>
-          </div>
-        </Col>
-      </Row>
-      <Row className="centred-row">
-        <Col>
-          <div className="note-container">
-            <div className="note">
-              <p>{t('forgotPassword:note-1')}</p>
-            </div>
+            <span className="login-text-welcome">{t('forgotPassword:note-1')}</span>
           </div>
         </Col>
       </Row>
