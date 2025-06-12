@@ -1374,7 +1374,7 @@ const ActivityForm: React.FC<FormLoadProps> = ({ method }) => {
                             >
                               {parent.hasChildProgrammes
                                 ? `${parent.id} : Attached to Programmes`
-                                : parent.id}
+                                : `${parent.id} - ${parent.title}`}
                             </span>
                           </Option>
                         ))}
