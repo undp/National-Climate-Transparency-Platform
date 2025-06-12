@@ -124,7 +124,7 @@ export const updateUserAbility = (ability: AppAbility, user: User) => {
       can(Action.Update, SupportEntity);
       can(Action.Delete, SupportEntity);
 
-      cannot(Action.Update, ResourceEntity);
+      can(Action.Update, ResourceEntity);
     }
 
     if (user.role == Role.GovernmentUser) {
