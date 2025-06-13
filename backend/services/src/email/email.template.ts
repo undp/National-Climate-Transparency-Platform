@@ -45,14 +45,14 @@ export const EmailTemplates = {
     html: `
         Welcome {{name}}, <br><br>
 
-        Your account has been created for the {{countryName}} NDC Transparency System. You can access your account using the
+        Your account has been created for the {{countryName}} National Climate Transparency Platform. You can access your account using the
         Homepage: <a href="{{home}}">{{home}}</a> <br><br>
 
         User: {{email}} <br>
         Password (temporary): {{tempPassword}} <br><br>
 
         Sincerely, <br>
-        The {{countryName}} NDC Transparency System Team <br><br>
+        The {{countryName}} National Climate Transparency Platform Team <br><br>
         `,
     text: "",
   },
@@ -87,12 +87,12 @@ export const EmailTemplates = {
     subject: "Your Password was Changed!",
     html: `
         Hi {{name}},<br><br>
-        The password of your NDC Transparency System account was changed successfully. <br><br>
-        If you do not use {{countryName}} NDC Transparency System, please ignore this email.
+        The password of your National Climate Transparency Platform account was changed successfully. <br><br>
+        If you do not use {{countryName}} National Climate Transparency Platform, please ignore this email.
 
         <br><br>
         Sincerely, <br>
-        The {{countryName}} NDC Transparency System Team
+        The {{countryName}} National Climate Transparency Platform Team
         `,
     text: "",
   },
@@ -101,15 +101,15 @@ export const EmailTemplates = {
     subject: "Your Password was Changed by the Super Admin!",
     html: `
         Hi {{name}},<br><br>
-        Password of Your NDC Transparency System account has been changed by the Super Admin. <br><br>
+        Password of Your National Climate Transparency Platform account has been changed by the Super Admin. <br><br>
 
         Your new password: {{newPassword}}  <br><br>
 
-				Please enter your email and new password to access your NDC Transparency System account. 
+				Please enter your email and new password to access your National Climate Transparency Platform account. 
 
         <br><br>
         Sincerely, <br>
-        The {{countryName}} NDC Transparency System Team
+        The {{countryName}} National Climate Transparency Platform Team
         `,
     text: "",
   },
@@ -118,18 +118,18 @@ export const EmailTemplates = {
     subject: "Password Reset Request",
     html: `
         Hi {{name}},<br><br>
-        We received a request to reset your NDC Transparency System account password. <br><br>
+        We received a request to reset your National Climate Transparency Platform account password. <br><br>
         Use the link below to set a new password for your account. This password reset is only valid for the next hour.
         <br><br>
 
         <a href="{{home}}/resetPassword/{{requestId}}">Click here to reset the password</a>
         <br><br>
 
-        If you do not use {{countryName}} NDC Transparency System, please ignore this email.
+        If you do not use {{countryName}} National Climate Transparency Platform, please ignore this email.
 
         <br><br>
         Sincerely, <br>
-        The {{countryName}} NDC Transparency System Team
+        The {{countryName}} National Climate Transparency Platform Team
         `,
     text: "",
   },
@@ -138,12 +138,12 @@ export const EmailTemplates = {
     subject: "Account Reactivated",
     html: `
         Hi {{name}},<br><br>
-        Your NDC Transparency System account has been reactivated by the {{government}}. 
+        Your National Climate Transparency Platform account has been reactivated by the {{government}}. 
         You can now log in to the system.
 
         <br><br>
         Sincerely, <br>
-        The {{countryName}} NDC Transparency System Team
+        The {{countryName}} National Climate Transparency Platform Team
         `,
     text: "",
   },
@@ -152,14 +152,14 @@ export const EmailTemplates = {
     subject: "Account Deactivated",
     html: `
         Hi {{name}},<br><br>
-        Your NDC Transparency System account has been deactivated by the {{government}} with the following remark(s):
+        Your National Climate Transparency Platform account has been deactivated by the {{government}} with the following remark(s):
         {{remarks}}<br><br>
 
         You will not be able to log in to the system until the account is reactivated.
 
         <br><br>
         Sincerely, <br>
-        The {{countryName}} NDC Transparency System Team
+        The {{countryName}} National Climate Transparency Platform Team
         `,
     text: "",
   },

@@ -85,10 +85,10 @@ const LayoutSider = (props: LayoutSiderProps) => {
             <div>
               <div className="sider-logo-system-name">
                 <Row>
-                  <div className="title">{collapsed ? '' : 'NDC TRANSPARENCY'}</div>
+                  <div className="title">{collapsed ? '' : 'NATIONAL CLIMATE TRANSPARENCY'}</div>
                 </Row>
                 <Row>
-                  <div className="title-sub">{collapsed ? '' : 'SYSTEM'}</div>
+                  <div className="title-sub">{collapsed ? '' : 'PLATFORM'}</div>
                 </Row>
               </div>
               <div className="country-name">{process.env.REACT_APP_COUNTRY_NAME || 'CountryX'}</div>

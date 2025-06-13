@@ -18,8 +18,8 @@ const InfoLayout = () => {
         </div>
         <div>
           <div style={{ display: 'flex' }}>
-            <div className="title">{'NDC TRANSPARENCY'}</div>
-            <div className="title-sub">{'SYSTEM'}</div>
+            <div className="title">{'NATIONAL CLIMATE TRANSPARENCY '}</div>
+            <div className="title-sub">{'PLATFORM'}</div>
           </div>
           <div className="country-name">{process.env.REACT_APP_COUNTRY_NAME || 'CountryX'}</div>
         </div>
