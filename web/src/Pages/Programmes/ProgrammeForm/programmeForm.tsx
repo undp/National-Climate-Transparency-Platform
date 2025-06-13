@@ -841,7 +841,7 @@ const ProgrammeForm: React.FC<FormLoadProps> = ({ method }) => {
                           >
                             {action.hasChildActivities
                               ? `${action.id} : Attached to Activities`
-                              : action.id}
+                              : `${action.id} - ${action.title}`}
                           </span>
                         </Option>
                       ))}

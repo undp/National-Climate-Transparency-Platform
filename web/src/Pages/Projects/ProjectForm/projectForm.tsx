@@ -874,7 +874,7 @@ const ProjectForm: React.FC<FormLoadProps> = ({ method }) => {
                     >
                       {programmeList.map((program) => (
                         <Option key={program.id} value={program.id}>
-                          {program.id}
+                          {`(${program.id}) - ${program.title}`}
                         </Option>
                       ))}
                     </Select>

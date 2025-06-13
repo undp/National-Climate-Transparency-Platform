@@ -402,7 +402,7 @@ const SupportForm: React.FC<Props> = ({ method }) => {
                     >
                       {parentList.map((parent) => (
                         <Option key={parent.id} value={parent.id}>
-                          {parent.id}
+                          {`${parent.id} - ${parent.title}`}
                         </Option>
                       ))}
                     </Select>
