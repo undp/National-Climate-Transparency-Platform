@@ -282,7 +282,7 @@ export class HelperService {
       }
 
       if(isSubject) {
-        return `${this.configService.get("email.getemailprefix")} NDC Transparency System: ${template}`;
+        return `${this.configService.get("email.getemailprefix")} National Climate Transparency Platform: ${template}`;
       } else {
         return template;
       } 

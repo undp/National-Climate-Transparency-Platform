@@ -19,7 +19,7 @@ The NCTP has 7 key features.
 
 * **Tracking National Sustainable Development**: Every country and ministry has specific development planning that commonly overlaps with climate actions.  The NCTP allows for the inclusion of customised Key Performance Indicators for actions, programmes, projects, and activities that align with national goals and planning.
  
-* **GHG Emissions Projections**: The DTS has a module to help governments project GHG emissions based on different scenarios for sectors and subsectors using standard exponential modelling and/or by inputting modelling data from other software and models.  Additionally, the module enables the input of GHG inventory results, organized by categories and subcategories, ensuring comprehensive and flexible emissions analysis.
+* **GHG Emissions Projections**: The NCTP has a module to help governments project GHG emissions based on different scenarios for sectors and subsectors using standard exponential modelling and/or by inputting modelling data from other software and models.  Additionally, the module enables the input of GHG inventory results, organized by categories and subcategories, ensuring comprehensive and flexible emissions analysis.
 
 * **Validation**: To ensure quality control, governments can assign users to validate the information provided for each climate action, programme, project, activity and support.
 
