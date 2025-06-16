@@ -28,6 +28,7 @@ WITH fullp AS (
 act AS (
 	SELECT 
 			a."parentId" AS "actionId",
+			ARRAY_AGG(DISTINCT a."nationalImplementingEntity") FILTER (WHERE a."nationalImplementingEntity" IS NOT NULL) AS nat_impl,
 			COALESCE(SUM(a."achievedGHGReduction"), 0) AS "achievedGHGReduction",
 			COALESCE(SUM(a."expectedGHGReduction"), 0) AS "expectedGHGReduction",
 			ARRAY_AGG(a."ghgsAffected") FILTER (WHERE a."ghgsAffected" IS NOT NULL)::character varying[] AS "ghgsAffected"
@@ -50,7 +51,7 @@ finance AS (
 )
 SELECT 
 	a."actionId" AS id,
-	CUSTOM_ARRAY_AGG(fullp.nat_impl) FILTER (WHERE fullp.nat_impl IS NOT NULL) AS "natImplementors",
+	CUSTOM_ARRAY_AGG(DISTINCT fullp.nat_impl) FILTER (WHERE fullp.nat_impl IS NOT NULL) || CUSTOM_ARRAY_AGG(DISTINCT act.nat_impl) FILTER (WHERE act.nat_impl IS NOT NULL) AS "natImplementors",
 	COALESCE(SUM(fullp."achievedGHGReduction"), 0) + COALESCE(act."achievedGHGReduction", 0) AS "achievedGHGReduction",
 	COALESCE(SUM(fullp."expectedGHGReduction"), 0) + COALESCE(act."expectedGHGReduction", 0) AS "expectedGHGReduction",
 	MAX(finance."totalRequired") AS "financeNeeded",
