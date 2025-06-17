@@ -5,7 +5,14 @@ export const getProgrammeTableColumns = () => {
   const { t } = useTranslation(['formTable']);
 
   const programmeTableColumns = [
-    { title: t('programmeId'), dataIndex: 'programmeId', key: 'programmeId' },
+    {
+      title: t('programmeId'),
+      dataIndex: 'programmeId',
+      key: 'programmeId',
+      render: (_: any, record: any) => {
+        return <a href={`/programmes/view/${record.programmeId}`}>{record.programmeId}</a>;
+      },
+    },
     { title: t('actionId'), dataIndex: 'actionId', key: 'actionId' },
     { title: t('programmeTitle'), dataIndex: 'title', key: 'title' },
     { title: t('programmeType'), dataIndex: 'type', key: 'title' },

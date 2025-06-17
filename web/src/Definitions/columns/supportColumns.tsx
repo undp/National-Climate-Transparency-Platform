@@ -4,7 +4,14 @@ export const getSupportTableColumns = () => {
   const { t } = useTranslation(['formTable']);
 
   const supportTableColumns = [
-    { title: t('supportIdTitle'), dataIndex: 'supportId', key: 'activityId' },
+    {
+      title: t('supportIdTitle'),
+      dataIndex: 'supportId',
+      key: 'supportId',
+      render: (_: any, record: any) => {
+        return <a href={`/support/view/${record.supportId}`}>{record.supportId}</a>;
+      },
+    },
     { title: t('financeNatureTitle'), dataIndex: 'financeNature', key: 'financeNature' },
     { title: t('directionTitle'), dataIndex: 'direction', key: 'direction' },
     { title: t('finInstrumentTitle'), dataIndex: 'finInstrument', key: 'finInstrument' },
