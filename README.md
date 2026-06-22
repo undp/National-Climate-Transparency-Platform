@@ -34,6 +34,7 @@ Below contents are planned to be updated by the third quarter of 2024 based on u
 * [About](#about)
 * [Standards](#standards)
 * [System Architecture](#architecture)
+* [Platform Independence](#platform-independence)
 * [Project Structure](#structure)
 * [Run Services as Containers](#container)
 * [Run Services Locally](#local)
@@ -66,23 +67,83 @@ This codebase aims to fulfill the [Digital Public Goods standard](https://digita
 
 System services can be deployed in 2 ways.
 
-* **As a Container** - Each service boundary containerized into a docker container and can deploy on any container orchestration service. [Please refer Docker Compose file](./docker-compose.yml)
+* **As a Container** - Each service boundary containerized into a docker container and can deploy on any container orchestration service (Docker, Podman, Kubernetes, etc.). [Please refer Docker Compose file](./docker-compose-prod.yml)
 * **As a Function** - Each service boundary packaged as a function (Serverless) and host on any Function As A Service (FaaS) stack. [Please refer Serverless configuration file](./backend/services/serverless.yml)
+
+The container deployment runs entirely on free and open-source software — see [Platform Independence](#platform-independence) below.
 
 ### **External Service Providers**
 
-All the external services access through a generic interface. It will decouple the system implementation from the external services and enable extendability to multiple services.
+All external services are accessed through generic interfaces. This decouples the system implementation from any specific provider and lets implementers choose an open-source option or swap in another provider **without changing application code** — the selection is made at runtime via environment variables.
 
 #### File Service
 
-Implemented 2 options for static file hosting.
+Two options for static file hosting:
 
-1. NestJS static file hosting using the local storage and container volumes.
-2. AWS S3 file storage.
+1. **Local storage** with container volumes (open source, **default**) — served by NestJS.
+2. AWS S3 file storage (optional, proprietary).
 
-Can add more options by implementing [file handler interface](./backend/services/src/shared/file-handler/filehandler.interface.ts)
+Selected via environment variable `FILE_SERVICE`. Supported values are `LOCAL` (default) and `S3`. Additional providers can be added by implementing the [file handler interface](./backend/services/src/file-handler/filehandler.interface.ts).
 
-Change by environment variable `FILE_SERVICE`. Supported types are `LOCAL` (default) and `S3`.
+#### Async Operations Service
+
+Two options for handling asynchronous operations (e.g. queued notification emails):
+
+1. **PostgreSQL-backed queue** (open source, **default**) — no external service required.
+2. AWS SQS (optional, proprietary).
+
+Selected via environment variable `ASYNC_OPERATIONS_TYPE`. Supported values are `Database` (default) and `Queue`. Additional providers can be added by implementing the [async operations interface](./backend/services/src/async-operations/async-operations.interface.ts).
+
+#### Email Service
+
+Email is sent over the standard, open **SMTP** protocol via [nodemailer](https://nodemailer.com/), so it works with any SMTP server — including self-hosted open-source options such as Postfix — configured through the `SMTP_ENDPOINT`, `SMTP_USERNAME`, and `SMTP_PASSWORD` environment variables. Email can also be disabled entirely with `IS_EMAIL_DISABLED=true`.
+
+#### Database
+
+The system uses **PostgreSQL** (open source) exclusively, via the standard `pg` driver and TypeORM. There is no proprietary database dependency.
+
+<a name="platform-independence"></a>
+
+## Platform Independence
+
+In line with the [Digital Public Goods Standard indicator on platform independence](https://github.com/DPGAlliance/dpg-resources/tree/main/docs/platform-independence#readme), the NCTP has **no mandatory closed-source or proprietary dependencies**. Every component required to run the platform is available under an OSI-approved open-source license, and the project can be deployed and operated end-to-end on a fully open-source stack.
+
+Where a managed/proprietary service is supported for convenience (e.g. AWS S3 or SQS), it is offered as an **optional** alternative behind a generic interface (see [External Service Providers](#deployment)). This follows the DPG **abstraction layer** compliance path: implementers select the open-source option or a proprietary one **at runtime via environment variables, with no changes to the source code**.
+
+### Mandatory dependencies and their open-source options
+
+| Capability | Open-source option (default) | License | Optional proprietary alternative | How to switch |
+| :--- | :--- | :--- | :--- | :--- |
+| Runtime | Node.js | MIT / Apache-2.0 | — | — |
+| Backend framework | NestJS | MIT | — | — |
+| Frontend framework | React | MIT | — | — |
+| Database | PostgreSQL | PostgreSQL License (OSI) | — | — (only PostgreSQL is supported) |
+| File storage | Local filesystem + container volumes | (app: AGPL-3.0) | AWS S3 | `FILE_SERVICE=LOCAL` \| `S3` |
+| Async operations | PostgreSQL-backed queue | (app: AGPL-3.0) | AWS SQS | `ASYNC_OPERATIONS_TYPE=Database` \| `Queue` |
+| Email | SMTP (e.g. Postfix) via nodemailer | MIT | Any hosted SMTP (e.g. AWS SES) | `SMTP_*` env vars |
+| Deployment | Containers (Docker/Podman/Kubernetes) | open | AWS Lambda (Serverless) | `docker-compose-prod.yml` \| `serverless.yml` |
+
+All application dependencies resolve to OSI-approved licenses (MIT, Apache-2.0, BSD, ISC, etc.); the project itself is licensed under [AGPL-3.0](./LICENSE).
+
+### Running on a fully open-source stack
+
+To run the NCTP without any proprietary or managed-cloud services, deploy with containers and the open-source defaults:
+
+```sh
+FILE_SERVICE=LOCAL            # local filesystem storage (not S3)
+ASYNC_OPERATIONS_TYPE=Database # PostgreSQL-backed async queue (not SQS)
+# Email: either configure a self-hosted SMTP server via SMTP_ENDPOINT / SMTP_USERNAME / SMTP_PASSWORD,
+#        or disable it with IS_EMAIL_DISABLED=true
+```
+
+With these settings the entire system runs on PostgreSQL, Node.js, and a container runtime — see [Run Services As Containers](#container). No AWS account or other proprietary service is required.
+
+### Adding another provider
+
+Because each external service sits behind an interface, support for an additional provider can be added without altering the rest of the codebase by implementing the relevant interface and registering it in the corresponding module:
+
+* File storage — [`filehandler.interface.ts`](./backend/services/src/file-handler/filehandler.interface.ts)
+* Async operations — [`async-operations.interface.ts`](./backend/services/src/async-operations/async-operations.interface.ts)
 
 <a name="structure"></a>
 
@@ -101,7 +162,7 @@ Change by environment variable `FILE_SERVICE`. Supported types are `LOCAL` (defa
         ├── serverless.yml          # Service deployment scripts [Serverless + AWS Lambda]
 ├── web                             # System web frontend implementation [ReactJS]
 ├── .gitignore
-├── docker-compose.yml              # Docker container definitions
+├── docker-compose-*.yml            # Docker container definitions (prod, dev, etc.)
 └── README.md
 ```
 
@@ -109,7 +170,7 @@ Change by environment variable `FILE_SERVICE`. Supported types are `LOCAL` (defa
 
 ## Run Services As Containers
 
-* Update [docker compose file](./docker-compose.yml) env variables as required.
+* Update [docker compose file](./docker-compose-prod.yml) env variables as required.
   * Currently all the emails are disabled using env variable `IS_EMAIL_DISABLED`. When the emails are disabled email payload will be printed on the console. User account passwords needs to extract from this console log. Including root user account, search for a log line starting with `Password (temporary)` on national container (`docker logs -f climate-transparency-national-1`).
   * Add / update following environment variables to enable email functionality.
     * `IS_EMAIL_DISABLED`=false
