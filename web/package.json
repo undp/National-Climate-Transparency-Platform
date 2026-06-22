@@ -2,6 +2,7 @@
   "name": "web-mrv",
   "version": "0.1.2",
   "private": true,
+  "license": "AGPL-3.0-only",
   "dependencies": {
     "@ant-design/icons": "^4.7.0",
     "@casl/ability": "^6.3.3",
